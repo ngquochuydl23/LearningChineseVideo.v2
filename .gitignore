@@ -1,9 +1,9 @@
 
 
 # dependencies
-Services/LearningVideoStorageApi/node_modules
-Services/LearningVideoStorageApi/uploads
-Services/LearningVideoStorageApi/.yarn
+api/LearningVideoStorageApi/node_modules
+api/LearningVideoStorageApi/uploads
+api/LearningVideoStorageApi/.yarn
 
 
 #misc
@@ -13,20 +13,22 @@ Services/LearningVideoStorageApi/.yarn
 
 Clients/LearningChineseVideo/node_modules
 
-Services/LearningVideoApi/.vs
-Services/LearningVideoApi/bin/*
-Services/LearningVideoApi/[Dd]ebug/
-Services/LearningVideoApi/[Dd]ebugPublic/
-Services/LearningVideoApi/[Rr]elease/
-Services/LearningVideoApi/[Rr]eleases/
+api/LearningVideoApi/.vs
+api/LearningVideoApi/bin/*
+api/LearningVideoApi/[Dd]ebug/
+api/LearningVideoApi/[Dd]ebugPublic/
+api/LearningVideoApi/[Rr]elease/
+api/LearningVideoApi/[Rr]eleases/
 
-Services/LearningVideoApi/x64/
-Services/LearningVideoApi/x86/
-Services/LearningVideoApi/build/
-Services/LearningVideoApi/bld/
+api/LearningVideoApi/x64/
+api/LearningVideoApi/x86/
+api/LearningVideoApi/build/
+api/LearningVideoApi/bld/
 
-Services/LearningVideoApi/bin/*
-Services/LearningVideoApi/obj/*
+api/LearningVideoApi/bin/*
+api/LearningVideoApi/obj/*
+
+api/LearningVideoApi.v2/node_modules
 .yarnrc.yml
 .yarnrc
 .yarn

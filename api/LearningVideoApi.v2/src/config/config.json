@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "720798d5-aa5a-476e-a3a3-5e3392324052",
+    "database": "LearningChineseVideoDb.Staging",
+    "host": "localhost",
+    "dialect": "postgres",
+    "define": {
+      "quoteIdentifiers": true
+    }
+  },
+  "test": {
+    "username": "postgres",
+    "password": "720798d5-aa5a-476e-a3a3-5e3392324052",
+    "database": "LearningChineseVideoDb.Staging",
+    "host": "localhost",
+    "dialect": "postgres",
+    "define": {
+      "quoteIdentifiers": true
+    }
+  },
+  "production": {
+    "username": "postgres",
+    "password": "720798d5-aa5a-476e-a3a3-5e3392324052",
+    "database": "LearningChineseVideoDb.Staging",
+    "host": "localhost",
+    "dialect": "postgres",
+    "define": {
+      "quoteIdentifiers": true
+    }
+  }
+}
