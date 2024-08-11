@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'User',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "PK_User",

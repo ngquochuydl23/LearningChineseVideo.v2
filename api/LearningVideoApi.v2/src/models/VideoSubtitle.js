@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('VideoSubtitle', {
     Id: {
       autoIncrement: true,
@@ -36,6 +36,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     FileName: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -45,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'VideoSubtitle',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "IX_VideoSubtitle_VideoId",

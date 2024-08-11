@@ -10,13 +10,13 @@ var _WatchedVideo = require("./WatchedVideo");
 var ___EFMigrationsHistory = require("./__EFMigrationsHistory");
 
 function initModels(sequelize) {
+  var SavedVocaEntity = _SavedVocaEntity(sequelize, DataTypes);
+  var Topic = _Topic(sequelize, DataTypes);
+  var TopicVideo = _TopicVideo(sequelize, DataTypes);
   var User = _User(sequelize, DataTypes);
   var Video = _Video(sequelize, DataTypes);
-  var Topic = _Topic(sequelize, DataTypes);
-  var Vocabulary = _Vocabulary(sequelize, DataTypes);
-  var SavedVocaEntity = _SavedVocaEntity(sequelize, DataTypes);
-  var TopicVideo = _TopicVideo(sequelize, DataTypes);
   var VideoSubtitle = _VideoSubtitle(sequelize, DataTypes);
+  var Vocabulary = _Vocabulary(sequelize, DataTypes);
   var WatchedVideo = _WatchedVideo(sequelize, DataTypes);
   var __EFMigrationsHistory = ___EFMigrationsHistory(sequelize, DataTypes);
 

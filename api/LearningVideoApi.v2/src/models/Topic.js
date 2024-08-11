@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('Topic', {
     Id: {
       type: DataTypes.TEXT,
@@ -17,7 +17,11 @@ module.exports = function(sequelize, DataTypes) {
     LastUpdated: {
       type: DataTypes.DATE,
       allowNull: false
-    }
+    },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
   }, {
     sequelize,
     tableName: 'Topic',

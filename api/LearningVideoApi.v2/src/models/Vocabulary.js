@@ -38,6 +38,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     SinoVietnamese: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -50,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'Vocabulary',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "PK_Vocabulary",

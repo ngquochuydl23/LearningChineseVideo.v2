@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('TopicVideo', {
     Id: {
       autoIncrement: true,
@@ -31,7 +31,11 @@ module.exports = function(sequelize, DataTypes) {
     LastUpdated: {
       type: DataTypes.DATE,
       allowNull: false
-    }
+    },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
   }, {
     sequelize,
     tableName: 'TopicVideo',

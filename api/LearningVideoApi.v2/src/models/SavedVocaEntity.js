@@ -49,6 +49,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0.0
     },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     Sentence: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -57,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'SavedVocaEntity',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "IX_SavedVocaEntity_UserId",
