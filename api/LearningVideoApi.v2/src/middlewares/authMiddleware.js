@@ -78,7 +78,7 @@ const authMiddleware = async (req, res, next) => {
         // })
 
         //req.loggingDeviceId = decodedToken.deviceId;
-        req.loggingUserId = decodedToken.userId;
+        req.loggingUserId = decodedToken.id;
         next();
     } catch (error) {
         return res

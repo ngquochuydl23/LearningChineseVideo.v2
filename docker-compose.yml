@@ -16,10 +16,10 @@ services:
     image: learning-chinese-video-api-v2
     container_name: learning-chinese-video-api-v2
     build:
-      context: ./api/LearningVideoApi.v2
-      dockerfile: Dockerfile
+      context: ./api/
+      dockerfile: LearningVideoApi.v2/Dockerfile
     volumes:
-      - ./uploads:uploads
+      - ./uploads:/LearningVideoApi.v2/uploads
     ports:
       - 7700:7700
     restart: always

@@ -55,6 +55,10 @@ module.exports = function(sequelize, DataTypes) {
     LastUpdated: {
       type: DataTypes.DATE,
       allowNull: false
+    },
+    CreatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   }, {
     sequelize,
