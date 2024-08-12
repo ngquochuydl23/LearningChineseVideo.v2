@@ -12,16 +12,16 @@ services:
       - 2401:3000
     restart: always
 
-  learning-chinese-video-storage-api:
-    image: learning-chinese-video-storage-api
-    container_name: learning-chinese-video-storage-api
+  learning-chinese-video-api-v2:
+    image: learning-chinese-video-api-v2
+    container_name: learning-chinese-video-api-v2
     build:
-      context: ./Services/LearningVideoStorageApi
+      context: ./api/LearningVideoApi.v2
       dockerfile: Dockerfile
     volumes:
-      - ./uploads:/learningChineseVideo/uploads
+      - ./uploads:uploads
     ports:
-      - 2601:2601
+      - 7700:7700
     restart: always
  
   

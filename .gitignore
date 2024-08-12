@@ -1,12 +1,4 @@
 
-
-# dependencies
-api/LearningVideoStorageApi/node_modules
-api/LearningVideoStorageApi/uploads
-api/LearningVideoStorageApi/.yarn
-
-
-#misc
 .vs
 .vscode
 
@@ -29,6 +21,7 @@ api/LearningVideoApi/bin/*
 api/LearningVideoApi/obj/*
 
 api/LearningVideoApi.v2/node_modules
+api/LearningVideoApi.v2/uploads
 .yarnrc.yml
 .yarnrc
 .yarn

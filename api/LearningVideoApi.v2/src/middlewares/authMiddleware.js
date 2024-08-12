@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { findById, updateDevice } = require("../services/deviceService");
 const moment = require('moment');
 const geoip = require('geoip-lite');
 
@@ -8,7 +7,7 @@ const authMiddleware = async (req, res, next) => {
         var ipAddress = req.ip;
         if (!req.ip) {
 
-            if (process.env.NODE_ENV !== 'LOCAL') {
+            if (process.env.NODE_ENV !== 'Development') {
                 return res
                     .status(400)
                     .json({
@@ -52,33 +51,33 @@ const authMiddleware = async (req, res, next) => {
                 })
         }
 
-        const device = await findById(decodedToken.deviceId);
-        if (!device) {
-            return res
-                .status(400)
-                .json({
-                    statusCode: 400,
-                    error: "Device cannot be detected."
-                })
-        }
+        // const device = await findById(decodedToken.deviceId);
+        // if (!device) {
+        //     return res
+        //         .status(400)
+        //         .json({
+        //             statusCode: 400,
+        //             error: "Device cannot be detected."
+        //         })
+        // }
 
-        if (device.isTerminated) {
-            return res
-                .status(400)
-                .json({
-                    statusCode: 400,
-                    error: "Device is terminated."
-                })
-        }
+        // if (device.isTerminated) {
+        //     return res
+        //         .status(400)
+        //         .json({
+        //             statusCode: 400,
+        //             error: "Device is terminated."
+        //         })
+        // }
 
-        const location = geoip.lookup(ipAddress);
-        await updateDevice(device._id, {
-            lastAccess: moment(),
-            location,
-            ipAddress
-        })
+        // const location = geoip.lookup(ipAddress);
+        // await updateDevice(device._id, {
+        //     lastAccess: moment(),
+        //     location,
+        //     ipAddress
+        // })
 
-        req.loggingDeviceId = decodedToken.deviceId;
+        //req.loggingDeviceId = decodedToken.deviceId;
         req.loggingUserId = decodedToken.userId;
         next();
     } catch (error) {
@@ -91,22 +90,4 @@ const authMiddleware = async (req, res, next) => {
     }
 }
 
-const socketAuthMiddleware = async function (socket, next) {
-    try {
-        const token = socket.handshake.headers['audience'] === 'Postman'
-            ? socket.handshake.headers['access_token']
-            : socket.handshake.auth.token
-
-        console.log(token);
-
-        decodedToken = jwt.verify(token, 'secret');
-        socket.loggingUserId = decodedToken.userId;
-
-        next();
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-module.exports = { authMiddleware, socketAuthMiddleware }
+module.exports = { authMiddleware }

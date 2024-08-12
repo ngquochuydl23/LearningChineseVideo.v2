@@ -7,7 +7,7 @@ var _Video = require("./Video");
 var _VideoSubtitle = require("./VideoSubtitle");
 var _Vocabulary = require("./Vocabulary");
 var _WatchedVideo = require("./WatchedVideo");
-var ___EFMigrationsHistory = require("./__EFMigrationsHistory");
+
 
 function initModels(sequelize) {
   var SavedVocaEntity = _SavedVocaEntity(sequelize, DataTypes);
@@ -18,7 +18,6 @@ function initModels(sequelize) {
   var VideoSubtitle = _VideoSubtitle(sequelize, DataTypes);
   var Vocabulary = _Vocabulary(sequelize, DataTypes);
   var WatchedVideo = _WatchedVideo(sequelize, DataTypes);
-  var __EFMigrationsHistory = ___EFMigrationsHistory(sequelize, DataTypes);
 
   TopicVideo.belongsTo(Topic, { as: "Topic", foreignKey: "TopicId"});
   Topic.hasMany(TopicVideo, { as: "TopicVideos", foreignKey: "TopicId"});
@@ -45,8 +44,7 @@ function initModels(sequelize) {
     Video,
     VideoSubtitle,
     Vocabulary,
-    WatchedVideo,
-    __EFMigrationsHistory,
+    WatchedVideo, 
   };
 }
 module.exports = initModels;

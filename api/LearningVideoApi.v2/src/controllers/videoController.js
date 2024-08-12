@@ -1,7 +1,6 @@
-
 const { sequelize } = require('../models');
 const { initModels } = require('../models/init-models');
-const { httpOk } = require('../httpResponse');
+const { httpOk, http201 } = require('../httpResponse');
 const { Op, Sequelize } = require('sequelize');
 const { AppException } = require('../exceptions/AppException');
 const { removeVI } = require('jsrmvi');
@@ -15,6 +14,8 @@ const models = initModels(sequelize);
 exports.getVideos = async (req, res, next) => {
     const { level, search, offset, limit } = req.query;
 
+
+    
     try {
         const videos = await models.Video.findAll({
             where: {
@@ -199,6 +200,7 @@ exports.addVideo = async (req, res, next) => {
                 }
             });
 
+            // insert topic
             if (!topic) {
                 topic = await models.Topic.create({
                     Id: uuidv4(),
@@ -221,6 +223,7 @@ exports.addVideo = async (req, res, next) => {
                 }
             });
 
+            // insert topicVideo
             if (!topicVideo) {
                 topicVideo = await models.TopicVideo.create({
                     VideoId: videoId,
@@ -240,7 +243,7 @@ exports.addVideo = async (req, res, next) => {
         await newVideo.save({ transaction });
 
         await transaction.commit();
-        return httpOk(res, newVideo, "Deleted video successfully.");
+        return http201(res, newVideo, "Add video successfully.");
     } catch (error) {
 
         await transaction.rollback();

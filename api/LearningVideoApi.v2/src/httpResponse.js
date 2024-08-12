@@ -8,5 +8,14 @@ httpOk = (res, result, msg) => {
         });
 }
 
+http201 = (res, result, msg) => {
+    return res
+        .status(201)
+        .send({
+            statusCode: 201,
+            result,
+            msg
+        });
+}
 
-module.exports = { httpOk }
+module.exports = { httpOk, http201 }
