@@ -3,25 +3,13 @@
 .vscode
 
 
-Clients/LearningChineseVideo/node_modules
-
-api/LearningVideoApi/.vs
-api/LearningVideoApi/bin/*
-api/LearningVideoApi/[Dd]ebug/
-api/LearningVideoApi/[Dd]ebugPublic/
-api/LearningVideoApi/[Rr]elease/
-api/LearningVideoApi/[Rr]eleases/
-
-api/LearningVideoApi/x64/
-api/LearningVideoApi/x86/
-api/LearningVideoApi/build/
-api/LearningVideoApi/bld/
-
-api/LearningVideoApi/bin/*
-api/LearningVideoApi/obj/*
-
 api/LearningVideoApi.v2/node_modules
 api/LearningVideoApi.v2/uploads
+
+mobile/LearningChineseMobileV2/node_modules
+
+
+
 .yarnrc.yml
 .yarnrc
 .yarn
