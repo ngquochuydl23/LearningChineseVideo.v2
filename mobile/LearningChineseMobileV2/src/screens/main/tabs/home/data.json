@@ -1,0 +1,825 @@
+{
+    "statusCode": 200,
+    "result": [
+        {
+            "Id": "6608d580-3c9f-4abd-bdc3-e579c60218c8",
+            "Title": "Bỏ cuộc giữa chừng",
+            "Description": "Nguồn video: https://www.youtube.com/watch?v=i7iEyqsyLKQ&t=29s\nNgười dịch: Thùy Trâm",
+            "ViewerCount": "14",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/d7343b0066d9619e1d72e3aacb6ccbf0.mp4",
+            "Thumbnail": "/storage/image/2bdbbbe8c1d2ddd448145941f6683999.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T16:48:26.093Z",
+            "CreatedAt": "2024-03-08T01:14:12.001Z",
+            "Duration": "122367",
+            "Level": "4",
+            "LikeCount": "0",
+            "SearchVector": "'/watch?v=i7ieyqsylkq&t=29s':9 '4':14 'bỏ':1 'chừng':4 'cuộc':2 'dịch':11 'giữa':3 'nguồn':5 'người':10 'thùi':12 'trâm':13 'video':6 'www.youtube.com':8 'www.youtube.com/watch?v=i7ieyqsylkq&t=29s':7",
+            "PlainTextWithTopic": "cauchuyenthanhngu",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "181",
+                    "VideoId": "6608d580-3c9f-4abd-bdc3-e579c60218c8",
+                    "Url": "/storage/application/634f411ecb8bf489ef9841e823567d65.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T01:14:12.005Z",
+                    "FileName": "CACH.vtt"
+                },
+                {
+                    "Id": "182",
+                    "VideoId": "6608d580-3c9f-4abd-bdc3-e579c60218c8",
+                    "Url": "/storage/application/3cebfd891a7b3c6cc2ed1a8e572f024e.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T01:14:12.005Z",
+                    "FileName": "xuezhongwen (1).vtt"
+                },
+                {
+                    "Id": "183",
+                    "VideoId": "6608d580-3c9f-4abd-bdc3-e579c60218c8",
+                    "Url": "/storage/application/38c95950676721c37a023fb941d747a4.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T01:14:12.005Z",
+                    "FileName": "pinyin.vtt"
+                },
+                {
+                    "Id": "184",
+                    "VideoId": "6608d580-3c9f-4abd-bdc3-e579c60218c8",
+                    "Url": "/storage/application/25b7fc64964de46acf926bba6076791c.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T01:14:12.005Z",
+                    "FileName": "xuezhongwendich (1).vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "120",
+                    "VideoId": "6608d580-3c9f-4abd-bdc3-e579c60218c8",
+                    "TopicId": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T16:48:26.094Z",
+                    "Topic": {
+                        "Id": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                        "Title": "Câu chuyện thành ngữ",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-29T16:46:17.657Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "6894f89a-7926-4b1f-a283-c3b6b0582e6e",
+            "Title": "Nỗ lực học tập",
+            "Description": "Nguồn video: https://www.youtube.com/watch?v=Ow0OG8au5a0&t=36s\nNgười dịch: Thùy Trâm",
+            "ViewerCount": "18",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/e0aeb312a47bd7e9f2e084355c33329d.mp4",
+            "Thumbnail": "/storage/image/2c8f8675a019dc5a3bd01569f274945c.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T16:48:07.158Z",
+            "CreatedAt": "2024-03-08T03:01:08.605Z",
+            "Duration": "128778",
+            "Level": "4",
+            "LikeCount": "0",
+            "SearchVector": "'/watch?v=ow0og8au5a0&t=36s':9 '4':14 'dịch':11 'học':3 'lực':2 'nguồn':5 'người':10 'nỗ':1 'thùi':12 'trâm':13 'tập':4 'video':6 'www.youtube.com':8 'www.youtube.com/watch?v=ow0og8au5a0&t=36s':7",
+            "PlainTextWithTopic": "cauchuyen thanh ngu",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "189",
+                    "VideoId": "6894f89a-7926-4b1f-a283-c3b6b0582e6e",
+                    "Url": "/storage/application/a8a4333beba625ace55000875a81c526.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T03:01:08.610Z",
+                    "FileName": "pinyin2 CÁCH.vtt"
+                },
+                {
+                    "Id": "190",
+                    "VideoId": "6894f89a-7926-4b1f-a283-c3b6b0582e6e",
+                    "Url": "/storage/application/2bc5400b4d0b642e1b78403e2243554c.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T03:01:08.610Z",
+                    "FileName": "悬梁刺骨.vtt"
+                },
+                {
+                    "Id": "191",
+                    "VideoId": "6894f89a-7926-4b1f-a283-c3b6b0582e6e",
+                    "Url": "/storage/application/528994da474c4c01dd464b540c467493.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T03:01:08.610Z",
+                    "FileName": "pinyin3.vtt"
+                },
+                {
+                    "Id": "192",
+                    "VideoId": "6894f89a-7926-4b1f-a283-c3b6b0582e6e",
+                    "Url": "/storage/application/70cddc2d30cda2ed89e7edec3f96afe9.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-08T03:01:08.610Z",
+                    "FileName": "dịch chăm chỉ học tập.vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "119",
+                    "VideoId": "6894f89a-7926-4b1f-a283-c3b6b0582e6e",
+                    "TopicId": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T16:48:07.160Z",
+                    "Topic": {
+                        "Id": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                        "Title": "Câu chuyện thành ngữ",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-29T16:46:17.657Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "07d35b16-c875-4e2c-931c-8a7b9dc30b2f",
+            "Title": "8 nền ẩm thực lớn của Trung Quốc",
+            "Description": "Nguồn: PALM Chinese\nDịch video: Hữu Huỳnh\n",
+            "ViewerCount": "21",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/ec5f317754a1d39a2e290e332ab15b78.mp4",
+            "Thumbnail": "/storage/image/9f90e35044b4dcce542777858e708e12.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "0000-12-31T17:17:56.000Z",
+            "CreatedAt": "2024-03-09T02:27:14.796Z",
+            "Duration": "194467",
+            "Level": "4",
+            "LikeCount": "0",
+            "SearchVector": "'4':16 '8':1 'chines':11 'của':6 'dịch':12 'huỳnh':15 'hữu':14 'lớn':5 'nguồn':9 'nền':2 'palm':10 'quốc':8 'thực':4 'trung':7 'video':13 'ẩm':3",
+            "PlainTextWithTopic": "Ẩm thực",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "261",
+                    "VideoId": "07d35b16-c875-4e2c-931c-8a7b9dc30b2f",
+                    "Url": "/storage/application/f4ab36a4d9bf31595773c15b33a48b86.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T02:27:14.801Z",
+                    "FileName": "ẩm thực tiếng Trung - Cach.vtt"
+                },
+                {
+                    "Id": "262",
+                    "VideoId": "07d35b16-c875-4e2c-931c-8a7b9dc30b2f",
+                    "Url": "/storage/application/f6a539058a42ca94545dcf8db36ddc21.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T02:27:14.801Z",
+                    "FileName": "ẩm thực tiếng Trung.vtt"
+                },
+                {
+                    "Id": "263",
+                    "VideoId": "07d35b16-c875-4e2c-931c-8a7b9dc30b2f",
+                    "Url": "/storage/application/ce17a28afc5206754d3c48c8a1ce82ae.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T02:27:14.801Z",
+                    "FileName": "ẩm thực pinyin.vtt"
+                },
+                {
+                    "Id": "264",
+                    "VideoId": "07d35b16-c875-4e2c-931c-8a7b9dc30b2f",
+                    "Url": "/storage/application/731aa34cc337fcbb2b080b787517571f.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T02:27:14.801Z",
+                    "FileName": "ẩm thực tiếng việt.vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "69",
+                    "VideoId": "07d35b16-c875-4e2c-931c-8a7b9dc30b2f",
+                    "TopicId": "am-thuc",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T02:27:14.802Z",
+                    "Topic": {
+                        "Id": "am-thuc",
+                        "Title": "Ẩm thực",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-09T02:27:14.802Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "e34b2f97-d427-4487-bc12-6984ef571b02",
+            "Title": "KHỈ CÂU MẶT TRĂNG",
+            "Description": "Nguồn video: https://www.youtube.com/watch?v=Ol3s_BV2Ie4&t=67s\nDịch video: Thùy Trâm",
+            "ViewerCount": "10",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/a8b147a3680c76496a4cebddaa977867.mp4",
+            "Thumbnail": "/storage/image/0cb7ec4d9e1bb34a7879bd07730055e4.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T16:47:37.459Z",
+            "CreatedAt": "2024-03-09T03:54:52.041Z",
+            "Duration": "193631",
+            "Level": "4",
+            "LikeCount": "0",
+            "SearchVector": "'/watch?v=ol3s_bv2ie4&t=67s':9 '4':14 'câu':2 'dịch':10 'khỉ':1 'mặt':3 'nguồn':5 'thùi':12 'trâm':13 'trăng':4 'video':6,11 'www.youtube.com':8 'www.youtube.com/watch?v=ol3s_bv2ie4&t=67s':7",
+            "PlainTextWithTopic": "hoathinh",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "277",
+                    "VideoId": "e34b2f97-d427-4487-bc12-6984ef571b02",
+                    "Url": "/storage/application/bb591bc8ae086224740bef9c75ad1e41.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T03:54:52.046Z",
+                    "FileName": "Khỉ.cách.vtt"
+                },
+                {
+                    "Id": "278",
+                    "VideoId": "e34b2f97-d427-4487-bc12-6984ef571b02",
+                    "Url": "/storage/application/927a06639699a9655ba0cd098b5016c2.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T03:54:52.046Z",
+                    "FileName": "houzi (1)TIENGTRUNG.vtt"
+                },
+                {
+                    "Id": "279",
+                    "VideoId": "e34b2f97-d427-4487-bc12-6984ef571b02",
+                    "Url": "/storage/application/d1b8a62aa25a64f8075469407320ea14.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T03:54:52.046Z",
+                    "FileName": "houzi (1)PINYIN.vtt"
+                },
+                {
+                    "Id": "280",
+                    "VideoId": "e34b2f97-d427-4487-bc12-6984ef571b02",
+                    "Url": "/storage/application/6be12548f4447e70fe06e5fd3acfe1de.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T03:54:52.046Z",
+                    "FileName": "KHỈdich.vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "117",
+                    "VideoId": "e34b2f97-d427-4487-bc12-6984ef571b02",
+                    "TopicId": "77dd0136-53d1-4624-927b-53dae9c8a16b",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T16:47:37.460Z",
+                    "Topic": {
+                        "Id": "77dd0136-53d1-4624-927b-53dae9c8a16b",
+                        "Title": "Hoạt hình",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-28T23:21:45.477Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "0082055a-120f-41d5-ae16-101ec0eef666",
+            "Title": "Bàn luận về “Nước” | 水",
+            "Description": "Nguồn: https://youtu.be/SgIjCF95ll0?si=eo_fiiVy2HoSPqaD\nDịch video: Hữu Huỳnh",
+            "ViewerCount": "22",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/6d0208413db58ce4dad6407074d7141b.mp4",
+            "Thumbnail": "/storage/image/db68ec960e699d8284464d672d3f3921.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-30T08:21:51.918Z",
+            "CreatedAt": "2024-03-09T04:06:36.441Z",
+            "Duration": "172130",
+            "Level": "3",
+            "LikeCount": "0",
+            "SearchVector": "'/sgijcf95ll0?si=eo_fiivy2hospqad':9 '3':14 'bàn':1 'dịch':10 'huỳnh':13 'hữu':12 'luận':2 'nguồn':6 'nước':4 'video':11 'về':3 'youtu.be':8 'youtu.be/sgijcf95ll0?si=eo_fiivy2hospqad':7 '水':5",
+            "PlainTextWithTopic": "HocTiengTrung",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "281",
+                    "VideoId": "0082055a-120f-41d5-ae16-101ec0eef666",
+                    "Url": "/storage/application/510e8ad08ce2b1f4119d898ffbe3d9d0.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:06:36.445Z",
+                    "FileName": "cachs tiếng Trung [Chinese] How to Talke？优选地道中文 EP.2 #learnchinese Description [DownSub.co - Copy (2).vtt"
+                },
+                {
+                    "Id": "282",
+                    "VideoId": "0082055a-120f-41d5-ae16-101ec0eef666",
+                    "Url": "/storage/application/db1a93d26ae2d67835955c696b4dfb5b.VTT",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:06:36.445Z",
+                    "FileName": "TINGTR~3.VTT"
+                },
+                {
+                    "Id": "283",
+                    "VideoId": "0082055a-120f-41d5-ae16-101ec0eef666",
+                    "Url": "/storage/application/cca28e3238d2c00c04b2ab4d86a51605.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:06:36.445Z",
+                    "FileName": "pinyin [Chinese] How to Talk about Water in Chinese？优选地道中文 EP.2 #learnchinese Description [DownSub.com].vtt"
+                },
+                {
+                    "Id": "284",
+                    "VideoId": "0082055a-120f-41d5-ae16-101ec0eef666",
+                    "Url": "/storage/application/823c2f2a4da0038a56928dc89d21cf9c.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:06:36.445Z",
+                    "FileName": "tiếng Việt How to Talk about Water in Chinese？优选地道中文 EP.2 #learnchinese Description [DownSub.com].vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "128",
+                    "VideoId": "0082055a-120f-41d5-ae16-101ec0eef666",
+                    "TopicId": "74991941-c112-49bd-94b7-7a980922a187",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-30T08:21:51.920Z",
+                    "Topic": {
+                        "Id": "74991941-c112-49bd-94b7-7a980922a187",
+                        "Title": "Học tiếng Trung",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-30T08:20:21.065Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "6af3bae5-6aca-4f78-b8fd-470829b3c493",
+            "Title": "Thầy bói xem voi",
+            "Description": "Nguồn video: https://www.youtube.com/watch?v=oDxDdyg_OAM&t=146s\nDịch video: Thùy Trâm",
+            "ViewerCount": "10",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/67c4dbdf1ee31da81388254ec60afb4e.mp4",
+            "Thumbnail": "/storage/image/77dc21e993ca2f2c366b8a500e70d9fd.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T16:47:07.721Z",
+            "CreatedAt": "2024-03-09T04:27:56.671Z",
+            "Duration": "238800",
+            "Level": "3",
+            "LikeCount": "0",
+            "SearchVector": "'/watch?v=odxddyg_oam&t=146s':9 '3':14 'bói':2 'dịch':10 'nguồn':5 'thùi':12 'thầi':1 'trâm':13 'video':6,11 'voi':4 'www.youtube.com':8 'www.youtube.com/watch?v=odxddyg_oam&t=146s':7 'xem':3",
+            "PlainTextWithTopic": "thanhngu",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "289",
+                    "VideoId": "6af3bae5-6aca-4f78-b8fd-470829b3c493",
+                    "Url": "/storage/application/75888b0cf44705fd883df3a1fdd5bc62.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:27:56.675Z",
+                    "FileName": "thayboixemvoiCACH.vtt"
+                },
+                {
+                    "Id": "290",
+                    "VideoId": "6af3bae5-6aca-4f78-b8fd-470829b3c493",
+                    "Url": "/storage/application/17ee67e2d000fdb598afa7673d2ecdd2.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:27:56.675Z",
+                    "FileName": "thayboixemvoi (1)TIENGTRUNG.vtt"
+                },
+                {
+                    "Id": "291",
+                    "VideoId": "6af3bae5-6aca-4f78-b8fd-470829b3c493",
+                    "Url": "/storage/application/903f8a5137712630c01ad37a9ed9a251.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:27:56.675Z",
+                    "FileName": "thayboixemvoi (1)PINYIN.vtt"
+                },
+                {
+                    "Id": "292",
+                    "VideoId": "6af3bae5-6aca-4f78-b8fd-470829b3c493",
+                    "Url": "/storage/application/1fa368b50de9155798f543d97984de84.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:27:56.675Z",
+                    "FileName": "thayboixemvoidich (1).vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "115",
+                    "VideoId": "6af3bae5-6aca-4f78-b8fd-470829b3c493",
+                    "TopicId": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T16:47:07.722Z",
+                    "Topic": {
+                        "Id": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                        "Title": "Câu chuyện thành ngữ",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-29T16:46:17.657Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "ee4af103-59c3-4601-b6d1-acf738f8e0c9",
+            "Title": "Tránh Voi Chẳng Xấu Mặt Nào",
+            "Description": "Nguồn: https://youtu.be/wDY2XzCOyLA?si=kiBBltvB4dFLKIiQ\nDịch video: Hữu Huỳnh\n",
+            "ViewerCount": "30",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/e1b351f0b5a77b3664949c65c52102c5.mp4",
+            "Thumbnail": "/storage/image/3d962d0c6fb368b613885ec7ac002fa8.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T18:29:15.302Z",
+            "CreatedAt": "2024-03-09T04:45:02.274Z",
+            "Duration": "190868",
+            "Level": "5",
+            "LikeCount": "0",
+            "SearchVector": "'/wdy2xzcoyla?si=kibbltvb4dflkiiq':10 '5':15 'chẳng':3 'dịch':11 'huỳnh':14 'hữu':13 'mặt':5 'nguồn':7 'nào':6 'tránh':1 'video':12 'voi':2 'xấu':4 'youtu.be':9 'youtu.be/wdy2xzcoyla?si=kibbltvb4dflkiiq':8",
+            "PlainTextWithTopic": "Bài chia sẻ",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "293",
+                    "VideoId": "ee4af103-59c3-4601-b6d1-acf738f8e0c9",
+                    "Url": "/storage/application/a8f37b06a135ce36bcf24cc7f7db2d83.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:45:02.277Z",
+                    "FileName": "Xuexiao xiaohua Tiếng Trung - Copy.vtt"
+                },
+                {
+                    "Id": "294",
+                    "VideoId": "ee4af103-59c3-4601-b6d1-acf738f8e0c9",
+                    "Url": "/storage/application/e608fff7c5276b9da2242c757b300c47.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:45:02.277Z",
+                    "FileName": "Xuexiao xiaohua Tiếng Trung.vtt"
+                },
+                {
+                    "Id": "295",
+                    "VideoId": "ee4af103-59c3-4601-b6d1-acf738f8e0c9",
+                    "Url": "/storage/application/9a4edebcf1ccb67f65dd044324f78e6a.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:45:02.277Z",
+                    "FileName": "Xuexiao xiaohua pinyin.vtt"
+                },
+                {
+                    "Id": "296",
+                    "VideoId": "ee4af103-59c3-4601-b6d1-acf738f8e0c9",
+                    "Url": "/storage/application/d530281f5784e3b489fb59b3516290e9.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:45:02.277Z",
+                    "FileName": "Xuexiao xiaohua tiếng Việt.vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "121",
+                    "VideoId": "ee4af103-59c3-4601-b6d1-acf738f8e0c9",
+                    "TopicId": "856ce10e-e209-407b-b3ae-31473b22ca17",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T18:29:15.303Z",
+                    "Topic": {
+                        "Id": "856ce10e-e209-407b-b3ae-31473b22ca17",
+                        "Title": "Diễn thuyết",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-29T18:29:15.303Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "75c6d750-fb17-4fe7-9a54-c2e376855551",
+            "Title": "TRẺ CON DỄ DẠY",
+            "Description": "Nguồn video: https://www.youtube.com/results?sp=mAEB&search_query=%E5%AD%BA%E5%AD%90%E5%8F%AF%E6%95%99\nDịch video: Thùy Trâm",
+            "ViewerCount": "8",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/6ac145a50d00dff52abe660720393514.mp4",
+            "Thumbnail": "/storage/image/0f4cc91c81f18153d196dfef703d3adf.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T16:46:53.251Z",
+            "CreatedAt": "2024-03-09T04:51:03.729Z",
+            "Duration": "159960",
+            "Level": "3",
+            "LikeCount": "0",
+            "SearchVector": "'/results?sp=maeb&search_query=%e5%ad%ba%e5%ad%90%e5%8f%af%e6%95%99':9 '3':14 'con':2 'dại':4 'dễ':3 'dịch':10 'nguồn':5 'thùi':12 'trâm':13 'trẻ':1 'video':6,11 'www.youtube.com':8 'www.youtube.com/results?sp=maeb&search_query=%e5%ad%ba%e5%ad%90%e5%8f%af%e6%95%99':7",
+            "PlainTextWithTopic": "hoathinhthanhngu",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "297",
+                    "VideoId": "75c6d750-fb17-4fe7-9a54-c2e376855551",
+                    "Url": "/storage/application/c2356c4fd86e9bc0c8fc431cc67fbdab.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:51:03.732Z",
+                    "FileName": "ruzikejiaozhongwen (1)CACH.vtt"
+                },
+                {
+                    "Id": "298",
+                    "VideoId": "75c6d750-fb17-4fe7-9a54-c2e376855551",
+                    "Url": "/storage/application/29ed59e1021a987466834790dc5aae6d.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:51:03.732Z",
+                    "FileName": "ruzikejiao (1)TIÈNTRUNG.vtt"
+                },
+                {
+                    "Id": "299",
+                    "VideoId": "75c6d750-fb17-4fe7-9a54-c2e376855551",
+                    "Url": "/storage/application/72a8d9e1e5aad735a764827a8baaf123.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:51:03.732Z",
+                    "FileName": "ruzikejiao (1)PINYIN.vtt"
+                },
+                {
+                    "Id": "300",
+                    "VideoId": "75c6d750-fb17-4fe7-9a54-c2e376855551",
+                    "Url": "/storage/application/cf580431688c44d0eed3266e276c5f7f.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T04:51:03.732Z",
+                    "FileName": "ruzikejiaodich (1).vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "114",
+                    "VideoId": "75c6d750-fb17-4fe7-9a54-c2e376855551",
+                    "TopicId": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T16:46:53.252Z",
+                    "Topic": {
+                        "Id": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                        "Title": "Câu chuyện thành ngữ",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-29T16:46:17.657Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "e3b3b806-af6f-40f4-bace-bb8f519931be",
+            "Title": "Vui học \"Yết Hậu Ngữ \"",
+            "Description": "Nguồn: https://youtu.be/j9TKJJecV5Y?si=u0WyG6k6GIbLg0dc\nDịch video: Hữu Huỳnh",
+            "ViewerCount": "44",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/8c6398e70b86fdaeaf2abb2c9ed7140e.mp4",
+            "Thumbnail": "/storage/image/1bdd8043056afa6c0d952e7b6e4f3064.png",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "0000-12-31T17:17:56.000Z",
+            "CreatedAt": "2024-03-09T05:07:50.711Z",
+            "Duration": "284723",
+            "Level": "5",
+            "LikeCount": "0",
+            "SearchVector": "'/j9tkjjecv5y?si=u0wyg6k6giblg0dc':9 '5':14 'dịch':10 'huỳnh':13 'hậu':4 'học':2 'hữu':12 'nguồn':6 'ngữ':5 'video':11 'vui':1 'youtu.be':8 'youtu.be/j9tkjjecv5y?si=u0wyg6k6giblg0dc':7 'yết':3",
+            "PlainTextWithTopic": "Yết hậu ngữ",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "301",
+                    "VideoId": "e3b3b806-af6f-40f4-bace-bb8f519931be",
+                    "Url": "/storage/application/f590e2cc15dddeebbe2619682183a08d.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:07:50.715Z",
+                    "FileName": "歇后语 - Tiếng Trung - Copy.vtt"
+                },
+                {
+                    "Id": "302",
+                    "VideoId": "e3b3b806-af6f-40f4-bace-bb8f519931be",
+                    "Url": "/storage/application/557cbfe7fcb752a1d18f182438c31603.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:07:50.715Z",
+                    "FileName": "歇后语 - Tiếng Trung.vtt"
+                },
+                {
+                    "Id": "303",
+                    "VideoId": "e3b3b806-af6f-40f4-bace-bb8f519931be",
+                    "Url": "/storage/application/b45b7f62816e3b646c48889f8f93720a.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:07:50.715Z",
+                    "FileName": "歇后语 - Tiếng Trung pinyin.vtt"
+                },
+                {
+                    "Id": "304",
+                    "VideoId": "e3b3b806-af6f-40f4-bace-bb8f519931be",
+                    "Url": "/storage/application/024c147bf51adefa5243fb1ad184fce7.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:07:50.715Z",
+                    "FileName": "歇后语 - Tiếng việt.vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "79",
+                    "VideoId": "e3b3b806-af6f-40f4-bace-bb8f519931be",
+                    "TopicId": "yet-hau-ngu",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:07:50.717Z",
+                    "Topic": {
+                        "Id": "yet-hau-ngu",
+                        "Title": "Yết hậu ngữ",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-09T05:07:50.717Z"
+                    }
+                }
+            ]
+        },
+        {
+            "Id": "50a11ed3-cc6b-43b7-a901-734f12293942",
+            "Title": "CÓ CÔNG MÀI SẮT CÓ NGÀY NÊN KIM",
+            "Description": "Nguồn video: https://www.youtube.com/watch?v=HlQAfudXFWE\nDịch video: Thùy Trâm",
+            "ViewerCount": "86",
+            "CommentCount": "0",
+            "VideoUrl": "/storage/video/e5e32a85214a292d5e7f21e2ff0d1ec3.mp4",
+            "Thumbnail": "/storage/image/d24d0cfa35d05c8ad0853f5a61d1e559.jpg",
+            "MimeType": "video/mp4",
+            "IsDeleted": false,
+            "LastUpdated": "2024-03-29T16:46:38.172Z",
+            "CreatedAt": "2024-03-09T05:08:28.643Z",
+            "Duration": "130937",
+            "Level": "3",
+            "LikeCount": "0",
+            "SearchVector": "'/watch?v=hlqafudxfwe':13 '3':18 'có':1,5 'công':2 'dịch':14 'kim':8 'mài':3 'nguồn':9 'ngài':6 'nên':7 'sắt':4 'thùi':16 'trâm':17 'video':10,15 'www.youtube.com':12 'www.youtube.com/watch?v=hlqafudxfwe':11",
+            "PlainTextWithTopic": "chuyenthanhngu",
+            "HasAutoLabeled": false,
+            "VideoSubtitles": [
+                {
+                    "Id": "305",
+                    "VideoId": "50a11ed3-cc6b-43b7-a901-734f12293942",
+                    "Url": "/storage/application/8d50061cdee25ccaa751725666eb8e68.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": true,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:08:28.646Z",
+                    "FileName": "cocongmaisatzhongwen (1)CACH.vtt"
+                },
+                {
+                    "Id": "306",
+                    "VideoId": "50a11ed3-cc6b-43b7-a901-734f12293942",
+                    "Url": "/storage/application/3fb332baab5de2814b308011c800e39d.vtt",
+                    "SrcLang": "zh",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:08:28.646Z",
+                    "FileName": "cocongmaisat (1)TIENGTRUNG.vtt"
+                },
+                {
+                    "Id": "307",
+                    "VideoId": "50a11ed3-cc6b-43b7-a901-734f12293942",
+                    "Url": "/storage/application/2232e888be1b5f9762c1ba737e55a057.vtt",
+                    "SrcLang": "pinyin",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:08:28.646Z",
+                    "FileName": "cocongmaisat (1)PINYIN.vtt"
+                },
+                {
+                    "Id": "308",
+                    "VideoId": "50a11ed3-cc6b-43b7-a901-734f12293942",
+                    "Url": "/storage/application/0185379100209bcc997398ff72c655d0.vtt",
+                    "SrcLang": "vn",
+                    "IsDefault": false,
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-09T05:08:28.646Z",
+                    "FileName": "cocongmaisatdich (1).vtt"
+                }
+            ],
+            "TopicVideos": [
+                {
+                    "Id": "113",
+                    "VideoId": "50a11ed3-cc6b-43b7-a901-734f12293942",
+                    "TopicId": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                    "IsDeleted": false,
+                    "LastUpdated": "0000-12-31T17:17:56.000Z",
+                    "CreatedAt": "2024-03-29T16:46:38.174Z",
+                    "Topic": {
+                        "Id": "033c0601-bcbb-4138-81bf-38a1f69f742a",
+                        "Title": "Câu chuyện thành ngữ",
+                        "IsDeleted": false,
+                        "LastUpdated": "0000-12-31T17:17:56.000Z",
+                        "CreatedAt": "2024-03-29T16:46:17.657Z"
+                    }
+                }
+            ]
+        }
+    ]
+}
