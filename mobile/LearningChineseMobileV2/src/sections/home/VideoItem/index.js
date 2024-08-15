@@ -11,10 +11,9 @@ const VideoItem = ({
     Topics
 }) => {
     const navigation = useNavigation();
-
+    
     return (
-        <TouchableHighlight
-            onPressIn={() => { navigation.navigate('Video'); }}>
+        <TouchableHighlight  onPress={() => { navigation.navigate('Video'); }} >
             <View style={styles.container}>
                 <Image
                     alt={Id}

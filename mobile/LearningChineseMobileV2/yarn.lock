@@ -532,7 +532,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-class-properties@npm:^7.12.13, @babel/plugin-syntax-class-properties@npm:^7.8.3":
+"@babel/plugin-syntax-class-properties@npm:^7.12.13":
   version: 7.12.13
   resolution: "@babel/plugin-syntax-class-properties@npm:7.12.13"
   dependencies:
@@ -620,7 +620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-import-meta@npm:^7.10.4, @babel/plugin-syntax-import-meta@npm:^7.8.3":
+"@babel/plugin-syntax-import-meta@npm:^7.10.4":
   version: 7.10.4
   resolution: "@babel/plugin-syntax-import-meta@npm:7.10.4"
   dependencies:
@@ -653,7 +653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-logical-assignment-operators@npm:^7.10.4, @babel/plugin-syntax-logical-assignment-operators@npm:^7.8.3":
+"@babel/plugin-syntax-logical-assignment-operators@npm:^7.10.4":
   version: 7.10.4
   resolution: "@babel/plugin-syntax-logical-assignment-operators@npm:7.10.4"
   dependencies:
@@ -675,7 +675,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-numeric-separator@npm:^7.10.4, @babel/plugin-syntax-numeric-separator@npm:^7.8.3":
+"@babel/plugin-syntax-numeric-separator@npm:^7.10.4":
   version: 7.10.4
   resolution: "@babel/plugin-syntax-numeric-separator@npm:7.10.4"
   dependencies:
@@ -730,7 +730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-top-level-await@npm:^7.14.5, @babel/plugin-syntax-top-level-await@npm:^7.8.3":
+"@babel/plugin-syntax-top-level-await@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/plugin-syntax-top-level-await@npm:7.14.5"
   dependencies:
@@ -2830,11 +2830,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 22.2.0
-  resolution: "@types/node@npm:22.2.0"
+  version: 22.3.0
+  resolution: "@types/node@npm:22.3.0"
   dependencies:
-    undici-types: ~6.13.0
-  checksum: 63724799337bfb57719a1992690e738341d824e1744a2ac52c5278a008fbfadf99765519c19858feb80418cc7da0d5c8bdf7ea4d82973869b3882bd602c48ade
+    undici-types: ~6.18.2
+  checksum: a86a552e9d3e135da4c975aa73bb1a655ae94f4d8de1547f6f95ad6b244ae2156347548fd35b6a5dd2c65688694198ae8b0923d9c32264dbc3dbfb2f688bd147
   languageName: node
   linkType: hard
 
@@ -3127,12 +3127,16 @@ __metadata:
     react-native-fontawesome: ^7.0.0
     react-native-gesture-handler: ^2.18.1
     react-native-material-bottom-navigation: ^1.0.5
+    react-native-media-controls: ^2.3.0
     react-native-paper: ^5.12.5
     react-native-reanimated: ^3.15.0
     react-native-safe-area-context: ^4.10.8
     react-native-screens: ^3.34.0
     react-native-svg: ^15.5.0
+    react-native-user-avatar: ^1.0.8
     react-native-vector-icons: ^10.1.0
+    react-native-video: ^6.4.3
+    react-native-video-controls: ^2.8.1
     react-test-renderer: 18.2.0
     recyclerlistview: ^4.2.1
     typescript: 5.0.4
@@ -3152,6 +3156,13 @@ __metadata:
   dependencies:
     event-target-shim: ^5.0.0
   checksum: 170bdba9b47b7e65906a28c8ce4f38a7a369d78e2271706f020849c1bfe0ee2067d4261df8bbb66eb84f79208fd5b710df759d64191db58cfba7ce8ef9c54b75
+  languageName: node
+  linkType: hard
+
+"abortcontroller-polyfill@npm:^1.4.0":
+  version: 1.7.5
+  resolution: "abortcontroller-polyfill@npm:1.7.5"
+  checksum: daf4169f4228ae0e4f4dbcfa782e501b923667f2666b7c55bd3b7664e5d6b100e333a93371173985fdf21f65d7dfba15bdb2e6031bdc9e57e4ce0297147da3aa
   languageName: node
   linkType: hard
 
@@ -3472,13 +3483,13 @@ __metadata:
   linkType: hard
 
 "axios@npm:^1.7.3":
-  version: 1.7.3
-  resolution: "axios@npm:1.7.3"
+  version: 1.7.4
+  resolution: "axios@npm:1.7.4"
   dependencies:
     follow-redirects: ^1.15.6
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: bc304d6da974922342aed7c33155934354429cdc7e1ba9d399ab9ff3ac76103f3697eeedf042a634d43cdae682182bcffd942291db42d2be45b750597cdd5eef
+  checksum: 0c17039a9acfe6a566fca8431ba5c1b455c83d30ea6157fec68a6722878fcd30f3bd32d172f6bee0c51fe75ca98e6414ddcd968a87b5606b573731629440bfaf
   languageName: node
   linkType: hard
 
@@ -3579,24 +3590,27 @@ __metadata:
   linkType: hard
 
 "babel-preset-current-node-syntax@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "babel-preset-current-node-syntax@npm:1.0.1"
+  version: 1.1.0
+  resolution: "babel-preset-current-node-syntax@npm:1.1.0"
   dependencies:
     "@babel/plugin-syntax-async-generators": ^7.8.4
     "@babel/plugin-syntax-bigint": ^7.8.3
-    "@babel/plugin-syntax-class-properties": ^7.8.3
-    "@babel/plugin-syntax-import-meta": ^7.8.3
+    "@babel/plugin-syntax-class-properties": ^7.12.13
+    "@babel/plugin-syntax-class-static-block": ^7.14.5
+    "@babel/plugin-syntax-import-attributes": ^7.24.7
+    "@babel/plugin-syntax-import-meta": ^7.10.4
     "@babel/plugin-syntax-json-strings": ^7.8.3
-    "@babel/plugin-syntax-logical-assignment-operators": ^7.8.3
+    "@babel/plugin-syntax-logical-assignment-operators": ^7.10.4
     "@babel/plugin-syntax-nullish-coalescing-operator": ^7.8.3
-    "@babel/plugin-syntax-numeric-separator": ^7.8.3
+    "@babel/plugin-syntax-numeric-separator": ^7.10.4
     "@babel/plugin-syntax-object-rest-spread": ^7.8.3
     "@babel/plugin-syntax-optional-catch-binding": ^7.8.3
     "@babel/plugin-syntax-optional-chaining": ^7.8.3
-    "@babel/plugin-syntax-top-level-await": ^7.8.3
+    "@babel/plugin-syntax-private-property-in-object": ^7.14.5
+    "@babel/plugin-syntax-top-level-await": ^7.14.5
   peerDependencies:
     "@babel/core": ^7.0.0
-  checksum: d118c2742498c5492c095bc8541f4076b253e705b5f1ad9a2e7d302d81a84866f0070346662355c8e25fc02caa28dc2da8d69bcd67794a0d60c4d6fab6913cc8
+  checksum: 9f93fac975eaba296c436feeca1031ca0539143c4066eaf5d1ba23525a31850f03b651a1049caea7287df837a409588c8252c15627ad3903f17864c8e25ed64b
   languageName: node
   linkType: hard
 
@@ -4473,9 +4487,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.4":
-  version: 1.5.6
-  resolution: "electron-to-chromium@npm:1.5.6"
-  checksum: 09ca45c781e3e3ef87de87fb74019228f41e1a4abd2e703319aa7d942866815f3df89cc4bf61af81a4cac81271992d4f59a5eca7a093c07322ae0608bf98a427
+  version: 1.5.7
+  resolution: "electron-to-chromium@npm:1.5.7"
+  checksum: 50b75a26e31659c16dd57e7816d4a6b0664284f594d1fb9074cdf5025bdc1c125a065186e0a170a4b4275372c898a36f2556f43759be7fae075a6cc6922d9040
   languageName: node
   linkType: hard
 
@@ -5801,6 +5815,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"initials@npm:^3.0.1":
+  version: 3.1.2
+  resolution: "initials@npm:3.1.2"
+  checksum: daf058a79f0b8be85b5649c878095ab676489fa9df92d855c3d513cbc5cff3d763b284e948fdf972576385767104c49535e58b81a597c97e646498bcad38fe23
+  languageName: node
+  linkType: hard
+
 "internal-slot@npm:^1.0.7":
   version: 1.0.7
   resolution: "internal-slot@npm:1.0.7"
@@ -7009,7 +7030,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21":
+"lodash@npm:^4.16.4, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -8407,6 +8428,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-media-controls@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "react-native-media-controls@npm:2.3.0"
+  peerDependencies:
+    react: ">=16"
+    react-native: ">=0.60"
+  checksum: 5c9bee68ec1da6c54e003cdbf96f116ed247be6325f2212f1d12c66a3819774d5fd87339a3d2206953ab0a02e42ac32ac8832796d89ff43061913ce1e82a6431
+  languageName: node
+  linkType: hard
+
 "react-native-paper@npm:^5.12.5":
   version: 5.12.5
   resolution: "react-native-paper@npm:5.12.5"
@@ -8483,6 +8514,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-user-avatar@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "react-native-user-avatar@npm:1.0.8"
+  dependencies:
+    abortcontroller-polyfill: ^1.4.0
+    initials: ^3.0.1
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 6475c2b54aade57a8e5178f67549972e9b102c0a3fcd65908fbb01db703bf726b0b6a73078370c04213c309815bec658d75682fe1769082f333b39c9ae85cca9
+  languageName: node
+  linkType: hard
+
 "react-native-vector-icons@npm:^10.1.0":
   version: 10.1.0
   resolution: "react-native-vector-icons@npm:10.1.0"
@@ -8495,6 +8540,28 @@ __metadata:
     fa6-upgrade: bin/fa6-upgrade.sh
     generate-icon: bin/generate-icon.js
   checksum: c1e1d7c7ccc110e99caaed4d57324d5331dfa91817183350d2fd4df16d2302e7363da1f7a2b87011da3936b77aac3a7bf8ee11844dd8786b8b7dbc6553494866
+  languageName: node
+  linkType: hard
+
+"react-native-video-controls@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "react-native-video-controls@npm:2.8.1"
+  dependencies:
+    lodash: ^4.16.4
+  peerDependencies:
+    react-native: ">=0.46.0"
+    react-native-video: ">=2.0.0"
+  checksum: c582acf8fbb3e13f3b00b5a5148a956a09adfbb1d7243671426a77be0665d2ddf5ba5723eb33b44c16d21cad4867b836dcbcee3adbe772a10b1bec9818f4a5e3
+  languageName: node
+  linkType: hard
+
+"react-native-video@npm:^6.4.3":
+  version: 6.4.3
+  resolution: "react-native-video@npm:6.4.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 94ae488505a74c247b847b4fc6afcbfaf0ec0b9adc2a1e19b8637e8c240d4c37e6584ebf368b9dcc6d308c27f6e4e06848181a9dd05ee3a71abb8f3ac786b1f4
   languageName: node
   linkType: hard
 
@@ -9571,8 +9638,8 @@ __metadata:
   linkType: hard
 
 "terser@npm:^5.15.0":
-  version: 5.31.5
-  resolution: "terser@npm:5.31.5"
+  version: 5.31.6
+  resolution: "terser@npm:5.31.6"
   dependencies:
     "@jridgewell/source-map": ^0.3.3
     acorn: ^8.8.2
@@ -9580,7 +9647,7 @@ __metadata:
     source-map-support: ~0.5.20
   bin:
     terser: bin/terser
-  checksum: edd2de6569116f637bb2e154c913e6ea434cadd6bcf5df41cf62000e3c69ec41f95be66fe639b57b95564545c9f7c0fcb28ca63351424a08e244a8b49ed12ac3
+  checksum: 60d3faf39c9ad7acc891e17888bbd206e0b777f442649cf49873a5fa317b8b8a17179a46970d884d5f93e8addde0206193ed1e2e4f1ccb1cafb167f7d1ddee96
   languageName: node
   linkType: hard
 
@@ -9825,10 +9892,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.13.0":
-  version: 6.13.0
-  resolution: "undici-types@npm:6.13.0"
-  checksum: 9d0ef6bf58994bebbea6a4ab75f381c69a89a7ed151bfbae0d4ef95450d56502c9eccb323abf17b7d099c1d9c1cbae62e909e4dfeb8d204612d2f1fdada24707
+"undici-types@npm:~6.18.2":
+  version: 6.18.2
+  resolution: "undici-types@npm:6.18.2"
+  checksum: 5cd9b1c0fc612603c7ba0f0c6a19d04f00d21b98c5a9da06dc3bf92f1f9d3ec3946322e9806ec0f2fbfbad3f248cde1988410fc30ffacee39693ac24078992ca
   languageName: node
   linkType: hard
 
