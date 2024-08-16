@@ -11,7 +11,7 @@ const SavedVocabularyScreen = () => {
                 style={styles.flatList}
                 nestedScrollEnabled
                 pagingEnabled
-                data={[{}, {}, {}]}
+                data={[{ Id: 1 }, { Id: 2 }, { Id: 4 }]}
                 ItemSeparatorComponent={<View style={{ height: 15 }} />}
                 renderItem={(item) => <SavedVocaItem />}
                 keyExtractor={item => item.Id}

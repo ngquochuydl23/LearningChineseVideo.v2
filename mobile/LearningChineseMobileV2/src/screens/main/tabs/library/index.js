@@ -19,7 +19,7 @@ const LibraryTab = () => {
             <ScrollView>
                 <HomeHeader title="Thư viện của tôi" />
                 <TouchableOpacity
-                //onPress={() => { navigation.navigate("EditProfile") }}
+                    onPress={() => { navigation.navigate("EditProfile") }}
                 >
                     <View style={styles.userInfoContainer}>
                         <UserAvatar

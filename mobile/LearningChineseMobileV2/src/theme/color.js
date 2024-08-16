@@ -1,7 +1,7 @@
 import { Appearance } from 'react-native';
 
 export const commonColor = {
-    primaryColor: '#121212'
+    primaryColor: "#06AED4"
 }
 
 export const lightModeColors = {
