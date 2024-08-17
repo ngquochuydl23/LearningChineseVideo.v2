@@ -6,12 +6,14 @@ import styles from './styles';
 import libMenuRoute from "./libMenuRoute";
 import _ from 'lodash';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from "react-redux";
+import { logout } from "../../../../redux/slices/userSlice";
 
 const LibraryTab = () => {
     const navigation = useNavigation();
 
     const doLogOut = () => {
-
+        useDispatch(logout())
     }
 
     return (
@@ -19,8 +21,7 @@ const LibraryTab = () => {
             <ScrollView>
                 <HomeHeader title="Thư viện của tôi" />
                 <TouchableOpacity
-                    onPress={() => { navigation.navigate("EditProfile") }}
-                >
+                    onPress={() => { navigation.navigate("EditProfile") }}>
                     <View style={styles.userInfoContainer}>
                         <UserAvatar
                             size={60}

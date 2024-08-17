@@ -11,14 +11,17 @@ const slice = createSlice({
     initialState,
     reducers: {
         setIsLoggedIn: () => {
+        
             state.isLoggedIn = true;
         },
         setLoading: (state) => {
             state.isLoading = true;
         },
         setUser: (state, action) => {
+            console.log("setUser");
             state.isLoading = false;
             state.user = action.payload;
+            state.isLoggedIn = true;
         },
         stopLoading: (state) => {
             state.isLoading = false;

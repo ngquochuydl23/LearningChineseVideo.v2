@@ -17,7 +17,7 @@ import { setIsLoggedIn, setUser } from "../../redux/slices/userSlice";
 const LoginScreen = () => {
     const navigation = useNavigation();
     const [loading, setLoading] = useState(false);
-
+    const dispatch = useDispatch();
     const validationSchema = Yup.object({
         phoneNumber: Yup
             .string()
@@ -31,12 +31,11 @@ const LoginScreen = () => {
     })
 
     const onSubmit = (values) => {
-        // useDispatch(setIsLoggedIn())
-        // useDispatch(setUser({
-        //     fullName: 'Hồ Trầm'
-        // }))
+        dispatch(setUser({
+            fullName: 'Hồ Trầm'
+        }))
         //setLoading(true);
-        // navigation('Home')
+        navigation.navigate('Main');
     }
 
 

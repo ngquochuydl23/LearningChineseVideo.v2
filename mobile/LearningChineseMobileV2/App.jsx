@@ -12,17 +12,15 @@ import { fonts } from './src/theme/fonts';
 import EditProfileScreen from './src/screens/editProfile';
 import LoginScreen from './src/screens/login';
 import SignUpScreen from './src/screens/signUp';
-import reduxStore from './src/redux/reduxStore';
-import { Provider } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-    //const { isLoggedIn } = useSelector((state) => state.user);
+    const state = useSelector((state) => state.user);
+    console.log(state);
     const isDarkMode = useColorScheme() === 'dark';
-    const isSignedIn = true;
     return (
 
         <PaperProvider>
@@ -33,7 +31,7 @@ function App() {
                 <Stack.Navigator
                     initialRouteName="Login"
                     screenOptions={{ headerShadowVisible: false }}>
-                    {isSignedIn ? (
+                    {!state.isLoggedIn ? (
                         <>
                             <Stack.Screen
                                 name="Login"
