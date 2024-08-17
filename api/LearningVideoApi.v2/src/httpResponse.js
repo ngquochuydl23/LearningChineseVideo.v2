@@ -8,6 +8,19 @@ httpOk = (res, result, msg) => {
         });
 }
 
+
+httpOkAsCollection = (res, result, total, offset, limit) => {
+    return res
+        .status(200)
+        .send({
+            statusCode: 200,
+            result,
+            total,
+            offset,
+            limit
+        });
+}
+
 http201 = (res, result, msg) => {
     return res
         .status(201)
@@ -18,4 +31,4 @@ http201 = (res, result, msg) => {
         });
 }
 
-module.exports = { httpOk, http201 }
+module.exports = { httpOk, http201, httpOkAsCollection }

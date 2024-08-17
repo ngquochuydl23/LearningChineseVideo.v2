@@ -5,6 +5,7 @@ const storageRoute = require('./routes/storageRoute');
 const pingRoute = require('./routes/pingRoute');
 const videoRoute = require('./routes/videoRoute');
 const userRoute = require('./routes/userRoute');
+const vocabularyRoute = require('./routes/vocabularyRoute');
 const bodyParser = require('body-parser');
 const app = require('express')();
 const { logRequest, logError } = require('./middlewares/loggingMiddleware')
@@ -25,6 +26,7 @@ app.use('/api/ping', pingRoute);;
 app.use('/api/storage', storageRoute);
 app.use('/api/video', videoRoute);
 app.use('/api/user', userRoute);
+app.use('/api/vocabulary', vocabularyRoute);
 
 app.use(logError)
 

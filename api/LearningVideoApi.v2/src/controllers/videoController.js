@@ -13,8 +13,6 @@ const models = initModels(sequelize);
 
 exports.getVideos = async (req, res, next) => {
     const { level, search, offset, limit } = req.query;
-
-
     
     try {
         const videos = await models.Video.findAll({
