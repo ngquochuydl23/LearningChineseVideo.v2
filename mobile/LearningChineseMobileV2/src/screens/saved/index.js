@@ -3,7 +3,7 @@ import ScreenContainer from "../../components/ScreenContainer";
 import SavedVocaItem from "../../sections/lib/savedVocabulary/SavedVocaItem";
 import styles from "./styles";
 
-const SavedVocabularyScreen = () => {
+const SavedScreen = () => {
     return (
         <ScreenContainer>
 
@@ -20,4 +20,4 @@ const SavedVocabularyScreen = () => {
     )
 }
 
-export default SavedVocabularyScreen;
+export default SavedScreen;

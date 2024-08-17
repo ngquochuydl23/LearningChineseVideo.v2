@@ -11,14 +11,13 @@ const slice = createSlice({
     initialState,
     reducers: {
         setIsLoggedIn: () => {
-        
+            state.isLoading = false;
             state.isLoggedIn = true;
         },
         setLoading: (state) => {
             state.isLoading = true;
         },
         setUser: (state, action) => {
-            console.log("setUser");
             state.isLoading = false;
             state.user = action.payload;
             state.isLoggedIn = true;
@@ -29,8 +28,6 @@ const slice = createSlice({
         logout: (state) => {
             state.user = null;
             state.isLoggedIn = false;
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("lastAccessRoomId");
         },
     }
 })

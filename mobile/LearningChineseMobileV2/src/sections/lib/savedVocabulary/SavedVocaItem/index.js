@@ -6,7 +6,8 @@ const SavedVocaItem = () => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity
-            onPress={() => { navigation.navigate("SavedVocaDetail") }}>
+          //  onPress={() => { navigation.navigate("Saved") }}
+            >
             <View style={styles.itemContainer}>
                 <Image
                     style={styles.thumbnail}

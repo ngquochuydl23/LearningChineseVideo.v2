@@ -1,4 +1,4 @@
-import { Image, ScrollView, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 import styles from "./styles";
 import { colors } from "../../theme/color";
@@ -11,8 +11,8 @@ import { fonts } from "../../theme/fonts";
 import { useNavigation } from "@react-navigation/native";
 import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
-import { setIsLoggedIn, setUser } from "../../redux/slices/userSlice";
-
+import { setUser } from "../../redux/slices/userSlice";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
     const navigation = useNavigation();
@@ -30,14 +30,28 @@ const LoginScreen = () => {
             .required('Vui lòng nhập mật khẩu')
     })
 
-    const onSubmit = (values) => {
+    const onSubmit = async (values) => {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTcyMzkwMjU4NywiZXhwIjoxNzI2NDk0NTg3fQ.64F8z_KIX88V1sq3QAV8o12KRsNcpKrwc6GQL09CKMc";
+
+        await AsyncStorage.setItem('AccessToken', token);
+
         dispatch(setUser({
-            fullName: 'Hồ Trầm'
+            Id: "1",
+            FullName: "Nguyễn Quốc Huy",
+            PhoneNumber: "0868684961",
+            Email: "nguyenquochuydl123@gmail.com",
+            Birthday: "0000-12-31T17:17:56.000Z",
+            LastLogin: "2024-08-16T18:06:44.636Z",
+            Gender: 1,
+            Avatar: null,
+            Level: 1,
+            Role: "Administrator",
+            LastUpdated: "0000-12-31T17:17:56.000Z",
+            CreatedAt: "2024-03-07T10:49:19.501Z"
         }))
         //setLoading(true);
         navigation.navigate('Main');
     }
-
 
     return (
         <ScreenContainer>

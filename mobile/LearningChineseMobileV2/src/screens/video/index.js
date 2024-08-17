@@ -1,6 +1,6 @@
 import { Image, StatusBar, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
-import HomeHeader from "../../sections/home/HomeHeader";
+import HomeHeader from "../../sections/home/homeHeader";
 import styles from "./style";
 import { IconButton, MD3Colors } from "react-native-paper";
 import { useEffect, useState } from "react";

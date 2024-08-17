@@ -3,13 +3,13 @@ const libMenuRoute = [
         label: 'Từ vựng đã lưu',
         name: 'SavedWord',
         enableSubtitle: true,
-        destinationSrc: 'SavedVocabulary'
+        destinationSrc: 'Saved'
     },
     {
         label: 'Flashcard',
         name: 'SavedWord',
         enableSubtitle: false,
-        destinationSrc: 'SavedVocabulary'
+        destinationSrc: 'Saved'
     }
 ]
 

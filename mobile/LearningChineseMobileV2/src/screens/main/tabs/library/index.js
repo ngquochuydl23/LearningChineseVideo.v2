@@ -1,19 +1,25 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native"
-import HomeHeader from "../../../../sections/home/HomeHeader";
+import HomeHeader from "../../../../sections/home/homeHeader";
 import UserAvatar from 'react-native-user-avatar';
 import ScreenContainer from "../../../../components/ScreenContainer";
 import styles from './styles';
 import libMenuRoute from "./libMenuRoute";
 import _ from 'lodash';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../redux/slices/userSlice";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { readStorageUrl } from "../../../../utils/readStorageUrl";
+
 
 const LibraryTab = () => {
+    const { user } = useSelector((state) => state.user);
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
-    const doLogOut = () => {
-        useDispatch(logout())
+    const doLogOut = async () => {
+        await AsyncStorage.removeItem('AccessToken');
+        dispatch(logout());
     }
 
     return (
@@ -25,11 +31,11 @@ const LibraryTab = () => {
                     <View style={styles.userInfoContainer}>
                         <UserAvatar
                             size={60}
-                            name="Hồ Trầm"
-                            src="https://storage.pgonevn.com//api/bucket/665084baa340536c521c22b1/NDM5OTFhNGFmZjVlMjYyYzNkMTM2OTFiNDAwNWQ5MjkuanBn" />
+                            name={user.FullName}
+                            src={readStorageUrl("/api/bucket/665084baa340536c521c22b1/NDM5OTFhNGFmZjVlMjYyYzNkMTM2OTFiNDAwNWQ5MjkuanBn")} />
                         <View style={styles.userFullNameAndEmail}>
-                            <Text style={styles.fullName}>{`Hồ Trầm`}</Text>
-                            <Text style={styles.email}>{`hotram@gmail.com`}</Text>
+                            <Text style={styles.fullName}>{user.FullName}</Text>
+                            <Text style={styles.email}>{user.Email}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>

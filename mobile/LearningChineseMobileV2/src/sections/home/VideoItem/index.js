@@ -13,7 +13,7 @@ const VideoItem = ({
     const navigation = useNavigation();
     
     return (
-        <TouchableHighlight  onPress={() => { navigation.navigate('Video'); }} >
+        <TouchableHighlight  onPress={() => { navigation.navigate('WatchVideo'); }} >
             <View style={styles.container}>
                 <Image
                     alt={Id}
