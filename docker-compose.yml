@@ -16,8 +16,8 @@ services:
     image: learning-chinese-video-api-v2
     container_name: learning-chinese-video-api-v2
     build:
-      context: ./api/
-      dockerfile: LearningVideoApi.v2/Dockerfile
+      context: ./api/LearningVideoApi.v2
+      dockerfile: Dockerfile
     volumes:
       - ./uploads:/LearningVideoApi.v2/uploads
     ports:
