@@ -1,4 +1,3 @@
 export function readStorageUrl(path) {
-    console.log("https://hayugo.edu.vn" + path)
-    return "https://hayugo.edu.vn/" + path;
+    return "https://v2.hayugo.edu.vn/api/" + path;
 }

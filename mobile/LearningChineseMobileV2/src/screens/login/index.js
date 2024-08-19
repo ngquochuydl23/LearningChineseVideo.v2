@@ -40,20 +40,7 @@ const LoginScreen = () => {
 
                 await AsyncStorage.setItem('AccessToken', token);
 
-                dispatch(setUser({
-                    Id: "1",
-                    FullName: "Nguyễn Quốc Huy",
-                    PhoneNumber: "0868684961",
-                    Email: "nguyenquochuydl123@gmail.com",
-                    Birthday: "0000-12-31T17:17:56.000Z",
-                    LastLogin: "2024-08-16T18:06:44.636Z",
-                    Gender: 1,
-                    Avatar: null,
-                    Level: 1,
-                    Role: "Administrator",
-                    LastUpdated: "0000-12-31T17:17:56.000Z",
-                    CreatedAt: "2024-03-07T10:49:19.501Z"
-                }));
+                dispatch(setUser(user));
             })
             .catch((err) => {
                 if (err === 'Password is incorrect') {
