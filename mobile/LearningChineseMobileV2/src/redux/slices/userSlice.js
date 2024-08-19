@@ -27,6 +27,7 @@ const slice = createSlice({
         },
         logout: (state) => {
             state.user = null;
+            state.isLoading = false;
             state.isLoggedIn = false;
         },
     }

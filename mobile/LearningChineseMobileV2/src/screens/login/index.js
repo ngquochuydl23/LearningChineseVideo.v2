@@ -13,6 +13,7 @@ import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { login } from "../../api/userApi";
 
 const LoginScreen = () => {
     const navigation = useNavigation();
@@ -31,26 +32,35 @@ const LoginScreen = () => {
     })
 
     const onSubmit = async (values) => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImlhdCI6MTcyMzkwMjU4NywiZXhwIjoxNzI2NDk0NTg3fQ.64F8z_KIX88V1sq3QAV8o12KRsNcpKrwc6GQL09CKMc";
 
-        await AsyncStorage.setItem('AccessToken', token);
+        setLoading(true);
+        login(values.phoneNumber, values.password)
+            .then(async ({ result }) => {
+                const { token, user } = result;
 
-        dispatch(setUser({
-            Id: "1",
-            FullName: "Nguyễn Quốc Huy",
-            PhoneNumber: "0868684961",
-            Email: "nguyenquochuydl123@gmail.com",
-            Birthday: "0000-12-31T17:17:56.000Z",
-            LastLogin: "2024-08-16T18:06:44.636Z",
-            Gender: 1,
-            Avatar: null,
-            Level: 1,
-            Role: "Administrator",
-            LastUpdated: "0000-12-31T17:17:56.000Z",
-            CreatedAt: "2024-03-07T10:49:19.501Z"
-        }))
-        //setLoading(true);
-        navigation.navigate('Main');
+                await AsyncStorage.setItem('AccessToken', token);
+
+                dispatch(setUser({
+                    Id: "1",
+                    FullName: "Nguyễn Quốc Huy",
+                    PhoneNumber: "0868684961",
+                    Email: "nguyenquochuydl123@gmail.com",
+                    Birthday: "0000-12-31T17:17:56.000Z",
+                    LastLogin: "2024-08-16T18:06:44.636Z",
+                    Gender: 1,
+                    Avatar: null,
+                    Level: 1,
+                    Role: "Administrator",
+                    LastUpdated: "0000-12-31T17:17:56.000Z",
+                    CreatedAt: "2024-03-07T10:49:19.501Z"
+                }));
+            })
+            .catch((err) => {
+                if (err === 'Password is incorrect') {
+
+                }
+            })
+            .finally(() => setLoading(false));
     }
 
     return (
@@ -100,7 +110,11 @@ const LoginScreen = () => {
                                 selectionColor={colors.primaryColor}
                                 cursorColor={colors.primaryColor}
                                 activeOutlineColor={colors.primaryColor}
-                                outlineStyle={{ borderRadius: 30, backgroundColor: colors.background }}
+                                outlineColor={colors.borderColor}
+                                outlineStyle={{
+                                    borderRadius: 30,
+                                    backgroundColor: colors.background
+                                }}
                                 style={{
                                     ...styles.loginField,
                                     marginTop: 30
@@ -127,7 +141,11 @@ const LoginScreen = () => {
                                 error={errors.password}
                                 contentStyle={{ paddingLeft: 15 }}
                                 activeOutlineColor={colors.primaryColor}
-                                outlineStyle={{ borderRadius: 30, backgroundColor: colors.background }}
+                                outlineColor={colors.borderColor}
+                                outlineStyle={{
+                                    borderRadius: 30,
+                                    backgroundColor: colors.background
+                                }}
                                 style={{
                                     ...styles.loginField,
                                     marginTop: 5

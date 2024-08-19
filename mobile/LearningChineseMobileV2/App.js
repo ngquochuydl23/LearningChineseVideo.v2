@@ -26,6 +26,7 @@ function App() {
 
     const getUser = async () => {
         const token = await AsyncStorage.getItem('AccessToken');
+        console.log(token);
         if (!token) {
             await AsyncStorage.removeItem('AccessToken');
 
@@ -40,7 +41,7 @@ function App() {
                 Birthday: "0000-12-31T17:17:56.000Z",
                 LastLogin: "2024-08-16T18:06:44.636Z",
                 Gender: 1,
-                Avatar: null,
+                Avatar: "/storage/image/1aa20bef35254853f9eb16daec7bf066.jfif",
                 Level: 1,
                 Role: "Administrator",
                 LastUpdated: "0000-12-31T17:17:56.000Z",
@@ -53,7 +54,7 @@ function App() {
         getUser();
     }, [])
 
-
+    console.log(state);
     if (state.isLoading) {
         return (
             <View>

@@ -13,7 +13,8 @@ export const lightModeColors = {
 
     backgroundSubColor: '#f5f5f5',
     textPrimaryColor: '#000',
-    textSecondaryColor: '#696969'
+    textSecondaryColor: '#696969',
+    borderColor: '#d3d3d3'
 }
 
 export const darkModeColors = {

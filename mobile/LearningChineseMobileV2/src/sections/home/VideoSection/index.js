@@ -11,6 +11,7 @@ const VideoSection = ({ videos, title }) => {
             <FlatList
                 nestedScrollEnabled
                 pagingEnabled
+                scrollEnabled
                 horizontal
                 data={videos}
                 ItemSeparatorComponent={<View style={styles.separator} />}

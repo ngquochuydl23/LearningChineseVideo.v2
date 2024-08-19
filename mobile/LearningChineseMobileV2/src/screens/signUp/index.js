@@ -66,7 +66,11 @@ const SignUpScreen = () => {
                                 selectionColor={colors.primaryColor}
                                 cursorColor={colors.primaryColor}
                                 activeOutlineColor={colors.primaryColor}
-                                outlineStyle={{ borderRadius: 30, backgroundColor: colors.background }}
+                                outlineColor={colors.borderColor}
+                                outlineStyle={{
+                                    borderRadius: 30,
+                                    backgroundColor: colors.background
+                                }}
                                 style={{
                                     ...styles.loginField,
                                     marginTop: 30
@@ -86,7 +90,11 @@ const SignUpScreen = () => {
                                 selectionColor={colors.primaryColor}
                                 cursorColor={colors.primaryColor}
                                 activeOutlineColor={colors.primaryColor}
-                                outlineStyle={{ borderRadius: 30, backgroundColor: colors.background }}
+                                outlineColor={colors.borderColor}
+                                outlineStyle={{
+                                    borderRadius: 30,
+                                    backgroundColor: colors.background
+                                }}
                                 style={{
                                     ...styles.loginField,
                                     marginTop: 15
@@ -107,7 +115,11 @@ const SignUpScreen = () => {
                                 selectionColor={colors.primaryColor}
                                 cursorColor={colors.primaryColor}
                                 activeOutlineColor={colors.primaryColor}
-                                outlineStyle={{ borderRadius: 30, backgroundColor: colors.background }}
+                                outlineColor={colors.borderColor}
+                                outlineStyle={{
+                                    borderRadius: 30,
+                                    backgroundColor: colors.background
+                                }}
                                 style={{
                                     ...styles.loginField,
                                     marginTop: 15
@@ -127,7 +139,11 @@ const SignUpScreen = () => {
                                 keyboardType="ascii-capable"
                                 contentStyle={{ paddingLeft: 15 }}
                                 activeOutlineColor={colors.primaryColor}
-                                outlineStyle={{ borderRadius: 30, backgroundColor: colors.background }}
+                                outlineColor={colors.borderColor}
+                                outlineStyle={{
+                                    borderRadius: 30,
+                                    backgroundColor: colors.background
+                                }}
                                 style={{
                                     ...styles.loginField,
                                     marginTop: 15
