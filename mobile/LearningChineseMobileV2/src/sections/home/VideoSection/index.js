@@ -5,9 +5,10 @@ import VideoItem from "../videoItem";
 
 
 const VideoSection = ({ videos, title }) => {
+
     return (
         <View style={styles.sectionContainer}>
-            <Text style={styles.title}>{`HSK 1`}</Text>
+            <Text style={styles.title}>{title}</Text>
             <FlatList
                 nestedScrollEnabled
                 pagingEnabled
@@ -15,7 +16,9 @@ const VideoSection = ({ videos, title }) => {
                 horizontal
                 data={videos}
                 ItemSeparatorComponent={<View style={styles.separator} />}
-                renderItem={(item) => <VideoItem {...item} />}
+                renderItem={({ item }) => {
+                    return <VideoItem {...item} />
+                }}
                 keyExtractor={item => item.Id}
             />
         </View>

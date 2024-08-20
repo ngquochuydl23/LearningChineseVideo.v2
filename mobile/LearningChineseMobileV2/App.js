@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logout, setLoading, setUser } from './src/redux/slices/userSlice';
 import SavedScreen from './src/screens/saved';
+import { persistLogin } from './src/api/userApi';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,26 +33,19 @@ function App() {
             dispatch(logout());
         } else {
 
-            dispatch(setUser({
-                Id: "1",
-                FullName: "Nguyễn Quốc Huy",
-                PhoneNumber: "0868684961",
-                Email: "nguyenquochuydl123@gmail.com",
-                Birthday: "0000-12-31T17:17:56.000Z",
-                LastLogin: "2024-08-16T18:06:44.636Z",
-                Gender: 1,
-                Avatar: "/storage/application/5e9a7b3bfa4e085ec4ecd54e7bf7f234.jfif",
-                Level: 1,
-                Role: "Administrator",
-                LastUpdated: "0000-12-31T17:17:56.000Z",
-                CreatedAt: "2024-03-07T10:49:19.501Z"
-            }));
+            persistLogin()
+                .then(({ result }) => {
+                    dispatch(setUser(result));
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
     useEffect(() => {
         dispatch(setLoading());
         getUser();
-    }, [])
+    }, []);
 
     console.log(state);
     if (state.isLoading) {
@@ -64,7 +58,7 @@ function App() {
             </View>
         )
     }
-    
+
     return (
 
         <PaperProvider>

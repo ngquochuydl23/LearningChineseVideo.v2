@@ -4,49 +4,107 @@ import HomeHeader from "../../sections/home/homeHeader";
 import styles from "./style";
 import { IconButton, MD3Colors } from "react-native-paper";
 import { useEffect, useState } from "react";
+import { getVideoById } from "../../api/videoApi";
+import { readStorageUrl } from "../../utils/readStorageUrl";
+import _ from 'lodash';
+import { colors } from "../../theme/color";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+const VideoScreen = ({ route, navigation }) => {
 
-const VideoScreen = () => {
+    const { videoId, otherParam } = route.params;
+
+    const [loading, setLoading] = useState(false);
     const [video, setVideo] = useState();
 
+    const nativateToWatch = () => {
+        navigation.navigate('WatchVideo', { videoId: videoId });
+    }
+
     useEffect(() => {
-      
+        setLoading(true);
+        getVideoById(videoId)
+            .then(({ result }) => {
+                setVideo(result);
+                console.log(_.map(result.TopicVideos, ({ Topic }) => Topic.Title));
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [])
 
-    return (
+    return loading ? (
+        <View>
+            <Text>
+                Loading
+            </Text>
+        </View>
+    ) : (
         <View style={styles.container}>
             <StatusBar translucent backgroundColor="transparent" />
             <View style={styles.thumbnailContainer}>
+
                 <Image
                     style={styles.thumbnail}
-                    src="https://hayugo.edu.vn//storage/image/2762a990a26e55c9caa102422a66327c.jpg" />
+                    src={readStorageUrl(video?.Thumbnail)} />
                 <View style={styles.overlapThumnail}>
-                    <Text>Alo</Text>
-                    <TouchableOpacity style={styles.controllerVideo}>
-                        
+                    <View style={styles.toolbar}>
+                        <IconButton
+                            background={colors.background}
+                            mode="contained"
+                            icon="keyboard-backspace"
+                            iconColor={'#000000'}
+                            size={20}
+                            onPress={() => navigation.goBack()}
+                        />
+                    </View>
+                    <TouchableOpacity
+                        onPress={nativateToWatch}
+                        style={styles.controllerVideo}>
+                        <IconButton
+                            background={colors.background}
+                            mode="contained"
+                            icon="play"
+                            iconColor={'#000000'}
+                            size={20}
+                            onPress={nativateToWatch}
+                        />
                     </TouchableOpacity>
                 </View>
             </View>
             <Text style={styles.title}>
-                {`《Genshin》Giới thiệu nhân vật -「Navia:Bánh Lái Hoa Lệ」`}
+                {video?.Title}
             </Text>
             <View style={styles.detailInfo}>
                 <View>
                     <Text style={styles.levelAndTopic}>
-                        {`Cấp độ: HSK1`}
+                        {`Cấp độ: HSK ` + video?.Level}
                     </Text>
                     <Text style={styles.levelAndTopic}>
-                        {`Chủ đề: Hoạt hình`}
+                        {`Chủ đề: `}
                     </Text>
                 </View>
-                <IconButton icon="bookmark">
+                <IconButton
+                    background={colors.background}
+                    mode="contained"
+                    iconColor={true ? colors.primaryColor : colors.iconColor}
+                    icon="bookmark">
 
                 </IconButton>
             </View>
             <View style={styles.description}>
                 <Text style={styles.descriptionTitle}>Mô tả</Text>
-                <Text style={styles.descriptionText}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <Text style={styles.descriptionText} ellipsizeMode='tail'>
+                    {video?.Description}
+                </Text>
+            </View>
+            <View style={styles.commentLayout}>
+                <Text style={styles.commentTitle}>Bình luận</Text>
+                <Text style={styles.descriptionText} ellipsizeMode='tail'>
+                    Chưa có bình luận nào
                 </Text>
             </View>
         </View>

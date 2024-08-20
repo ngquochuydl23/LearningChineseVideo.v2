@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background,
         height: '100%',
     },
+    toolbar: {
+        paddingHorizontal: 10
+    },
     scrollViewContainer: {
         width: '100%',
         height: '100%'
@@ -66,6 +69,9 @@ const styles = StyleSheet.create({
         fontFamily: fonts.Regular,
         color: colors.textSecondaryColor,
         fontSize: 13,
+        wordBreak: "break-word",
+        flexShrink: 1, 
+        flexWrap: 'wrap'
     },
     controllerVideo: {
         height: '100%',
@@ -73,8 +79,17 @@ const styles = StyleSheet.create({
         display: 'flex',
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+        paddingBottom: 45
+    },
+    commentLayout: {
+        padding: 15,
+    },
+    commentTitle: {
+        fontFamily: fonts.SemiBold,
+        color: colors.textPrimaryColor,
+        fontSize: 18,
+    },
 });
 
 export default styles;

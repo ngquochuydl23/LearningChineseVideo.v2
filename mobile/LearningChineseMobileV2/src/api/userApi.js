@@ -8,7 +8,7 @@ export const signUp = (body) =>
     http.post('/User/signUp', body);
 
 export const persistLogin = () =>
-    http.get('/User/persistLogin');
+    http.get('/user/persistLogin');
 
 export const editUserInfo = (body) =>
     http.put('/User/updateInfo', body)

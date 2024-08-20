@@ -18,7 +18,7 @@ const LibraryTab = () => {
     const dispatch = useDispatch();
 
     const doLogOut = async () => {
-       // await AsyncStorage.removeItem('AccessToken');
+        await AsyncStorage.removeItem('AccessToken');
         dispatch(logout());
     }
 
@@ -56,8 +56,8 @@ const LibraryTab = () => {
                             </View>
                         </TouchableOpacity>
                     ))}
-                    <TouchableOpacity 
-                    onPress={doLogOut}>
+                    <TouchableOpacity
+                        onPress={doLogOut}>
                         <View style={styles.menuRouteItem}>
                             <Text style={{ ...styles.menulabelRouteItem, color: 'red' }}>
                                 {`Đăng xuất`}

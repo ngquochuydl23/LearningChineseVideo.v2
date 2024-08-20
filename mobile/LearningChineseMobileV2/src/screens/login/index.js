@@ -14,11 +14,14 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { login } from "../../api/userApi";
+import AlertDialog from "../../components/alertDialog";
 
 const LoginScreen = () => {
     const navigation = useNavigation();
     const [loading, setLoading] = useState(false);
+    const [httpError, setHttpError] = useState();
     const dispatch = useDispatch();
+
     const validationSchema = Yup.object({
         phoneNumber: Yup
             .string()
@@ -43,8 +46,12 @@ const LoginScreen = () => {
                 dispatch(setUser(user));
             })
             .catch((err) => {
-                if (err === 'Password is incorrect') {
-
+                if (err === 'User does not exist') {
+                    setHttpError('Người dùng chưa đăng ký.');
+                } else if (err === 'Password is incorrect') {
+                    setHttpError('Mật khẩu không đúng! Vui lòng thử lại.');
+                } else {
+                    setHttpError('Đã có lỗi từ máy chủ! Vui lòng thử lại');
                 }
             })
             .finally(() => setLoading(false));
@@ -162,7 +169,14 @@ const LoginScreen = () => {
                         </View>
                     )}
                 </Formik>
-
+                <AlertDialog
+                    title={'Đăng nhập không thành công'}
+                    submitTitleBtn="Ok"
+                    content={httpError}
+                    visible={Boolean(httpError)}
+                    onDismiss={() => {
+                        setHttpError(null);
+                    }} />
             </ScrollView>
         </ScreenContainer>
     )

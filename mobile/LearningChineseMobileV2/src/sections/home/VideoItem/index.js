@@ -2,6 +2,7 @@ import { Image, Text, TouchableHighlight, TouchableOpacity, View } from "react-n
 import styles from "./video-item.style";
 import _ from 'lodash';
 import { useNavigation } from '@react-navigation/native';
+import { readStorageUrl } from "../../../utils/readStorageUrl";
 
 const VideoItem = ({
     Id,
@@ -11,18 +12,21 @@ const VideoItem = ({
     Topics
 }) => {
     const navigation = useNavigation();
-    
+
     return (
-        <TouchableHighlight  onPress={() => { navigation.navigate('WatchVideo'); }} >
+        <TouchableHighlight
+            onPress={() => {
+                navigation.navigate('Video', { videoId: Id });
+            }} >
             <View style={styles.container}>
                 <Image
                     alt={Id}
                     style={styles.thumbnail}
-                    src="https://hayugo.edu.vn//storage/image/2762a990a26e55c9caa102422a66327c.jpg" />
+                    src={readStorageUrl(Thumbnail)} />
                 <Text
                     style={styles.title}
                     numberOfLines={2}>
-                    {`Genshin Giới thiệu nhân vật - Navia: Bánh Lái Hoa Lệ`}
+                    {Title}
                 </Text>
                 <Text
                     style={styles.subtitle}
