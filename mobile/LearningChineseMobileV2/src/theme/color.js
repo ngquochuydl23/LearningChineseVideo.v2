@@ -15,7 +15,8 @@ export const lightModeColors = {
     textPrimaryColor: '#000',
     textSecondaryColor: '#696969',
     borderColor: '#d3d3d3',
-    iconColor: '#d3d3d3'
+    iconColor: '#d3d3d3',
+    fieldInputColor: '#f5f5f5',
 }
 
 export const darkModeColors = {

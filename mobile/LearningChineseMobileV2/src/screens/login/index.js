@@ -47,10 +47,13 @@ const LoginScreen = () => {
             })
             .catch((err) => {
                 if (err === 'User does not exist') {
+
                     setHttpError('Người dùng chưa đăng ký.');
                 } else if (err === 'Password is incorrect') {
+
                     setHttpError('Mật khẩu không đúng! Vui lòng thử lại.');
                 } else {
+                    
                     setHttpError('Đã có lỗi từ máy chủ! Vui lòng thử lại');
                 }
             })
