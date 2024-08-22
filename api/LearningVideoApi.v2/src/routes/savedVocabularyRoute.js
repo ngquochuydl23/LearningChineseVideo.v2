@@ -4,6 +4,7 @@ const savedVocabulayController = require('../controllers/savedVocabulayControlle
 const { authMiddleware } = require('../middlewares/authMiddleware');
 
 router.get('/GetSavedByVideo', authMiddleware, savedVocabulayController.getSavedByVideo);
-
+router.post('/', authMiddleware, savedVocabulayController.saveVocabulary);
+router.delete('/:originWord', authMiddleware, savedVocabulayController.delSaved);
 
 module.exports = router;
