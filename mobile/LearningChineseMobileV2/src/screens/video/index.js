@@ -1,24 +1,24 @@
-import { Image, StatusBar, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import ScreenContainer from "../../components/ScreenContainer";
-import HomeHeader from "../../sections/home/homeHeader";
+import { Image, StatusBar, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
-import { IconButton, MD3Colors } from "react-native-paper";
+import { IconButton } from "react-native-paper";
 import { useEffect, useState } from "react";
 import { getVideoById } from "../../api/videoApi";
 import { readStorageUrl } from "../../utils/readStorageUrl";
 import _ from 'lodash';
 import { colors } from "../../theme/color";
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const VideoScreen = ({ route, navigation }) => {
 
-    const { videoId, otherParam } = route.params;
+    const { videoId } = route.params;
 
     const [loading, setLoading] = useState(false);
     const [video, setVideo] = useState();
 
     const nativateToWatch = () => {
-        navigation.navigate('WatchVideo', { videoId: videoId });
+        navigation.navigate('WatchVideo', {
+            videoId: videoId,
+            thumbnail: video?.Thumbnail
+        });
     }
 
     useEffect(() => {
