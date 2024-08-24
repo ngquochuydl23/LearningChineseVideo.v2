@@ -45,6 +45,7 @@ exports.getSavedByVideo = async (req, res, next) => {
 }
 
 
+
 exports.saveVocabulary = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
     const {
@@ -107,6 +108,40 @@ exports.saveVocabulary = async (req, res, next) => {
             LastUpdated: moment(),
             CreatedAt: moment(),
         });
+
+        return httpOk(res, saved);
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.checkSaved = async (req, res, next) => {
+    const loggingUserId = req.loggingUserId;
+    const { videoId, showedFrom, showedTo } = req.params;
+
+    try {
+
+
+        if (showedFrom.localeCompare(showedTo, undefined, { numeric: true }) === 1) {
+            throw new AppException("ShowedFrom must not be larger than showedTo");
+        }
+
+        const saved = await models.SavedVocaEntity.findOne({
+            where: {
+                IsDeleted: false,
+                VocabularyId: originWord,
+                VideoId: videoId,
+                UserId: loggingUserId,
+                ShowedFrom: showedFrom,
+                ShowedTo: showedTo
+            },
+            logging: console.log
+        });
+
+
+        if (!saved) {
+            throw new AppException("Saved not found");
+        }
 
         return httpOk(res, saved);
     } catch (error) {
