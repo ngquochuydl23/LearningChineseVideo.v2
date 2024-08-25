@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { readStorageUrl } from "../../utils/readStorageUrl";
 import styles from "./style";
 import { Formik } from "formik";
-import { TextInput } from "react-native-paper";
+import { IconButton, TextInput } from "react-native-paper";
 import * as Yup from 'yup';
 import { useState } from "react";
 import { colors } from "../../theme/color";
 import { Button } from 'react-native-paper';
-
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { uploadFile } from "../../api/storageApi";
 
 const EditProfileScreen = () => {
     const { user } = useSelector((state) => state.user);
@@ -27,6 +28,36 @@ const EditProfileScreen = () => {
         //setLoading(true);
         console.log(values);
     }
+
+    const onAvatarEdit = () => {
+        const options = {
+            //  mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 2000,
+            maxWidth: 2000,
+        };
+
+        launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('Image picker error: ', response.error);
+            } else {
+
+                const file = response.assets
+
+                uploadFile({
+                    uri: file.uri,
+                    name: file.fileName,
+                    type: file.type,
+                })
+                    .then((res) => console.log(res))
+                    .catch((err) => console.log(err))
+                //setSelectedImage(imageUri);
+            }
+        });
+    }
+
     return (
         <ScreenContainer>
             <View style={styles.avatarContainer}>
@@ -34,12 +65,18 @@ const EditProfileScreen = () => {
                     style={styles.avatar}
                     size={100}
                     name={user.FullName}
-                  //  src={readStorageUrl(user.Avatar)} 
-                    src="https://avatars.githubusercontent.com/u/36536025?s=400&u=f4921be2b75621850ab2e63f3ed33405ffc25395&v=4"
-                    />
-                {/* <View style={styles.uploadImgButton}>
-                    <Text>ALo</Text>
-                </View> */}
+                    src={readStorageUrl(user.Avatar)}
+                />
+                <View style={styles.uploadImgButton}>
+                    <IconButton
+                        onPress={onAvatarEdit}
+                        size={14}
+                        style={{ margin: 0 }}
+                        background={colors.background}
+                        mode="contained"
+                        iconColor={'#696969'}
+                        icon={"pencil"} />
+                </View>
             </View>
             <Formik
                 initialValues={{ ...user }}

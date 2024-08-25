@@ -1,13 +1,7 @@
 import axios from "axios";
 import _ from "lodash";
 
-export const http = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_STORAGE_API_END_POINT
-})
-
-// NEXT_PUBLIC_STORAGE_API_END_POINT = "http://localhost:2601/storage-api/"
-// NEXT_PUBLIC_MEDIA_DOMAIN = "http://localhost:2601/"
-
+const http = axios.create({ baseURL: 'http://192.168.1.11:7700/api/' });
 
 http.interceptors.request.use(async function (config) {
     config.headers['Content-Type'] = `multipart/form-data`
@@ -25,9 +19,11 @@ http.interceptors.response.use(function (response) {
     return response.data.result;
 }, function (error) {
     if (_.has(error, 'response.data.error')) {
-        console.log(error);
+
+
         const resError = _.get(error, 'response.data.error')
         const dispatch = _.get(global, 'dispatch')
+        console.log({ error })
         return Promise.reject(resError)
     }
     return Promise.reject(error);
@@ -49,11 +45,13 @@ export const uploadFiles = (files, progress, source) => {
         }
     });
 
-    return http.post('/upload', files, {
-        cancelToken: source?.token,
-        onUploadProgress: progressEvent => {
-            if (progress)
-                progress(progressEvent.loaded, progressEvent.total)
-        }
-    });
+    return http.post('storage/upload', files
+        //     , {
+        //     cancelToken: source?.token,
+        //     onUploadProgress: progressEvent => {
+        //         if (progress)
+        //             progress(progressEvent.loaded, progressEvent.total)
+        //     }
+        // }
+    );
 }

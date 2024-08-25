@@ -15,10 +15,13 @@ const styles = StyleSheet.create({
         position: 'relative',
         display: 'flex',
         position: 'relative',
+        justifyContent: 'flex-end',
         alignSelf: 'center'
     },
     uploadImgButton: {
         position: 'absolute',
+        bottom: 0,
+        right: 0,
         zIndex: 1
     },
     textField: {

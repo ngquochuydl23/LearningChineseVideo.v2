@@ -13,10 +13,13 @@ import { ActivityIndicator, IconButton } from "react-native-paper";
 import { colors } from "../../theme/color";
 import axios from "axios";
 import webvtt from 'node-webvtt';
+import { checkSaved } from "../../api/savedVocabularyApi";
 
 const WatchVideoScreen = ({ route, navigation }) => {
     const refRBSheet = useRef();
     const videoRef = useRef(null);
+    const scrollView = useRef(null);
+
     const { videoId, thumbnail } = route.params;
 
     const [currentTextSub, setCurrentTextSub] = useState();
@@ -29,9 +32,10 @@ const WatchVideoScreen = ({ route, navigation }) => {
     const [loading, setLoading] = useState(false);
     const [loadingVoca, setLoadingVoca] = useState(false);
     const [video, setVideo] = useState();
-    const [playing, setPlaying] = useState(false);
+
     const [vocabulary, setVocabulary] = useState();
     const [wordSelect, setWordSelect] = useState(null);
+    const [saved, setSaved] = useState(false);
 
     const [transcripts, setTranscripts] = useState({
         seg: [],
@@ -44,10 +48,22 @@ const WatchVideoScreen = ({ route, navigation }) => {
     const searchWord = (word, sentence) => {
         setWordSelect(word);
         setLoadingVoca(true);
+
+
+
         getVocabularyByWord(word)
             .then(({ result }) => {
                 setVocabulary(result);
                 console.log(result);
+
+                checkSaved(word, currentSubTime.from, currentSubTime.to, video.Id)
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+
             })
             .catch((err) => {
                 setVocabulary(null);
@@ -59,7 +75,7 @@ const WatchVideoScreen = ({ route, navigation }) => {
     }
 
     const onCloseBottomSheet = () => {
-        setPlaying(true);
+        videoRef.current.resume();
         setWordSelect(null);
         setLoadingVoca(false);
     }
@@ -87,7 +103,7 @@ const WatchVideoScreen = ({ route, navigation }) => {
         setLoading(true);
         getVideoById(videoId)
             .then(({ result }) => {
-                setPlaying(true);
+                videoRef.current.resume();
                 setVideo(result);
 
 
@@ -130,7 +146,6 @@ const WatchVideoScreen = ({ route, navigation }) => {
                 backgroundColor={"#000"} />
             <Video
                 controls
-                paused={!playing}
                 onProgress={handleProgress}
                 poster={readStorageUrl(thumbnail)}
                 ref={videoRef}
@@ -145,7 +160,7 @@ const WatchVideoScreen = ({ route, navigation }) => {
                         <Text
                             key={index}
                             onPress={() => {
-                                setPlaying(false);
+                                videoRef.current.pause();
                                 searchWord(word, sentence);
                                 refRBSheet.current.open();
                             }}>
@@ -155,6 +170,9 @@ const WatchVideoScreen = ({ route, navigation }) => {
                 })}
 
             </Text>
+            <View>
+
+            </View>
             <RBSheet
                 ref={refRBSheet}
                 useNativeDriver={false}
@@ -215,8 +233,10 @@ const WatchVideoScreen = ({ route, navigation }) => {
                                         Ví dụ:
                                     </Text>
                                     <VStack ml={15} fill>
-                                        {_.split(vocabulary?.Example, "。").map(example => (
-                                            <Text style={{ ...styles.pText, width: '100%' }}>
+                                        {_.split(vocabulary?.Example, "。").map((example, index) => (
+                                            <Text
+                                                key={index}
+                                                style={{ ...styles.pText, width: '100%' }}>
                                                 {example.trim()}
                                             </Text>
                                         ))}

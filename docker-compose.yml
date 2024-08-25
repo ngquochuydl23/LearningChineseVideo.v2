@@ -9,7 +9,7 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 2401:3000
+      - 4900:3000
     restart: always
 
   learning-chinese-video-api-v2:
