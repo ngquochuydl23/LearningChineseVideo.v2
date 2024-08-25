@@ -117,8 +117,9 @@ exports.saveVocabulary = async (req, res, next) => {
 
 exports.checkSaved = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
-    const { videoId, showedFrom, showedTo } = req.params;
-
+    const { videoId, showedFrom, showedTo } = req.query;
+    const { originWord } = req.params;
+    
     try {
 
 
