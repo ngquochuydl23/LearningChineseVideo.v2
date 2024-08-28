@@ -1,7 +1,7 @@
 import axios from "axios";
 import _ from "lodash";
 
-const http = axios.create({ baseURL: 'http://192.168.1.11:7700/api/' });
+const http = axios.create({ baseURL: 'https://v2.hayugo.edu.vn/api' });
 
 http.interceptors.request.use(async function (config) {
     config.headers['Content-Type'] = `multipart/form-data`
@@ -45,7 +45,7 @@ export const uploadFiles = (files, progress, source) => {
         }
     });
 
-    return http.post('storage/upload', files
+    return http.post('storage/upload', bodyFormData
         //     , {
         //     cancelToken: source?.token,
         //     onUploadProgress: progressEvent => {

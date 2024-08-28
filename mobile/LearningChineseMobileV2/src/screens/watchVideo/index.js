@@ -48,7 +48,7 @@ const WatchVideoScreen = ({ route, navigation }) => {
     const searchWord = (word, sentence) => {
         setWordSelect(word);
         setLoadingVoca(true);
-
+        setSaved(null);
 
 
         getVocabularyByWord(word)
@@ -58,9 +58,11 @@ const WatchVideoScreen = ({ route, navigation }) => {
 
                 checkSaved(word, currentSubTime.from, currentSubTime.to, video.Id)
                     .then((res) => {
+                        setSaved(res);
                         console.log(res);
                     })
                     .catch((err) => {
+                        setSaved(null);
                         console.log(err);
                     })
 
@@ -96,6 +98,10 @@ const WatchVideoScreen = ({ route, navigation }) => {
             setCurrentTextSub(currentCue.text)
         }
     };
+
+    const doSaveWord = () => {
+        
+    }
 
     useEffect(() => {
         setLoadingVoca(false);
@@ -203,11 +209,12 @@ const WatchVideoScreen = ({ route, navigation }) => {
                             {wordSelect}
                         </Text>
                         <IconButton
+                            onPress={doSaveWord}
                             containerColor="rgba(0, 0, 0, 0.05)"
                             background={colors.background}
                             mode="contained"
-                            iconColor={false ? colors.primaryColor : '#696969'}
-                            icon={false ? "bookmark" : "bookmark-outline"} />
+                            iconColor={Boolean(saved) ? colors.primaryColor : '#696969'}
+                            icon={Boolean(saved) ? "bookmark" : "bookmark-outline"} />
                     </HStack>
                     {loadingVoca
                         ? <View>

@@ -5,6 +5,9 @@ import { Icon } from "react-native-paper";
 import { fonts } from "../../theme/fonts";
 import { colors } from "../../theme/color";
 import { Text } from "react-native";
+
+
+
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
@@ -19,6 +22,7 @@ const MainScreen = () => {
                     margin: 0,
                     includeFontPadding: false
                 },
+
                 tabBarActiveTintColor: colors.primaryColor,
                 tabBarInactiveTintColor: 'gray',
 
@@ -30,19 +34,17 @@ const MainScreen = () => {
                         name={route.name}
                         component={route.screen}
                         options={{
-                            tabBarStyle: {
-                                height: 60
-                            },
-                            tabBarLabelStyle: {
-                                
-                            },
                             headerShown: false,
                             tabBarLabel: route.label,
-                            tabBarIcon: ({ color, focused }) => (
-                                <Icon
-                                    color={color}
-                                    source={focused ? route.activeIcon : route.inactiveIcon}
-                                    size={35} />
+                            tabBarIcon: ({ color, focused }) => (focused
+                                ? <route.activeIcon
+                                    width={24}
+                                    style={{ color: color }}
+                                    height={24} />
+                                : <route.inactiveIcon
+                                    width={24}
+                                    style={{ color: color }}
+                                    height={24} />
                             ),
                         }}
 

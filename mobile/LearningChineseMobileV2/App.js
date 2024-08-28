@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logout, setLoading, setUser } from './src/redux/slices/userSlice';
 import SavedScreen from './src/screens/saved';
 import { persistLogin } from './src/api/userApi';
-
+import SavedDetailScreen from './src/screens/savedDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -96,6 +96,10 @@ function App() {
                             <Stack.Screen
                                 name="WatchVideo"
                                 component={WatchVideoScreen}
+                                options={{ headerShown: false }} />
+                            <Stack.Screen
+                                name="SavedDetail"
+                                component={SavedDetailScreen}
                                 options={{ headerShown: false }} />
                             <Stack.Screen
                                 name="Saved"

@@ -8,7 +8,12 @@ const SavedVocaItem = ({ SavedCount, LastUpdated, Video }) => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity
-            onPress={() => { navigation.navigate("SavedDetail", { videoId: Video?.Id }) }}>
+            onPress={() => {
+                navigation.navigate("SavedDetail", {
+                    videoId: Video?.Id,
+                    title: Video?.Title
+                })
+            }}>
             <View style={styles.itemContainer}>
                 <Image
                     style={styles.thumbnail}

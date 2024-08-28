@@ -12,6 +12,7 @@ import { colors } from "../../theme/color";
 import { Button } from 'react-native-paper';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { uploadFile } from "../../api/storageApi";
+import log from "../../logger";
 
 const EditProfileScreen = () => {
     const { user } = useSelector((state) => state.user);
@@ -31,29 +32,33 @@ const EditProfileScreen = () => {
 
     const onAvatarEdit = () => {
         const options = {
-            //  mediaType: 'photo',
             includeBase64: false,
             maxHeight: 2000,
             maxWidth: 2000,
         };
 
+        log.info("Request picking image");
         launchImageLibrary(options, (response) => {
             if (response.didCancel) {
-                console.log('User cancelled image picker');
+
+                log.warn('User cancelled image picker');
             } else if (response.error) {
-                console.log('Image picker error: ', response.error);
+
+                log.error('Image picker error: ', response.error);
             } else {
 
-                const file = response.assets
-
+                const file = response.assets[0]
                 uploadFile({
                     uri: file.uri,
                     name: file.fileName,
                     type: file.type,
                 })
-                    .then((res) => console.log(res))
-                    .catch((err) => console.log(err))
-                //setSelectedImage(imageUri);
+                    .then(({ medias }) => {
+
+                    })
+                    .catch((err) => {
+                        log.error(err)
+                    })
             }
         });
     }
