@@ -12,6 +12,7 @@ const app = require('express')();
 const { logRequest, logError } = require('./middlewares/loggingMiddleware')
 const _ = require('lodash');
 const { syncDb } = require('./db');
+const { configureMongoDb } = require('./config/mongodb');
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use(logRequest)
-app.use('/api/ping', pingRoute);;
+app.use('/api/ping', pingRoute);
 app.use('/api/storage', storageRoute);
 app.use('/api/video', videoRoute);
 app.use('/api/user', userRoute);
@@ -47,7 +48,7 @@ const server = require('http').createServer(app);
 
 module.exports = {
   server,
-  syncDb
-  // configureMongoDb,
+  syncDb,
+  configureMongoDb,
   // configureRedisDb
 }

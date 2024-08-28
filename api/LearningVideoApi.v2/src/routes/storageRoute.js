@@ -9,6 +9,7 @@ const path = require('path');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const path = `./uploads`
+       
         fs.mkdirSync(path, { recursive: true });
         return cb(null, path)
     },
@@ -17,9 +18,8 @@ const storage = multer.diskStorage({
             if (err) {
                 return cb(err);
             }
-
             const filename = buf.toString('hex') + path.extname(file.originalname);
-            return cb(null, filename)
+            return cb(null, filename);
         })
     }
 })

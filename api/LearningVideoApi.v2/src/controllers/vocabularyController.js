@@ -6,6 +6,7 @@ const { AppException } = require('../exceptions/AppException');
 const { logger } = require('../logger');
 const moment = require('moment');
 const _ = require('lodash');
+const vocabularyModel = require('../nosql-models/vocabulary.model');
 
 const models = initModels(sequelize);
 
@@ -14,6 +15,8 @@ exports.getVocabularies = async (req, res, next) => {
 
     const limit = parseInt(req.query.limit) || 10;
     const offset = parseInt(req.query.offset) || 0;
+
+    //const documents = await vocabularyModel.find();
 
     try {
 
@@ -36,7 +39,7 @@ exports.getVocabularies = async (req, res, next) => {
             logging: console.log
         });
 
-        return httpOkAsCollection(res, rows, count, limit, offset)
+        return httpOkAsCollection(res, documents, count, limit, offset)
     } catch (error) {
         next(error);
     }

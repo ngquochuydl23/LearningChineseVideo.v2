@@ -6,7 +6,8 @@
 
 var {
   server,
-  syncDb
+  syncDb,
+  configureMongoDb
 } = require('../src/app');
 
 var debug = require('debug')('wechat:server');
@@ -94,6 +95,7 @@ async function onListening() {
 
   try {
     syncDb();
+    configureMongoDb()
     debug('Listening on ' + bind);
   } catch (error) {
     console.log(error)
