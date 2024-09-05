@@ -1,28 +1,16 @@
-const { sequelize } = require('../models');
-const { initModels } = require('../models/init-models');
 const { httpOk, http201 } = require('../httpResponse');
-const { Op } = require('sequelize');
 const { AppException } = require('../exceptions/AppException');
 const moment = require('moment');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-
-const models = initModels(sequelize);
+const userModel = require('../nosql-models/user.model');
 
 exports.persistLogin = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
 
     try {
-        const user = await models.User.findOne({
-            where: {
-                Id: loggingUserId,
-                IsDeleted: false
-            },
-            logging: console.log,
-            attributes: { exclude: ["HashPassword"] }
-        });
-
+        const user = await userModel.findById(loggingUserId, '-hashPassword');
         if (!user) {
             throw new AppException("User does not exist");
         }
@@ -36,46 +24,33 @@ exports.persistLogin = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     const { phoneNumber, password } = req.body;
     try {
-        const user = await models.User.findOne({
-            where: {
-                PhoneNumber: phoneNumber,
-                IsDeleted: false
-            },
-            logging: console.log,
-            raw: true
-        });
+
+        const user = await userModel.findOne({ phoneNumber });
 
         if (!user) {
             throw new AppException("User does not exist");
         }
 
-        if (!(await bcrypt.compare(password, user.HashPassword))) {
+        if (!(await bcrypt.compare(password, user.hashPassword))) {
             throw new AppException("Password is incorrect");
         }
 
-        await models.User.update(
-            { LastLogin: moment() },
-            {
-                where: {
-                    Id: user.Id,
-                    IsDeleted: false
-                },
-            },
-        );
+        user.lastLogin = moment();
+        await user.save();
+        const copyObj = { ...user.toObject() }
 
-        delete user['HashPassword'];
-        delete user['IsDeleted'];
+        delete copyObj['hashPassword'];
+        delete copyObj['isDeleted'];
 
         const token = jwt.sign({
-            id: user.Id,
-            role: user.Role
+            id: user._id,
+            role: user.role
         }, "secret", { expiresIn: "30d" });
 
         return httpOk(res, {
             token: token,
-            user: JSON.parse(JSON.stringify(user))
+            user: copyObj
         }, "Login successfully");
-
     } catch (error) {
         next(error);
     }
@@ -94,16 +69,13 @@ exports.signUp = async (req, res, next) => {
 
     try {
 
-        var user = await models.User.findOne({
-            where: {
-                IsDeleted: false,
-                [Op.or]: [
-                    { PhoneNumber: phoneNumber },
-                    { Email: email },
-                ],
-            },
-            logging: console.log
-        });
+        var user = await userModel
+            .findOne({
+                $or: [
+                    { phoneNumber: phoneNumber },
+                    { email: email }
+                ]
+            })
 
         if (user) {
             throw new AppException("Email or phone number is already used");
@@ -112,23 +84,19 @@ exports.signUp = async (req, res, next) => {
         const saltRounds = 10;
         const hashPassword = await bcrypt.hashSync(password, saltRounds);
 
-        user = await models.User.create({
-            FullName: fullName,
-            PhoneNumber: phoneNumber,
-            Email: email,
-            HashPassword: hashPassword,
-            Birthday: birthday,
-            Gender: gender,
-            Level: level,
-            Role: "User",
-            LastLogin: moment(),
-            IsDeleted: false,
-            LastUpdated: moment(),
-            CreatedAt: moment()
+        user = new userModel({
+            fullName: fullName,
+            phoneNumber: phoneNumber,
+            email: email,
+            hashPassword: hashPassword,
+            birthday: birthday,
+            gender: gender,
+            level: level,
+            role: "User"
         });
 
         const copyObj = { ...user.toJSON() }
-        delete copyObj['HashPassword'];
+        delete copyObj['hashPassword'];
 
         return http201(res, copyObj, "Create account successfully");
     } catch (error) {
@@ -137,20 +105,16 @@ exports.signUp = async (req, res, next) => {
 }
 
 exports.deleteAccount = async (req, res, next) => {
-    try {
-        const user = await models.User.findOne({
-            where: {
-                PhoneNumber: phoneNumber,
-                IsDeleted: false
-            },
-            logging: console.log
-        });
+    const loggingUserId = req.loggingUserId;
 
+    try {
+        
+        const user = await userModel.findById(loggingUserId);
         if (!user) {
             throw new AppException("User does not exist");
         }
 
-        user.IsDeleted = true;
+        user.isDeleted = true;
         await user.save();
 
         return httpOk(res, null, "Deleted account successfully");
@@ -167,36 +131,32 @@ exports.updateInfo = async (req, res, next) => {
         email,
         birthday,
         gender,
-        level
+        level,
+        avatar
     } = req.body;
 
     try {
-        const user = await models.User.findOne({
-            where: {
-                Id: loggingUserId,
-                IsDeleted: false
-            },
-            logging: console.log,
-            attributes: { exclude: ["HashPassword"] }
-        });
-
+        const user = await userModel.findById(loggingUserId);
         if (!user) {
             throw new AppException("User does not exist");
         }
 
 
-        user.FullName = fullName;
-        user.Email = email;
-        user.PhoneNumber = phoneNumber;
-        user.Gender = gender;
-        user.Birthday = birthday;
-        user.Level = level;
-        user.LastUpdated = moment();
-        user.Avatar = avatar;
+        user.fullName = fullName;
+        user.email = email;
+        user.phoneNumber = phoneNumber;
+        user.gender = gender;
+        user.birthday = birthday;
+        user.level = level;
+        user.lastUpdated = moment();
+        user.avatar = avatar;
 
         await user.save();
-        
-        return httpOk(res, user);
+
+        const objCopy = { ...user.toObject() }
+        delete objCopy['hashPassword'];
+
+        return httpOk(res, objCopy);
     } catch (error) {
         next(error);
     }

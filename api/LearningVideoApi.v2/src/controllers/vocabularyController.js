@@ -7,7 +7,6 @@ const { logger } = require('../logger');
 const moment = require('moment');
 const _ = require('lodash');
 const vocabularyModel = require('../nosql-models/vocabulary.model');
-
 const models = initModels(sequelize);
 
 exports.getVocabularies = async (req, res, next) => {
@@ -16,28 +15,28 @@ exports.getVocabularies = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 10;
     const offset = parseInt(req.query.offset) || 0;
 
-    //const documents = await vocabularyModel.find();
+    const whereObj = {
+        ...(type && { wordType: type }),
+        ...(level && { level: level }),
+        ...(search && {
+            $or: [
+                { originWord: { $regex: search } },
+                { vietnameseMean: { $regex: search } },
+                { pinyin: { $regex: search } }
+            ]
+        })
+    }
 
     try {
+        const count = await vocabularyModel
+            .find(whereObj)
+            .count();
 
-        const { rows, count } = await models.Vocabulary.findAndCountAll({
-            where: {
-                IsDeleted: false,
-                ...(level && { Level: level }),
-                ...(search && {
-                    [Op.or]: [
-                        { OriginWord: { [Op.like]: search } },
-                        { VietnameseMean: { [Op.like]: search } },
-                        { Pinyin: { [Op.like]: search } }
-                    ]
-                }),
-                ...(type && { WordType: type })
-            },
-            offset: offset,
-            limit: limit,
-            order: [['CreatedAt', 'DESC']],
-            logging: console.log
-        });
+        const documents = await vocabularyModel
+            .find(whereObj)
+            .limit(limit)
+            .skip(offset)
+            .sort({ createdAt: -1 });
 
         return httpOkAsCollection(res, documents, count, limit, offset)
     } catch (error) {
@@ -48,15 +47,9 @@ exports.getVocabularies = async (req, res, next) => {
 exports.getVocaByOriginWord = async (req, res, next) => {
     const { originWord } = req.params;
 
-
     try {
-        const vocabulary = await models.Vocabulary.findOne({
-            where: {
-                IsDeleted: false,
-                OriginWord: { [Op.like]: originWord }
-            },
-            logging: console.log
-        });
+
+        const vocabulary = await vocabularyModel.findOne({ originWord });
 
         if (!vocabulary) {
             throw new AppException("Vocabulary not found");
@@ -71,25 +64,15 @@ exports.getVocaByOriginWord = async (req, res, next) => {
 exports.delVocabulary = async (req, res, next) => {
     const { originWord } = req.params;
     try {
-        const vocabulary = await models.Vocabulary.findOne({
-            where: {
-                IsDeleted: false,
-                OriginWord: { [Op.like]: originWord }
-            },
-            logging: console.log
-        });
+
+        const vocabulary = await vocabularyModel.findOne({ originWord });
 
         if (!vocabulary) {
             throw new AppException("Vocabulary not found");
         }
 
-        await models.Vocabulary.destroy(
-            {
-                where: {
-                    OriginWord: { [Op.like]: originWord }
-                },
-            },
-        );
+        vocabulary.isDeleted = true;
+        vocabulary.save();
 
         return httpOk(res, null, "Deleted vocabulary successfully.");
     } catch (error) {
@@ -98,46 +81,18 @@ exports.delVocabulary = async (req, res, next) => {
 }
 
 exports.addVocabulary = async (req, res, next) => {
-    const {
-        originWord,
-        vietnameseMean,
-        sinoVietnamese,
-        wordType,
-        pinyin,
-        similiarMeaning,
-        oppositeMeaning,
-        example,
-        level
-    } = req.body;
     try {
-        var vocabulary = await models.Vocabulary.findOne({
-            where: {
-                IsDeleted: false,
-                OriginWord: { [Op.like]: originWord }
-            },
-            logging: console.log
-        });
+        var vocabulary = await vocabularyModel.findOne({ originWord: req.body.originWord });
 
         if (vocabulary) {
             throw new AppException("Vocabulary is already created");
         }
 
-        vocabulary = await models.Vocabulary.create({
-            OriginWord: originWord,
-            VietnameseMean: vietnameseMean,
-            WordType: wordType,
-            Pinyin: pinyin,
-            SimiliarMeaning: similiarMeaning,
-            OppositeMeaning: oppositeMeaning,
-            Example: example,
-            IsDeleted: false,
-            CreatedAt: moment(),
-            LastUpdated: moment(),
-            SinoVietnamese: sinoVietnamese,
-            Level: level
-        });
+        vocabulary = new vocabularyModel(req.body);
 
+        await vocabulary.save();
         return http201(res, vocabulary, "Add vocabulary successfully");
+
     } catch (error) {
         next(error);
     }
@@ -156,28 +111,21 @@ exports.editVocabulary = async (req, res, next) => {
         level
     } = req.body;
     try {
-        var vocabulary = await models.Vocabulary.findOne({
-            where: {
-                IsDeleted: false,
-                OriginWord: { [Op.like]: originWord }
-            },
-            logging: console.log
-        });
+        const vocabulary = await vocabularyModel.findOne({ originWord });
 
         if (!vocabulary) {
             throw new AppException("Vocabulary not found");
         }
 
-        vocabulary.OriginWord = originWord;
-        vocabulary.VietnameseMean = vietnameseMean;
-        vocabulary.WordType = wordType;
-        vocabulary.Pinyin = pinyin;
-        vocabulary.SimiliarMeaning = similiarMeaning;
-        vocabulary.OppositeMeaning = oppositeMeaning;
-        vocabulary.Example = example;
-        vocabulary.LastUpdated = moment();
-        vocabulary.SinoVietnamese = sinoVietnamese;
-        vocabulary.Level = level;
+        vocabulary.originWord = originWord;
+        vocabulary.vietnameseMean = vietnameseMean;
+        vocabulary.wordType = wordType;
+        vocabulary.pinyin = pinyin;
+        vocabulary.similiarMeaning = similiarMeaning;
+        vocabulary.oppositeMeaning = oppositeMeaning;
+        vocabulary.example = example;
+        vocabulary.sinoVietnamese = sinoVietnamese;
+        vocabulary.level = level;
 
         await vocabulary.save();
 

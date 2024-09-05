@@ -8,46 +8,40 @@ const { v4: uuidv4 } = require('uuid');
 const { logger } = require('../logger');
 const moment = require('moment');
 const _ = require('lodash');
-
+const videoModel = require('../nosql-models/video.model');
 const models = initModels(sequelize);
 
 exports.getVideos = async (req, res, next) => {
-    const { level, search, offset, limit } = req.query;
-    
-    try {
-        const videos = await models.Video.findAll({
-            where: {
-                IsDeleted: false,
-                ...(level && { Level: level }),
-                ...(search && {
-                    SearchVector: {
-                        [Op.match]: Sequelize.literal(`plainto_tsquery(${sequelize.escape(search)} || ':*')`)
-                    }
-                })
-            },
-            include: [
-                {
-                    model: models.VideoSubtitle,
-                    as: 'VideoSubtitles',
-                    required: false,
-                },
-                {
-                    model: models.TopicVideo,
-                    as: 'TopicVideos',
-                    required: true,
-                    include: [{
-                        model: models.Topic,
-                        as: 'Topic',
-                        required: false,
-                    }],
-                }
-            ],
-            offset: offset,
-            limit: limit,
-            logging: console.log
-        });
+    const { level, search } = req.query;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = parseInt(req.query.offset) || 0;
 
-        return httpOk(res, videos)
+
+    try {
+        const whereObj = {
+            ...(level && { level: level }),
+            ...(search && {
+                $or: [
+                    { title: { $regex: search } },
+                    { description: { $regex: search } },
+                    {
+                        topic: { $elemMatch: { $regex: [search] } }
+                    }
+                ]
+            })
+        }
+
+        const count = await videoModel
+            .find(whereObj)
+            .count();
+
+        const documents = await videoModel
+            .find(whereObj)
+            .limit(limit)
+            .skip(offset)
+            .sort({ createdAt: -1 });
+
+        return httpOkAsCollection(res, documents, count, limit, offset);
     } catch (error) {
         next(error);
     }
@@ -57,31 +51,7 @@ exports.getVideo = async (req, res, next) => {
     const { videoId } = req.params;
 
     try {
-        const video = await models.Video.findOne({
-            where: {
-                Id: videoId,
-                IsDeleted: false
-            },
-            include: [
-                {
-                    model: models.VideoSubtitle,
-                    as: 'VideoSubtitles',
-                    required: true,
-                },
-                {
-                    model: models.TopicVideo,
-                    as: 'TopicVideos',
-                    required: true,
-                    include: [{
-                        model: models.Topic,
-                        as: 'Topic',
-                        required: false,
-                    }],
-                }
-            ],
-            logging: console.log
-        });
-
+        const video = await videoModel.findById(videoId);
         if (!video) {
             throw new AppException("Video does not exist");
         }
@@ -96,27 +66,13 @@ exports.delVideo = async (req, res, next) => {
     const { videoId } = req.params;
 
     try {
-        const video = await models.Video.findOne({
-            where: {
-                Id: videoId,
-                IsDeleted: false
-            },
-            logging: console.log
-        });
-
+        const video = await videoModel.findById(videoId);
         if (!video) {
             throw new AppException("Video does not exist");
         }
 
-        await models.Video.update(
-            { IsDeleted: 'True' },
-            {
-                where: {
-                    Id: videoId,
-                    IsDeleted: false
-                },
-            },
-        );
+        video.IsDeleted = true;
+        await video.save();
 
         return httpOk(res, null, "Deleted video successfully.");
     } catch (error) {
@@ -253,26 +209,13 @@ exports.viewVideo = async (req, res, next) => {
     const { videoId } = req.params;
 
     try {
-        const video = await models.Video.findOne({
-            where: {
-                Id: videoId,
-                IsDeleted: false
-            },
-            logging: console.log
-        });
-
+        const video = await videoModel.findById(videoId);
         if (!video) {
             throw new AppException("Video does not exist");
         }
 
-        await models.Video.update(
-            { IsDeleted: 'True' },
-            {
-                where: {
-                    ViewerCount: (video.ViewerCount++)
-                },
-            },
-        );
+        video.viewerCount = video.viewerCount + 1;
+        await video.save();
 
         return httpOk(res, null, "Viewed video successfully.");
     } catch (error) {

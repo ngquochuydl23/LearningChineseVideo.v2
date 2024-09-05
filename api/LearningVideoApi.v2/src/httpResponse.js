@@ -14,10 +14,10 @@ httpOkAsCollection = (res, result, total, offset, limit) => {
         .status(200)
         .send({
             statusCode: 200,
-            result,
             total,
             offset,
-            limit
+            limit,
+            result
         });
 }
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { BaseSchema } = require('./share.models');
+const { BaseSchema, whereNotDeleted } = require('./share.models');
 
 const schema = BaseSchema("Vocabulary.Collection", {
     originWord: {
@@ -10,7 +10,7 @@ const schema = BaseSchema("Vocabulary.Collection", {
     vietnameseMean: {
         type: String,
         text: true,
-        required: [true, 'vietnameseMean must not be null']
+        required: [false, 'vietnameseMean must not be null']
     },
     wordType: {
         type: String,
@@ -47,5 +47,9 @@ const schema = BaseSchema("Vocabulary.Collection", {
         default: 1
     }
 })
+
+schema.pre('find', whereNotDeleted);
+schema.pre('findOne', whereNotDeleted);
+schema.pre('updateOne', whereNotDeleted);
 
 module.exports = mongoose.model("Vocabulary.Model", schema); 
