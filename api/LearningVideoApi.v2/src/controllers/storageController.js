@@ -10,7 +10,7 @@ exports.uploadFile = async (req, res, next) => {
 
         var medias = files.map((file) => ({
             size: file.size,
-            url: "/api/storage/" + file.mimetype.split("/")[0] + "/" + file.filename,
+            url: "/storage/" + file.mimetype.split("/")[0] + "/" + file.filename,
             mimetype: file.mimetype,
             filename: file.originalname
         }));

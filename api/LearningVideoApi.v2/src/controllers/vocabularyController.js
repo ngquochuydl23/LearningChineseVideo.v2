@@ -1,13 +1,9 @@
-const { sequelize } = require('../models');
-const { initModels } = require('../models/init-models');
 const { httpOk, http201, httpOkAsCollection } = require('../httpResponse');
-const { Op, Sequelize } = require('sequelize');
 const { AppException } = require('../exceptions/AppException');
 const { logger } = require('../logger');
 const moment = require('moment');
 const _ = require('lodash');
 const vocabularyModel = require('../nosql-models/vocabulary.model');
-const models = initModels(sequelize);
 
 exports.getVocabularies = async (req, res, next) => {
     const { level, search, type } = req.query;
@@ -74,6 +70,7 @@ exports.delVocabulary = async (req, res, next) => {
         vocabulary.isDeleted = true;
         vocabulary.save();
 
+        logger.info('Delete vocabulary _id: ' + vocabulary._id);
         return httpOk(res, null, "Deleted vocabulary successfully.");
     } catch (error) {
         next(error);
@@ -89,7 +86,7 @@ exports.addVocabulary = async (req, res, next) => {
         }
 
         vocabulary = new vocabularyModel(req.body);
-
+        logger.info('Add new vocabulary: ' + vocabulary.originWord);
         await vocabulary.save();
         return http201(res, vocabulary, "Add vocabulary successfully");
 

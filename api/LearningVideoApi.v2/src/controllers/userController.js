@@ -22,10 +22,13 @@ exports.persistLogin = async (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-    const { phoneNumber, password } = req.body;
     try {
+        if (_.isEmpty(req.body)) {
+            throw new AppException("req.body is empty");
+        }
 
-        const user = await userModel.findOne({ phoneNumber });
+        const { phoneNumber, password } = req.body;
+        const user = await userModel.findOne({ phoneNumber: phoneNumber });
 
         if (!user) {
             throw new AppException("User does not exist");
@@ -108,7 +111,7 @@ exports.deleteAccount = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
 
     try {
-        
+
         const user = await userModel.findById(loggingUserId);
         if (!user) {
             throw new AppException("User does not exist");

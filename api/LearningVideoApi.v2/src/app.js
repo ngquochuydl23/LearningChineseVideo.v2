@@ -29,7 +29,7 @@ app.use('/api/storage', storageRoute);
 app.use('/api/video', videoRoute);
 app.use('/api/user', userRoute);
 app.use('/api/vocabulary', vocabularyRoute);
-app.use('/api/savedVocabulary', savedVocabularyRoute);
+app.use('/api/SavedVoca', savedVocabularyRoute);
 
 app.use(logError)
 
