@@ -1,10 +1,10 @@
 version: '3.4'
 services:
-  learning-chinese-video-fe:
-    image: learning-chinese-video-fe
-    container_name: learning-chinese-video-fe
+  learning-chinese-video-fe-v2:
+    image: learning-chinese-video-fe-v2
+    container_name: learning-chinese-video-fe-v2
     build:
-      context: ./Clients/LearningChineseVideo
+      context: ./web/LearningChineseVideo
       dockerfile: Dockerfile
     environment:
       NODE_ENV: production
@@ -19,7 +19,7 @@ services:
       context: ./api/LearningVideoApi.v2
       dockerfile: Dockerfile
     volumes:
-      - ./uploads:/LearningVideoApi.v2/uploads
+      - ./api/LearningVideoApi.v2/uploads:/app/uploads
     ports:
       - 7700:7700
     restart: always

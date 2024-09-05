@@ -106,6 +106,15 @@ export const AuthProvider = (props) => {
         });
     };
 
+    const getUser = async () => {
+        const { user } = await persistLogin();
+
+        dispatch({
+            type: HANDLERS.SIGN_IN,
+            payload: user
+        });
+    };
+
     const signIn = async (phoneNumber, password) => {
         const { user, token } = await login(phoneNumber, password);
         if (user && user.role === "Administrator") {
@@ -137,6 +146,7 @@ export const AuthProvider = (props) => {
                 persistSignIn,
                 signIn,
                 signOut,
+                getUser
             }}
         >
             {children}

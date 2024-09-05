@@ -90,7 +90,7 @@ const Word = ({
         setSaved(true);
         saveVoca({
             videoId,
-            vocabularyId: word,
+            originWord: word,
             showedFrom: showedAt.from,
             showedTo: showedAt.to,
             sentence: sentence

@@ -2,8 +2,6 @@ import axios from "axios"
 import _ from "lodash";
 
 export const http = axios.create({
-    //baseURL: 'https://localhost:7183/api/'
-    //baseURL: 'https://clothes-dev.social-v2.com/api/',
     baseURL: process.env.NEXT_PUBLIC_API_END_POINT
 })
 
@@ -20,9 +18,15 @@ export const clearAccessToken = () =>
 async function onFulfilledReq(config) {
     const accessToken = getAccessToken();
 
+    // config.headers['Authorization'] = `Bearer ${accessToken}`
+    // config.headers['Content-Type'] = `application/json-patch+json;charset=utf-8`
+    // config.headers['accept'] = `*/*`
+    
+
     config.headers['Authorization'] = `Bearer ${accessToken}`
-    config.headers['Content-Type'] = `application/json-patch+json;charset=utf-8`
+    config.headers['Content-Type'] = `application/json`
     config.headers['accept'] = `*/*`
+    config.headers['X-Requested-With'] = `XMLHttpRequest`
     return config;
 }
 

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 
 const GridVideoCard = ({
-    id,
+    _id,
     thumbnail,
     title,
     level,
@@ -29,7 +29,7 @@ const GridVideoCard = ({
             }}>
             <CardActionArea
                 component={Link}
-                href={"videos/" + id}>
+                href={"videos/" + _id}>
                 <div
                     style={{
                         display: 'flex',
@@ -50,7 +50,7 @@ const GridVideoCard = ({
                             }
                         }}
                         image={readMediaUrl(thumbnail)}
-                        alt={id}
+                        alt={title}
                     />
                     <div
                         style={{

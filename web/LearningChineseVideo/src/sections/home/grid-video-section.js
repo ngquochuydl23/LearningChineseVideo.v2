@@ -39,7 +39,7 @@ const GridVideoSection = ({
                     {_.map(videos, (video) => (
                         <Grid item lg={3}>
                             <GridVideoCard
-                                key={video.id}
+                                key={video._id}
                                 {...video} />
                         </Grid>
                     ))}

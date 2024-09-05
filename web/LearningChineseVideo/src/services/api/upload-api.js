@@ -1,13 +1,7 @@
 import axios from "axios";
 import _ from "lodash";
 
-export const http = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_STORAGE_API_END_POINT
-})
-
-// NEXT_PUBLIC_STORAGE_API_END_POINT = "http://localhost:2601/storage-api/"
-// NEXT_PUBLIC_MEDIA_DOMAIN = "http://localhost:2601/"
-
+export const http = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_END_POINT });
 
 http.interceptors.request.use(async function (config) {
     config.headers['Content-Type'] = `multipart/form-data`
@@ -49,7 +43,7 @@ export const uploadFiles = (files, progress, source) => {
         }
     });
 
-    return http.post('/upload', files, {
+    return http.post('/storage/upload', files, {
         cancelToken: source?.token,
         onUploadProgress: progressEvent => {
             if (progress)

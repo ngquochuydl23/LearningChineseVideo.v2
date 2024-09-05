@@ -8,9 +8,11 @@ const CustomAvatar = ({
     onClick,
     sx,
     src,
-    fullname
+    fullname,
+    loading = false
 }) => {
-    return (
+    console.log(readMediaUrl(src))
+    return (    
         <Box
             onClick={onClick}
             sx={{

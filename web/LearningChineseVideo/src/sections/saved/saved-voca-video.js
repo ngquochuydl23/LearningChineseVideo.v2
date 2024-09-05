@@ -64,7 +64,7 @@ const SavedVocaVideo = ({ video, lastUpdated, savedCount }) => {
                         fontSize='14px'
                         variant="subtitle2"
                         color="text.secondary">
-                        Tải lên lúc: {moment(video.createdAt).format("DD/MM/YYYY")}
+                        Từ vựng lưu gần nhât: {moment(lastUpdated).format("DD/MM/YYYY")}
                     </Typography>
                     <Typography
                         fontSize='14px'

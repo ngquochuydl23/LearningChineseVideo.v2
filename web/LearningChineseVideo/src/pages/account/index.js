@@ -24,10 +24,12 @@ import dayjs from 'dayjs';
 import CustomAvatar from 'src/components/custom-avt';
 import { uploadFile } from 'src/services/api/upload-api';
 import { editUserInfo } from 'src/services/api/user-api';
-const Page = () => {
-    const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
-    const { user } = useAuth();
+import { useSnackbar } from 'notistack';
 
+const Page = () => {
+    const { getUser, user } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -41,8 +43,25 @@ const Page = () => {
         },
         onSubmit: values => {
             editUserInfo(values)
-                .then((res) => console.log(res))
-                .catch(err => console.log(err));
+                .then((res) => {
+                    enqueueSnackbar(`Cập nhật hồ sơ thành công`, {
+                        variant: 'success',
+                        anchorOrigin: {
+                            vertical: 'bottom',
+                            horizontal: 'right'
+                        }
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    enqueueSnackbar(`Lỗi, cập nhật hồ sơ không thành công`, {
+                        variant: 'error',
+                        anchorOrigin: {
+                            vertical: 'bottom',
+                            horizontal: 'right'
+                        }
+                    });
+                });
         },
     });
 
@@ -67,6 +86,8 @@ const Page = () => {
                         spacing="25px">
                         <div className="relative rounded-full overflow-hidden flex">
                             <CustomAvatar
+                                src={formik.values.avatar}
+                                loading={loading}
                                 fullname={formik.values.fullName}
                                 onClick={() => document.getElementById('pick-image').click()}
                                 sx={{
@@ -77,13 +98,17 @@ const Page = () => {
                             <input
                                 onChange={(event) => {
                                     var file = event.target.files[0];
+                                    setLoading(true);
                                     uploadFile(file)
-                                        .then((res) => {
-                                            console.log("Uploaded");
-                                            var avatar = res.medias[0].url;
-                                            formik.setFieldValue('avatar', avatar);
+                                        .then(({ medias }) => {
+                                            formik.setFieldValue('avatar', medias[0].url);
                                         })
-                                        .catch((err) => console.log(err))
+                                        .catch((err) => {
+                                            console.log(err)
+                                        })
+                                        .finally(() => {
+                                            setLoading(false);
+                                        });
                                 }}
                                 style={{ display: 'none' }}
                                 type="file"
@@ -170,24 +195,10 @@ const Page = () => {
                                 disabled={formik.values === formik.initialValues}
                                 type="submit"
                                 fullWidth
-                                sx={{
-                                    height: '50px',
-                                    mt: '30px',
-                                    mb: '30px'
-                                }}
+                                sx={{ height: '50px', mt: '30px', mb: '30px' }}
                                 variant="contained">
                                 Lưu
                             </Button>
-                            <Snackbar
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                open={openSuccessAlert}
-                                autoHideDuration={3000}
-                                onClose={() => setOpenSuccessAlert(false)}>
-                                <Alert severity="success">
-                                    <AlertTitle>Success</AlertTitle>
-                                    This is a success alert — <strong>check it out!</strong>
-                                </Alert>
-                            </Snackbar>
                         </form>
                     </Stack>
                 </Container>

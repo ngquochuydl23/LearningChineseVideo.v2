@@ -46,7 +46,7 @@ const ProductDetailPage = () => {
             </Head>
             <Box>
                 <VideoPlayer
-                    id={video.id}
+                    _id={video._id}
                     videoUrl={video.videoUrl}
                     subtitles={video.subtitles}
                 />

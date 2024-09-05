@@ -35,34 +35,36 @@ const Page = () => {
                 .max(255)
                 .required('Vui lòng nhập mật khẩu')
         }),
-        onSubmit: async (values, helpers) => {
-            try {
-                await auth.signIn(values.phoneNumber, values.password);
-                router.push('/');
-            } catch (err) {
-                helpers.setStatus({ success: false });
-                helpers.setErrors({ submit: err.message });
-                helpers.setSubmitting(false);
+        onSubmit: (values, helpers) => {
+            console.log(values);
+            auth.signIn(values.phoneNumber, values.password)
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    helpers.setStatus({ success: false });
+                    helpers.setErrors({ submit: err.message });
+                    helpers.setSubmitting(false);
 
-                if (err === 'User does not exist') {
-                    setError({
-                        title: 'Đăng ký không thành công!',
-                        content: 'Tài khoản không tồn tại.'
-                    })
-                }
-                else if (err === 'Password is incorrect') {
-                    setError({
-                        title: 'Đăng ký không thành công!',
-                        content: 'Sai mật khẩu'
-                    })
-                }
-                else {
-                    setError({
-                        title: 'Đăng ký không thành công!',
-                        content: err
-                    })
-                }
-            }
+                    if (err === 'User does not exist') {
+                        setError({
+                            title: 'Đăng ký không thành công!',
+                            content: 'Tài khoản không tồn tại.'
+                        })
+                    }
+                    else if (err === 'Password is incorrect') {
+                        setError({
+                            title: 'Đăng ký không thành công!',
+                            content: 'Sai mật khẩu'
+                        })
+                    }
+                    else {
+                        setError({
+                            title: 'Lỗi! Đăng ký không thành công!',
+                            content: err
+                        })
+                    }
+                });
         }
     });
 

@@ -14,19 +14,19 @@ const Page = () => {
                 </title>
             </Head>
             <Box>
-                <GridVideoSection
+                {/* {/* <GridVideoSection
                     title="HSK 1"
                     limitPerTrans={4}
                     loadVideos={async (offset, limit) => {
                         return await getVideosByHSK(1, 0, 12);
-                    }} />
+                    }} /> */}
                 <GridVideoSection
-                    title="HSK 2"
+                    title="Nổi tiếng nhất"
                     limitPerTrans={4}
                     loadVideos={async (offset, limit) => {
-                        return await getVideosByHSK(2, 0, 10000);
+                        return await getVideos();
                     }} />
-                <GridVideoSection
+                {/* <GridVideoSection
                     title="HSK 3"
                     limitPerTrans={4}
                     loadVideos={async (offset, limit) => {
@@ -43,7 +43,7 @@ const Page = () => {
                     limitPerTrans={5}
                     loadVideos={async (offset, limit) => {
                         return await getVideosByHSK(5, 0, 12);
-                    }} />
+                    }} />  */}
             </Box>
         </>
     )

@@ -88,7 +88,7 @@ const TranscriptItem = ({
 }
 
 const VideoPlayer = ({
-    id,
+    _id,
     videoUrl,
     subtitles,
     thumbnail
@@ -232,7 +232,7 @@ const VideoPlayer = ({
                         <Word
                             sentence={transcripts.chinese.find(x => x.start === currentSubTime.from && x.end === currentSubTime.to)?.text}
                             showedAt={currentSubTime}
-                            videoId={id}
+                            videoId={_id}
                             onClose={() => setPlaying(true)}
                             onClick={() => setPlaying(false)}
                             word={word} />
