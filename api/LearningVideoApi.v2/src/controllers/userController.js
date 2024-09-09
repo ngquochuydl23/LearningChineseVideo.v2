@@ -101,6 +101,7 @@ exports.signUp = async (req, res, next) => {
         const copyObj = { ...user.toJSON() }
         delete copyObj['hashPassword'];
 
+        await user.save();
         return http201(res, copyObj, "Create account successfully");
     } catch (error) {
         next(error);
@@ -154,6 +155,27 @@ exports.updateInfo = async (req, res, next) => {
         user.lastUpdated = moment();
         user.avatar = avatar;
 
+        await user.save();
+
+        const objCopy = { ...user.toObject() }
+        delete objCopy['hashPassword'];
+
+        return httpOk(res, objCopy);
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.updateAvatar = async (req, res, next) => {
+    const loggingUserId = req.loggingUserId;
+    const { avatar } = req.body;
+
+    try {
+        const user = await userModel.findById(loggingUserId);
+        if (!user) {
+            throw new AppException("User does not exist");
+        }
+        user.avatar = avatar;
         await user.save();
 
         const objCopy = { ...user.toObject() }

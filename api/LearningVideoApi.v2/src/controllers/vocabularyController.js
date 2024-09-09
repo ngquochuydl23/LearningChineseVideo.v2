@@ -30,8 +30,8 @@ exports.getVocabularies = async (req, res, next) => {
 
         const documents = await vocabularyModel
             .find(whereObj)
-            .limit(limit)
-            .skip(offset)
+            // .limit(limit)
+            // .skip(offset)
             .sort({ createdAt: -1 });
 
         return httpOkAsCollection(res, documents, count, limit, offset)

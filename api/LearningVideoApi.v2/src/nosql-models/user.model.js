@@ -27,7 +27,7 @@ const schema = BaseSchema("User.Collection", {
     birthday: {
         type: String,
         text: true,
-        required: [true, 'birthday must not be null']
+        required: [false]
     },
     lastLogin: {
         type: Date,
