@@ -23,7 +23,7 @@ exports.getVideos = async (req, res, next) => {
                     { title: { $regex: search } },
                     { description: { $regex: search } },
                     {
-                        topic: { $elemMatch: { $regex: [search] } }
+                        topic: { $elemMatch: { $regex: search } }
                     }
                 ]
             })

@@ -27,7 +27,6 @@ const SavedScreen = () => {
 
     return (
         <ScreenContainer disableScroll>
-
             <FlatList
                 style={styles.flatList}
                 nestedScrollEnabled
@@ -40,7 +39,7 @@ const SavedScreen = () => {
                             {...item} />
                     </View>
                 }
-                keyExtractor={item => item.Video.Id}
+                keyExtractor={item => item.video._id}
             />
         </ScreenContainer>
     )

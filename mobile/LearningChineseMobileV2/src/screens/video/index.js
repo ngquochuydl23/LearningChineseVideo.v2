@@ -49,7 +49,7 @@ const VideoScreen = ({ route, navigation }) => {
 
                 <Image
                     style={styles.thumbnail}
-                    src={readStorageUrl(video?.Thumbnail)} />
+                    src={readStorageUrl(video?.thumbnail)} />
                 <View style={styles.overlapThumnail}>
                     <View style={styles.toolbar}>
                         <IconButton
@@ -76,12 +76,12 @@ const VideoScreen = ({ route, navigation }) => {
                 </View>
             </View>
             <Text style={styles.title}>
-                {video?.Title}
+                {video?.title}
             </Text>
             <View style={styles.detailInfo}>
                 <View>
                     <Text style={styles.levelAndTopic}>
-                        {`Cấp độ: HSK ` + video?.Level}
+                        {`Cấp độ: HSK ` + video?.level}
                     </Text>
                     <Text style={styles.levelAndTopic}>
                         {`Chủ đề: `}
@@ -98,7 +98,7 @@ const VideoScreen = ({ route, navigation }) => {
             <View style={styles.description}>
                 <Text style={styles.descriptionTitle}>Mô tả</Text>
                 <Text style={styles.descriptionText} ellipsizeMode='tail'>
-                    {video?.Description}
+                    {video?.description}
                 </Text>
             </View>
             <View style={styles.commentLayout}>

@@ -5,33 +5,33 @@ import { readStorageUrl } from "../../../utils/readStorageUrl";
 import styles from "./styles";
 
 const VerticalVideoItem = ({
-    Id,
-    Thumbnail,
-    Title,
-    Level,
-    Topics
+    _id,
+    thumbnail,
+    title,
+    level,
+    topics
 }) => {
     const navigation = useNavigation();
 
     return (
         <TouchableHighlight
             onPress={() => {
-                navigation.navigate('Video', { videoId: Id });
+                navigation.navigate('Video', { videoId: _id });
             }} >
             <View style={styles.container}>
                 <Image
-                    alt={Id}
+                    alt={_id}
                     style={styles.thumbnail}
-                    src={readStorageUrl(Thumbnail)} />
+                    src={readStorageUrl(thumbnail)} />
                 <Text
                     style={styles.title}
                     numberOfLines={2}>
-                    {Title}
+                    {title}
                 </Text>
                 <Text
                     style={styles.subtitle}
                     numberOfLines={1}>
-                    {`Chủ đề: hoạt hình`}
+                    {`Chủ đề: `}
                 </Text>
             </View>
         </TouchableHighlight>

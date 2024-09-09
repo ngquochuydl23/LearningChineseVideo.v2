@@ -11,5 +11,8 @@ export const persistLogin = () =>
     http.get('/user/persistLogin');
 
 export const editUserInfo = (body) =>
-    http.put('/User/updateInfo', body)
+    http.put('/User/updateInfo', body);
+
+
+export const updateAvatar = (avatar) => http.patch('/User/updateAvatar', { avatar })
 

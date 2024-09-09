@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../redux/slices/userSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { readStorageUrl } from "../../../../utils/readStorageUrl";
+import Avatar from "../../../../components/avatar";
 
 
 const LibraryTab = () => {
@@ -28,13 +29,13 @@ const LibraryTab = () => {
             <TouchableOpacity
                 onPress={() => { navigation.navigate("EditProfile") }}>
                 <View style={styles.userInfoContainer}>
-                    <UserAvatar
+                    <Avatar
                         size={60}
-                        name={user.FullName}
-                        src={readStorageUrl("/api/bucket/665084baa340536c521c22b1/NDM5OTFhNGFmZjVlMjYyYzNkMTM2OTFiNDAwNWQ5MjkuanBn")} />
+                        name={user.fullName}
+                        src={user.avatar} />
                     <View style={styles.userFullNameAndEmail}>
-                        <Text style={styles.fullName}>{user.FullName}</Text>
-                        <Text style={styles.email}>{user.Email}</Text>
+                        <Text style={styles.fullName}>{user.fullName}</Text>
+                        <Text style={styles.email}>{user.email}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -43,7 +44,7 @@ const LibraryTab = () => {
                     <TouchableOpacity
                         key={index}
                         onPress={() => { navigation.navigate(route.destinationSrc) }}>
-                        <View style={styles.menuRouteItem}>
+                        <View style={styles.menuRouteItem} key={index}>
                             <Text style={styles.menulabelRouteItem}>
                                 {route.label}
                             </Text>

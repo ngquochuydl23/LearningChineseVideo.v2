@@ -1,32 +1,36 @@
-import { Image, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import styles from "./video-item.style";
 import _ from 'lodash';
 import { useNavigation } from '@react-navigation/native';
 import { readStorageUrl } from "../../../utils/readStorageUrl";
+import FastImage from 'react-native-fast-image'
 
 const VideoItem = ({
-    Id,
-    Thumbnail,
-    Title,
-    Level,
-    Topics
+    _id,
+    thumbnail,
+    title,
+    level,
+    topics
 }) => {
     const navigation = useNavigation();
 
     return (
         <TouchableHighlight
             onPress={() => {
-                navigation.navigate('Video', { videoId: Id });
+                navigation.navigate('Video', { videoId: _id });
             }} >
             <View style={styles.container}>
-                <Image
-                    alt={Id}
-                    style={styles.thumbnail}
-                    src={readStorageUrl(Thumbnail)} />
+                <FastImage
+                    alt={_id}
+                    source={{
+                        uri: readStorageUrl(thumbnail),
+                        priority: FastImage.priority.normal,
+                    }}
+                    style={styles.thumbnail} />
                 <Text
                     style={styles.title}
                     numberOfLines={2}>
-                    {Title}
+                    {title}
                 </Text>
                 <Text
                     style={styles.subtitle}
