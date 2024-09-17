@@ -8,5 +8,6 @@ router.post('/login', userController.login)
 router.post('/signUp', userController.signUp);
 router.delete('/deleteAccount', authMiddleware, userController.deleteAccount);
 router.put('/updateInfo', authMiddleware, userController.updateInfo);
+router.patch('/updateAvatar', authMiddleware, userController.updateAvatar);
 
 module.exports = router;

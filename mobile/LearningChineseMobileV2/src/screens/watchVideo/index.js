@@ -1,4 +1,4 @@
-import { StatusBar, Text, View } from "react-native"
+import { StatusBar, Text, ToastAndroid, View } from "react-native"
 import Video from 'react-native-video';
 import { useEffect, useRef, useState } from "react";
 import ScreenContainer from "../../components/ScreenContainer";
@@ -9,13 +9,16 @@ import _ from 'lodash';
 import { getVocabularyByWord } from "../../api/vocabularyApi";
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { HStack, VStack } from "@react-native-material/core";
-import { ActivityIndicator, IconButton } from "react-native-paper";
+import { ActivityIndicator, IconButton, Snackbar } from "react-native-paper";
 import { colors } from "../../theme/color";
 import axios from "axios";
 import webvtt from 'node-webvtt';
-import { checkSaved } from "../../api/savedVocabularyApi";
+import { checkSaved, delSaved, save } from "../../api/savedVocabularyApi";
+import { useToast } from 'react-native-paper-toast';
+import log from "../../logger";
 
 const WatchVideoScreen = ({ route, navigation }) => {
+    const toaster = useToast();
     const refRBSheet = useRef();
     const videoRef = useRef(null);
     const scrollView = useRef(null);
@@ -45,6 +48,7 @@ const WatchVideoScreen = ({ route, navigation }) => {
         length: 0
     });
 
+
     const searchWord = (word, sentence) => {
         setWordSelect(word);
         setLoadingVoca(true);
@@ -54,9 +58,8 @@ const WatchVideoScreen = ({ route, navigation }) => {
         getVocabularyByWord(word)
             .then(({ result }) => {
                 setVocabulary(result);
-                console.log(result);
 
-                checkSaved(word, currentSubTime.from, currentSubTime.to, video.Id)
+                checkSaved(word, currentSubTime.from, currentSubTime.to, video._id)
                     .then((res) => {
                         setSaved(res);
                         console.log(res);
@@ -99,8 +102,39 @@ const WatchVideoScreen = ({ route, navigation }) => {
         }
     };
 
-    const doSaveWord = () => {
-        
+    const doSaveWord = (originWord) => {
+        setSaved(true);
+        save(video._id, originWord, currentSubTime.from, currentSubTime.to, currentTextSub)
+            .then(({ result, msg }) => {
+                log.info(msg);
+                setSaved(true);
+                ToastAndroid.show('Lưu từ thành công.', ToastAndroid.SHORT);
+            })
+            .catch((err) => {
+                setSaved(false);
+                if (err === `You've already saved this word`) {
+                    ToastAndroid.show('Bạn đã lưu từ này từ trước.', ToastAndroid.SHORT);
+                }
+                console.log(err);
+            })
+    }
+
+    const doRmSave = (originWord) => {
+        setSaved(false);
+        delSaved(video._id, originWord, currentSubTime.from, currentSubTime.to, currentTextSub)
+            .then(({ msg }) => {
+                log.info(msg);
+                setSaved(false);
+                ToastAndroid.show('Bỏ lưu từ thành công.', ToastAndroid.SHORT);
+            })
+            .catch((err) => {
+                setSaved(true);
+                if (err === `You've already saved this word`) {
+                    ToastAndroid.show('Bạn chưa lưu từ vựng này.', ToastAndroid.SHORT);
+                }
+                console.log(err);
+            })
+
     }
 
     useEffect(() => {
@@ -109,11 +143,10 @@ const WatchVideoScreen = ({ route, navigation }) => {
         setLoading(true);
         getVideoById(videoId)
             .then(({ result }) => {
-                videoRef.current.resume();
+                //videoRef.current.resume();
                 setVideo(result);
 
-
-                Promise.all(_.map(result.VideoSubtitles, subtitle => axios.get(readStorageUrl(subtitle.Url))))
+                Promise.all(_.map(result.subtitles, subtitle => axios.get(readStorageUrl(subtitle.url))))
                     .then(async ([seg, chinese, pinyin, vietnamese]) => {
 
                         const segCues = webvtt.parse(seg.data, { strict: true }).cues;
@@ -145,6 +178,15 @@ const WatchVideoScreen = ({ route, navigation }) => {
             });
     }, [])
 
+
+    if (loading) {
+        return (
+            <View>
+                <Text>Loading</Text>
+            </View>
+        )
+    }
+
     return (
         <ScreenContainer>
             <StatusBar
@@ -156,7 +198,12 @@ const WatchVideoScreen = ({ route, navigation }) => {
                 poster={readStorageUrl(thumbnail)}
                 ref={videoRef}
                 style={styles.video}
-                source={{ uri: 'https://vjs.zencdn.net/v/oceans.mp4' }}
+                source={{
+                    uri: readStorageUrl(video?.videoUrl),
+                    headers: {
+                        'range': 'bytes=0-'
+                    }
+                }}
             />
             <Text style={styles.clickableSub}>
                 {currentTextSub && _.map(currentTextSub.split('-'), (word, index) => {
@@ -208,13 +255,21 @@ const WatchVideoScreen = ({ route, navigation }) => {
                         <Text style={styles.originWord}>
                             {wordSelect}
                         </Text>
-                        <IconButton
-                            onPress={doSaveWord}
-                            containerColor="rgba(0, 0, 0, 0.05)"
-                            background={colors.background}
-                            mode="contained"
-                            iconColor={Boolean(saved) ? colors.primaryColor : '#696969'}
-                            icon={Boolean(saved) ? "bookmark" : "bookmark-outline"} />
+                        {vocabulary &&
+                            <IconButton
+                                onPress={() => {
+                                    if (!saved)
+                                        doSaveWord(wordSelect)
+                                    else {
+                                        doRmSave(wordSelect);
+                                    }
+                                }}
+                                containerColor="rgba(0, 0, 0, 0.05)"
+                                background={colors.background}
+                                mode="contained"
+                                iconColor={Boolean(saved) ? colors.primaryColor : '#696969'}
+                                icon={Boolean(saved) ? "bookmark" : "bookmark-outline"} />
+                        }
                     </HStack>
                     {loadingVoca
                         ? <View>
@@ -227,20 +282,20 @@ const WatchVideoScreen = ({ route, navigation }) => {
                         : vocabulary
                             ? <View>
                                 <Text style={styles.pText}>
-                                    {vocabulary?.Pinyin}
+                                    {vocabulary?.pinyin}
                                 </Text>
                                 <Text style={styles.pText}>
-                                    Từ loại: {vocabulary?.WordType}
+                                    Từ loại: {vocabulary?.wordType}
                                 </Text>
                                 <Text style={styles.pText}>
-                                    Nghĩa: {vocabulary?.VietnameseMean}
+                                    Nghĩa: {vocabulary?.vietnameseMean}
                                 </Text>
                                 <HStack>
                                     <Text style={styles.pText}>
                                         Ví dụ:
                                     </Text>
                                     <VStack ml={15} fill>
-                                        {_.split(vocabulary?.Example, "。").map((example, index) => (
+                                        {_.split(vocabulary?.example, "。").map((example, index) => (
                                             <Text
                                                 key={index}
                                                 style={{ ...styles.pText, width: '100%' }}>

@@ -20,25 +20,12 @@ const SavedVoca = ({
         return examples;
     }
     return (
-        <Box sx={{
-            width: '100%',
-            paddingX: '20px',
-            paddingY: '15px',
-            backgroundColor: '#f5f5f5',
-            borderRadius: '10px'
-        }}>
-            <Stack
-                justifyContent="space-between"
-                alignContent="center"
-                direction="row">
-                <Typography variant="h5">{vocabularyId}</Typography>
+        <Box sx={{ width: '100%', paddingX: '20px', paddingY: '15px', backgroundColor: '#f5f5f5', borderRadius: '10px' }}>
+            <Stack justifyContent="space-between" alignContent="center" direction="row">
+                <Typography variant="h5">{vocabulary.originWord}</Typography>
                 <Typography variant="subtitle1">{`Xuất hiện giây thứ: ${showedFrom}   đến  ${showedTo}`}</Typography>
             </Stack>
-            <Typography
-                sx={{
-                    marginTop: '10px',
-                    fontSize: '16px'
-                }}
+            <Typography sx={{ marginTop: '10px', fontSize: '16px' }}
                 variant="subtitle2">
                 <p style={{ marginTop: 0 }}>Câu: {sentence}</p>
                 <p style={{ marginTop: 0 }}>{`[`}{vocabulary.pinyin}{`]`}   {vocabulary.sinoVietnamese && `【${vocabulary.sinoVietnamese}】`}</p>

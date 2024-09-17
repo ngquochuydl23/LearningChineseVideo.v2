@@ -4,31 +4,31 @@ import { useNavigation } from '@react-navigation/native';
 import { readStorageUrl } from "../../../../utils/readStorageUrl";
 import moment from 'moment';
 
-const SavedVocaItem = ({ SavedCount, LastUpdated, Video }) => {
+const SavedVocaItem = ({ savedCount, lastUpdated, video }) => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity
             onPress={() => {
                 navigation.navigate("SavedDetail", {
-                    videoId: Video?.Id,
-                    title: Video?.Title
+                    videoId: video?._id,
+                    title: video?.title
                 })
             }}>
             <View style={styles.itemContainer}>
                 <Image
                     style={styles.thumbnail}
-                    src={readStorageUrl(Video?.Thumbnail)} />
+                    src={readStorageUrl(video?.thumbnail)} />
                 <View style={styles.videoInfoContainer}>
                     <Text
                         style={styles.title}
                         numberOfLines={1}>
-                        {Video?.Title}
+                        {video?.title}
                     </Text>
                     <Text style={styles.published}>
-                        Tải lên lúc: {moment(LastUpdated).format('L')}
+                        Tải lên lúc: {moment(lastUpdated).format('L')}
                     </Text>
                     <Text style={styles.savedWords}>
-                        Số từ vựng đã lưu: {SavedCount}
+                        Số từ vựng đã lưu: {savedCount}
                     </Text>
                 </View>
             </View>

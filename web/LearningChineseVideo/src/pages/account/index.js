@@ -1,16 +1,12 @@
 import Head from 'next/head';
 import {
-    Alert,
-    AlertTitle,
     Box,
     Button,
     Container,
     Unstable_Grid2 as Grid,
     MenuItem,
-    Snackbar,
     Stack,
     TextField,
-    Typography,
 } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import _ from 'lodash';
@@ -25,6 +21,7 @@ import CustomAvatar from 'src/components/custom-avt';
 import { uploadFile } from 'src/services/api/upload-api';
 import { editUserInfo } from 'src/services/api/user-api';
 import { useSnackbar } from 'notistack';
+import moment from 'moment';
 
 const Page = () => {
     const { getUser, user } = useAuth();
@@ -80,10 +77,7 @@ const Page = () => {
             </Head>
             <Box>
                 <Container maxWidth="sm">
-                    <Stack
-                        alignItems="center"
-                        direction="column"
-                        spacing="25px">
+                    <Stack alignItems="center" direction="column" spacing="25px">
                         <div className="relative rounded-full overflow-hidden flex">
                             <CustomAvatar
                                 src={formik.values.avatar}

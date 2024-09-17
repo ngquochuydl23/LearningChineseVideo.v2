@@ -62,16 +62,10 @@ const Page = () => {
                 })
                 .catch(err => {
                     console.log(err);
-                    if (err === 'Email is already used') {
+                    if (err === 'Email or phone number is already used') {
                         setError({
                             title: 'Đăng ký không thành công!',
-                            content: 'Email đã được sử dụng. Vui lòng chọn email khác.'
-                        })
-                    }
-                    else if (err === 'Phonenumber is already used') {
-                        setError({
-                            title: 'Đăng ký không thành công!',
-                            content: 'Số điện thoại đã được sử dụng. Vui lòng nhập số điện thoại khác.'
+                            content: 'Email hoặc số điện thoại đã được sử dụng.'
                         })
                     }
                     else {
@@ -107,15 +101,9 @@ const Page = () => {
                         width: '100%'
                     }}>
                     <div>
-                        <Stack
-                            spacing={1}
-                            sx={{ mb: 3 }}>
-                            <Typography variant="h4">
-                                Đăng ký
-                            </Typography>
-                            <Typography
-                                color="text.secondary"
-                                variant="body2">
+                        <Stack spacing={1} sx={{ mb: 3 }}>
+                            <Typography variant="h4">Đăng ký</Typography>
+                            <Typography color="text.secondary" variant="body2">
                                 Bạn đã có tài khoản?
                                 &nbsp;
                                 <Link
@@ -127,9 +115,7 @@ const Page = () => {
                                 </Link>
                             </Typography>
                         </Stack>
-                        <form
-                            noValidate
-                            onSubmit={formik.handleSubmit} >
+                        <form noValidate onSubmit={formik.handleSubmit} >
                             <Stack spacing={3}>
                                 <TextField
                                     fullWidth
@@ -186,16 +172,8 @@ const Page = () => {
                                     value={formik.values.gender}
                                     id="gender"
                                     label="Giới tính">
-                                    <MenuItem
-                                        key={0}
-                                        value={0}>
-                                        Nữ
-                                    </MenuItem>
-                                    <MenuItem
-                                        key={1}
-                                        value={1}>
-                                        Nam
-                                    </MenuItem>
+                                    <MenuItem key={0} value={0}>Nữ</MenuItem>
+                                    <MenuItem key={1} value={1}>Nam</MenuItem>
                                 </TextField>
                                 <TextField
                                     fullWidth
@@ -210,39 +188,15 @@ const Page = () => {
                                     value={formik.values.level}
                                     id="level"
                                     label="Cấp độ">
-                                    <MenuItem
-                                        key={1}
-                                        value={1}>
-                                        HSK 1
-                                    </MenuItem>
-                                    <MenuItem
-                                        key={2}
-                                        value={2}>
-                                        HSK 2
-                                    </MenuItem>
-                                    <MenuItem
-                                        key={3}
-                                        value={3}>
-                                        HSK 3
-                                    </MenuItem>
-                                    <MenuItem
-                                        key={4}
-                                        value={4}>
-                                        HSK 4
-                                    </MenuItem>
-                                    <MenuItem
-                                        key={5}
-                                        value={5}>
-                                        HSK 5
-                                    </MenuItem>
+                                    <MenuItem key={1} value={1}>HSK 1</MenuItem>
+                                    <MenuItem key={2} value={2}>HSK 2</MenuItem>
+                                    <MenuItem key={3} value={3}>HSK 3</MenuItem>
+                                    <MenuItem key={4} value={4}> HSK 4</MenuItem>
+                                    <MenuItem key={5} value={5}>HSK 5</MenuItem>
                                 </TextField>
                             </Stack>
                             {formik.errors.submit && (
-                                <Typography
-                                    color="error"
-                                    sx={{ mt: 3 }}
-                                    variant="body2"
-                                >
+                                <Typography color="error" sx={{ mt: 3 }} variant="body2">
                                     {formik.errors.submit}
                                 </Typography>
                             )}

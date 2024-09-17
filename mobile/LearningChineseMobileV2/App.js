@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainScreen from './src/screens/main/MainBottomNavigation';
 import { colors } from './src/theme/color';
 import VideoScreen from './src/screens/video';
-import { PaperProvider } from 'react-native-paper';
+import { PaperProvider, DefaultTheme } from 'react-native-paper';
 import WatchVideoScreen from './src/screens/watchVideo';
 import { fonts } from './src/theme/fonts';
 import EditProfileScreen from './src/screens/editProfile';
@@ -17,6 +17,7 @@ import { logout, setLoading, setUser } from './src/redux/slices/userSlice';
 import SavedScreen from './src/screens/saved';
 import { persistLogin } from './src/api/userApi';
 import SavedDetailScreen from './src/screens/savedDetail';
+import { ToastProvider } from 'react-native-paper-toast';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,73 +61,81 @@ function App() {
     }
 
     return (
-
-        <PaperProvider>
-            <NavigationContainer>
-                <StatusBar
-                    barStyle={'dark-content'}
-                    backgroundColor={colors.background} />
-                <Stack.Navigator
-                    initialRouteName="Login"
-                    screenOptions={{ headerShadowVisible: false }}>
-                    {!state.isLoggedIn ? (
-                        <>
-                            <Stack.Screen
-                                name="Login"
-                                component={LoginScreen}
-                                options={{ headerShown: false }} />
-                            <Stack.Screen
-                                name="SignUp"
-                                component={SignUpScreen}
-                                options={{
-                                    headerShown: true,
-                                    title: ''
-                                }} />
-                        </>
-                    ) : (
-                        <>
-                            <Stack.Screen
-                                name="Main"
-                                component={MainScreen}
-                                options={{ headerShown: false }} />
-                            <Stack.Screen
-                                name="Video"
-                                component={VideoScreen}
-                                options={{ headerShown: false }} />
-                            <Stack.Screen
-                                name="WatchVideo"
-                                component={WatchVideoScreen}
-                                options={{ headerShown: false }} />
-                            <Stack.Screen
-                                name="SavedDetail"
-                                component={SavedDetailScreen}
-                                options={{ headerShown: false }} />
-                            <Stack.Screen
-                                name="Saved"
-                                component={SavedScreen}
-                                options={{
-                                    headerShown: true,
-                                    headerTitleStyle: {
-                                        fontFamily: fonts.Medium,
-                                        fontSize: 18
-                                    },
-                                    title: 'Từ vựng đã lưu'
-                                }} />
-                            <Stack.Screen
-                                name="EditProfile"
-                                component={EditProfileScreen}
-                                options={{
-                                    headerShown: true,
-                                    headerTitleStyle: {
-                                        fontFamily: fonts.Medium,
-                                        fontSize: 18
-                                    },
-                                    title: 'Chỉnh sửa hồ sơ'
-                                }} />
-                        </>
-                    )}
-                </Stack.Navigator>
-            </NavigationContainer>
+        <PaperProvider theme={DefaultTheme}>
+            <ToastProvider>
+                <NavigationContainer>
+                    <StatusBar
+                        barStyle={'dark-content'}
+                        backgroundColor={colors.background} />
+                    <Stack.Navigator
+                        initialRouteName="Login"
+                        screenOptions={{ headerShadowVisible: false }}>
+                        {!state.isLoggedIn ? (
+                            <>
+                                <Stack.Screen
+                                    name="Login"
+                                    component={LoginScreen}
+                                    options={{ headerShown: false }} />
+                                <Stack.Screen
+                                    name="SignUp"
+                                    component={SignUpScreen}
+                                    options={{
+                                        headerShown: true,
+                                        title: ''
+                                    }} />
+                            </>
+                        ) : (
+                            <>
+                                <Stack.Screen
+                                    name="Main"
+                                    component={MainScreen}
+                                    options={{ headerShown: false }} />
+                                <Stack.Screen
+                                    name="Video"
+                                    component={VideoScreen}
+                                    options={{ headerShown: false }} />
+                                <Stack.Screen
+                                    name="WatchVideo"
+                                    component={WatchVideoScreen}
+                                    options={{ headerShown: false }} />
+                                <Stack.Screen
+                                    name="SavedDetail"
+                                    component={SavedDetailScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: 'Các từ đã lưu'
+                                    }} />
+                                <Stack.Screen
+                                    name="Saved"
+                                    component={SavedScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: 'Từ vựng đã lưu'
+                                    }} />
+                                <Stack.Screen
+                                    name="EditProfile"
+                                    component={EditProfileScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: 'Chỉnh sửa hồ sơ'
+                                    }} />
+                            </>
+                        )}
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </ToastProvider>
         </PaperProvider>
     );
 }

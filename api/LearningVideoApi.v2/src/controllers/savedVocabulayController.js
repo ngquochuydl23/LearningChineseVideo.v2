@@ -124,7 +124,6 @@ exports.checkSaved = async (req, res, next) => {
             throw new AppException("Video not found");
         }
 
-
         const vocabulary = await vocabularyModel.findOne({ originWord: originWord })
         if (!vocabulary) {
             throw new AppException("Vocabulary not found");
@@ -163,7 +162,6 @@ exports.delSaved = async (req, res, next) => {
             throw new AppException("Video not found");
         }
 
-
         const vocabulary = await vocabularyModel.findOne({ originWord: originWord })
         if (!vocabulary) {
             throw new AppException("Vocabulary not found");
@@ -185,6 +183,46 @@ exports.delSaved = async (req, res, next) => {
         await saved.save();
 
         return httpOk(res, null, "Deleted successfully");
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.getSavedByVideoId = async (req, res, next) => {
+    const loggingUserId = req.loggingUserId;
+    const { videoId } = req.params;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = parseInt(req.query.offset) || 0;
+
+    try {
+        const video = await videoModel.findById(videoId);
+        if (!video) {
+            throw new AppException("Video not found");
+        }
+
+        const savedDocuments = await savedVocaModel
+            .aggregate([
+                {
+                    $match: {
+                        isDeleted: false,
+                        userId: toObjectId(loggingUserId),
+                        videoId: video._id
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'Vocabulary.Collection',
+                        localField: 'vocabularyId',
+                        foreignField: '_id',
+                        as: 'vocabulary'
+                    }
+                },
+                { $unwind: '$vocabulary' },
+                { $sort: { createdAt: -1 } }
+            ]);
+
+        return httpOk(res, savedDocuments);
 
     } catch (error) {
         next(error);

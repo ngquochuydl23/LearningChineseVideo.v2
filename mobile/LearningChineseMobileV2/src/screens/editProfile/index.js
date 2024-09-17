@@ -1,7 +1,7 @@
-import { Text, View } from "react-native"
+import { Image, Text, View } from "react-native"
 import ScreenContainer from "../../components/ScreenContainer";
-import UserAvatar from 'react-native-user-avatar';
-import { useSelector } from "react-redux";
+import Avatar from '../../components/avatar';
+import { useDispatch, useSelector } from "react-redux";
 import { readStorageUrl } from "../../utils/readStorageUrl";
 import styles from "./style";
 import { Formik } from "formik";
@@ -10,16 +10,19 @@ import * as Yup from 'yup';
 import { useState } from "react";
 import { colors } from "../../theme/color";
 import { Button } from 'react-native-paper';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { uploadFile } from "../../api/storageApi";
 import log from "../../logger";
+import { updateAvatar } from "../../api/userApi";
+import { setUser } from "../../redux/slices/userSlice";
 
 const EditProfileScreen = () => {
     const { user } = useSelector((state) => state.user);
-
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
+    const [loadingAvatar, setLoadingAvatar] = useState(false);
     const validationSchema = Yup.object({
-        PhoneNumber: Yup
+        phoneNumber: Yup
             .string()
             .max(11, 'Số điện thoại phải đủ 11 kí tự')
             .required('Vui lòng nhập số điện thoại'),
@@ -48,30 +51,45 @@ const EditProfileScreen = () => {
             } else {
 
                 const file = response.assets[0]
-                uploadFile({
-                    uri: file.uri,
-                    name: file.fileName,
-                    type: file.type,
-                })
-                    .then(({ medias }) => {
+                log.info('Uploading image at: ', file.uri);
+                setLoadingAvatar(true);
 
+                uploadFile({ uri: file.uri, name: file.fileName, type: file.type })
+                    .then(({ medias }) => {
+                        const file = medias[0].url;
+
+                        updateAvatar(file)
+                            .then(({ result }) => {
+                                dispatch(setUser(result));
+                            })
+                            .then((err) => {
+                                console.log(err);
+                            })
+                            .finally(() => {
+                                setLoadingAvatar(false);
+                            })
                     })
                     .catch((err) => {
-                        log.error(err)
+                        console.log(err);
+                    })
+                    .finally(() => {
+                        setLoadingAvatar(false);
                     })
             }
         });
     }
 
+
+
     return (
         <ScreenContainer>
             <View style={styles.avatarContainer}>
-                <UserAvatar
+                <Avatar
                     style={styles.avatar}
                     size={100}
-                    name={user.FullName}
-                    src={readStorageUrl(user.Avatar)}
-                />
+                    name={user.fullName}
+                    src={user.avatar} />
+
                 <View style={styles.uploadImgButton}>
                     <IconButton
                         onPress={onAvatarEdit}
@@ -95,8 +113,8 @@ const EditProfileScreen = () => {
                             }
                             focusable
                             dense
-                            onChangeText={handleChange('FullName')}
-                            onBlur={handleBlur('FullName')}
+                            onChangeText={handleChange('fullName')}
+                            onBlur={handleBlur('fullName')}
                             mode="outlined"
                             contentStyle={styles.textFieldContent}
                             selectionColor={colors.primaryColor}
@@ -111,7 +129,7 @@ const EditProfileScreen = () => {
                                 ...styles.textField,
                                 marginTop: 30
                             }}
-                            value={values.FullName}
+                            value={values.fullName}
                             disabled={loading} />
                         <TextInput
                             label={
@@ -119,8 +137,8 @@ const EditProfileScreen = () => {
                             }
                             focusable
                             dense
-                            onChangeText={handleChange('Email')}
-                            onBlur={handleBlur('Email')}
+                            onChangeText={handleChange('email')}
+                            onBlur={handleBlur('email')}
                             mode="outlined"
                             contentStyle={styles.textFieldContent}
                             selectionColor={colors.primaryColor}
@@ -135,7 +153,7 @@ const EditProfileScreen = () => {
                                 ...styles.textField,
                                 marginTop: 20
                             }}
-                            value={values.Email}
+                            value={values.email}
                             disabled={loading} />
                         <TextInput
                             label={
@@ -143,8 +161,8 @@ const EditProfileScreen = () => {
                             }
                             focusable
                             dense
-                            onChangeText={handleChange('PhoneNumber')}
-                            onBlur={handleBlur('PhoneNumber')}
+                            onChangeText={handleChange('phoneNumber')}
+                            onBlur={handleBlur('phoneNumber')}
                             mode="outlined"
                             keyboardType="phone-pad"
                             contentStyle={styles.textFieldContent}
@@ -160,7 +178,7 @@ const EditProfileScreen = () => {
                                 ...styles.textField,
                                 marginTop: 20
                             }}
-                            value={values.PhoneNumber}
+                            value={values.phoneNumber}
                             disabled={loading} />
                         <TextInput
                             secureTextEntry={true}

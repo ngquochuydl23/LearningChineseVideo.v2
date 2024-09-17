@@ -7,6 +7,6 @@ router.get('/GetSavedByVideo', authMiddleware, savedVocabulayController.getSaved
 router.post('/', authMiddleware, savedVocabulayController.saveVocabulary);
 router.delete('/:originWord', authMiddleware, savedVocabulayController.delSaved);
 router.get('/:originWord/check', authMiddleware, savedVocabulayController.checkSaved);
-
+router.get('/Video/:videoId', authMiddleware, savedVocabulayController.getSavedByVideoId);
 
 module.exports = router;
