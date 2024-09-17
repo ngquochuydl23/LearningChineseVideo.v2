@@ -1,7 +1,6 @@
 const { sequelize } = require('../models');
 const { initModels } = require('../models/init-models');
 const { httpOk, http201 } = require('../httpResponse');
-const { Op, Sequelize } = require('sequelize');
 const { AppException } = require('../exceptions/AppException');
 const { removeVI } = require('jsrmvi');
 const { v4: uuidv4 } = require('uuid');

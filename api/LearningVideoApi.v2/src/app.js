@@ -5,6 +5,7 @@ const storageRoute = require('./routes/storageRoute');
 const pingRoute = require('./routes/pingRoute');
 const videoRoute = require('./routes/videoRoute');
 const userRoute = require('./routes/userRoute');
+const commentRoute = require('./routes/commentRoute');
 const vocabularyRoute = require('./routes/vocabularyRoute');
 const savedVocabularyRoute = require('./routes/savedVocabularyRoute');
 const bodyParser = require('body-parser');
@@ -25,6 +26,7 @@ app.use(cors());
 
 app.use(logRequest)
 app.use('/api/ping', pingRoute);
+app.use('/api/comment', commentRoute);
 app.use('/api/storage', storageRoute);
 app.use('/api/video', videoRoute);
 app.use('/api/user', userRoute);
