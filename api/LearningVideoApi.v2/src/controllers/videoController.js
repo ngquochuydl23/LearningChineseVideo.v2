@@ -69,7 +69,7 @@ exports.delVideo = async (req, res, next) => {
             throw new AppException("Video does not exist");
         }
 
-        video.IsDeleted = true;
+        video.isDeleted = true;
         await video.save();
 
         return httpOk(res, null, "Deleted video successfully.");

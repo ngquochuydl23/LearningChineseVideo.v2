@@ -6,7 +6,7 @@ const toObjectId = require('../utils/toObjectId');
 const videoModel = require('../nosql-models/video.model');
 
 
-exports.getCommentsByVideoId = async (req, res, next) => {
+exports.getLikesByVideoId = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
 
     try {
@@ -59,7 +59,7 @@ exports.getCommentsByVideoId = async (req, res, next) => {
     }
 }
 
-exports.addComment = async (req, res, next) => {
+exports.addLike = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
     const {
         commentId,
@@ -90,7 +90,7 @@ exports.addComment = async (req, res, next) => {
     }
 }
 
-exports.delComment = async (req, res, next) => {
+exports.delLike = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
 
     try {
@@ -122,7 +122,7 @@ exports.delComment = async (req, res, next) => {
     }
 }
 
-exports.getCommentById = async (req, res, next) => {
+exports.getMyLikeVideo = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
 
     try {
