@@ -18,7 +18,7 @@ import SavedScreen from './src/screens/saved';
 import { persistLogin } from './src/api/userApi';
 import SavedDetailScreen from './src/screens/savedDetail';
 import { ToastProvider } from 'react-native-paper-toast';
-
+import VideoLikedScreen from './src/screens/liked';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -131,6 +131,17 @@ function App() {
                                         },
                                         title: 'Chỉnh sửa hồ sơ'
                                     }} />
+                                <Stack.Screen
+                                    name="VideoLiked"
+                                    component={VideoLikedScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: 'Video đã like'
+                                    }} />    
                             </>
                         )}
                     </Stack.Navigator>

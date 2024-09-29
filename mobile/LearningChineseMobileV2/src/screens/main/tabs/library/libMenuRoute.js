@@ -10,6 +10,12 @@ const libMenuRoute = [
         name: 'SavedWord',
         enableSubtitle: false,
         destinationSrc: 'Saved'
+    },
+    {
+        label: 'Video đã like',
+        name: 'VideoLiked',
+        enableSubtitle: false,
+        destinationSrc: "VideoLiked"
     }
 ]
 
