@@ -1,14 +1,7 @@
-const { sequelize } = require('../models');
-const { initModels } = require('../models/init-models');
 const { httpOk, http201 } = require('../httpResponse');
 const { AppException } = require('../exceptions/AppException');
-const { removeVI } = require('jsrmvi');
-const { v4: uuidv4 } = require('uuid');
-const { logger } = require('../logger');
-const moment = require('moment');
 const _ = require('lodash');
 const videoModel = require('../nosql-models/video.model');
-const models = initModels(sequelize);
 
 exports.getVideos = async (req, res, next) => {
     const { level, search } = req.query;

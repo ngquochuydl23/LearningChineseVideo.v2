@@ -1,7 +1,6 @@
 const { httpOk, http201 } = require('../httpResponse');
 const { AppException } = require('../exceptions/AppException');
 const _ = require('lodash');
-const commentModel = require('../nosql-models/comment.model');
 const toObjectId = require('../utils/toObjectId');
 const videoModel = require('../nosql-models/video.model');
 const likeModel = require('../nosql-models/like.model');
