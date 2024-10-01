@@ -136,3 +136,28 @@ exports.viewVideo = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.editVideo = async (req, res, next) => {
+    const { videoId } = req.params;
+    const { title, description, topics, subtitles, level } = req.body;
+
+    try {
+        const video = await videoModel.findById(videoId);
+        if (!video) {
+            throw new AppException("Video does not exist");
+        }
+
+        video.viewerCount = video.viewerCount + 1;
+        video.title = title;
+        video.description = description;
+        video.topics = topics;
+        video.subtitles = subtitles;
+        video.level = level;
+
+        await video.save();
+
+        return httpOk(res, null, "Updated video successfully.");
+    } catch (error) {
+        next(error);
+    }
+}
