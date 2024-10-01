@@ -96,12 +96,15 @@ exports.addVideo = async (req, res, next) => {
             videoUrl,
             thumbnail,
             duration,
-            mimeType,
+            mimeType: 'video/mp4',
             level,
             subtitles,
-            topics
+            topics,
+            commentCount: 0,
+            likeCount: 0,
+            viewerCount: 0
         });
-
+        await newVideo.save();
         return http201(res, newVideo, "Add video successfully.");
     } catch (error) {
         next(error);
