@@ -9,7 +9,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import moment from 'moment';
 
 const GridVideoAdminCard = ({
-    id,
+    _id,
     thumbnail,
     title,
     level,
@@ -112,7 +112,7 @@ const GridVideoAdminCard = ({
                     horizontal: 'left',
                 }}>
                 <MenuItem
-                    onClick={() => onDeleteItem(id)}>
+                    onClick={() => onDeleteItem(_id)}>
                     Xóa video
                 </MenuItem>
             </Popover>
