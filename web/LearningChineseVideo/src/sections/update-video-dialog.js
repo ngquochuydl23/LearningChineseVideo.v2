@@ -137,7 +137,7 @@ export default function UpdateVideoDialog({
 
         onSubmit: (values, helpers) => {
             //console.log(values)
-            editVideo(video.id, values)
+            editVideo(video._id, values)
                 .then((res) => {
                     console.log(res);
                     onUpdated();
