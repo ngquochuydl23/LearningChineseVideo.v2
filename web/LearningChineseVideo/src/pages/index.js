@@ -14,24 +14,34 @@ const Page = () => {
                 </title>
             </Head>
             <Box>
-                {/* {/* <GridVideoSection
+                <GridVideoSection
+                    title="Phổ biến tiếng nhất"
+                    limitPerTrans={4}
+                    loadVideos={async (offset, limit) => {
+                        return await getMostPopularVideo(0, 12);
+                    }} />
+
+                <GridVideoSection
                     title="HSK 1"
                     limitPerTrans={4}
                     loadVideos={async (offset, limit) => {
                         return await getVideosByHSK(1, 0, 12);
-                    }} /> */}
+                    }} />
+
                 <GridVideoSection
-                    title="Nổi tiếng nhất"
+                    title="HSK 2"
                     limitPerTrans={4}
                     loadVideos={async (offset, limit) => {
-                        return await getVideos();
+                        return await getVideosByHSK(2, 0, 12);
                     }} />
-                {/* <GridVideoSection
+
+                <GridVideoSection
                     title="HSK 3"
                     limitPerTrans={4}
                     loadVideos={async (offset, limit) => {
                         return await getVideosByHSK(3, 0, 10000);
                     }} />
+
                 <GridVideoSection
                     title="HSK 4"
                     limitPerTrans={4}
@@ -43,7 +53,14 @@ const Page = () => {
                     limitPerTrans={5}
                     loadVideos={async (offset, limit) => {
                         return await getVideosByHSK(5, 0, 12);
-                    }} />  */}
+                    }} />
+
+                <GridVideoSection
+                    title="Tất cả video"
+                    limitPerTrans={4}
+                    loadVideos={async (offset, limit) => {
+                        return await getVideos();
+                    }} />
             </Box>
         </>
     )

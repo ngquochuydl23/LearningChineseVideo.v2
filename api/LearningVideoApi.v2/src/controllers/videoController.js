@@ -4,9 +4,9 @@ const _ = require('lodash');
 const videoModel = require('../nosql-models/video.model');
 
 exports.getVideos = async (req, res, next) => {
-    const { level, search } = req.query;
-    const limit = parseInt(req.query.limit) || 10;
-    const offset = parseInt(req.query.offset) || 0;
+    const { level, search, sort } = req.query;
+    const limit = parseInt(req.query.limit) || undefined;
+    const offset = parseInt(req.query.offset) || undefined;
 
     try {
         const whereObj = {
@@ -28,15 +28,23 @@ exports.getVideos = async (req, res, next) => {
 
         const documents = await videoModel
             .find(whereObj)
-            // .limit(limit)
-            // .skip(offset)
-            .sort({ createdAt: -1 });
+            .limit(limit)
+            .skip(offset)
+            .sort({
+                ...(sort === 'desc-popular' && {
+                    viewerCount: -1,
+                    likeCount: -1,
+                    commentCount: -1
+                }),
+                createdAt: -1,
+            });
 
         return httpOkAsCollection(res, documents, count, limit, offset);
     } catch (error) {
         next(error);
     }
 }
+
 
 exports.getVideo = async (req, res, next) => {
     const { videoId } = req.params;

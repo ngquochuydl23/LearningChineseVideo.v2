@@ -62,7 +62,7 @@ exports.delVocabulary = async (req, res, next) => {
     try {
 
         const vocabulary = await vocabularyModel.findOne({ originWord });
-
+        
         if (!vocabulary) {
             throw new AppException("Vocabulary not found");
         }
@@ -80,7 +80,7 @@ exports.delVocabulary = async (req, res, next) => {
 exports.addVocabulary = async (req, res, next) => {
     try {
         var vocabulary = await vocabularyModel.findOne({ originWord: req.body.originWord });
-
+        console.log(vocabulary);
         if (vocabulary) {
             throw new AppException("Vocabulary is already created");
         }
@@ -131,5 +131,3 @@ exports.editVocabulary = async (req, res, next) => {
         next(error);
     }
 }
-
-

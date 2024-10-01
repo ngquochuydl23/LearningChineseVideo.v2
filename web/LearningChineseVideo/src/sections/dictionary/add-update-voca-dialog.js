@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useFormik } from 'formik';
 import { FormControl, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
-import { addVoca, editVocabulary } from 'src/services/api/voca-api';
+import { addVoca, deleteVoca, editVocabulary } from 'src/services/api/voca-api';
 import AlertDialog from 'src/components/alert-dialog';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -15,7 +15,7 @@ import { useSnackbar } from 'notistack';
 
 
 export default function AddUpdateVocaDialog({
-    open, editedVoca, handleClose, onAdded
+    open, editedVoca, handleClose, onAdded, onRemoved
 }) {
     const [showAlert, setShowAlert] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
@@ -64,7 +64,7 @@ export default function AddUpdateVocaDialog({
                         });
                     })
                     .catch(err => {
-                        if (err === 'Vocabulary is already exist') {
+                        if (err === 'Vocabulary is already created') {
                             setShowAlert(true);
 
                         } else {
@@ -253,6 +253,38 @@ export default function AddUpdateVocaDialog({
                         }}>
                         Hủy
                     </Button>
+
+                    {editedVoca &&
+                        <Button
+                            onClick={() => {
+                                deleteVoca(formik.values.originWord)
+                                    .then((res) => {
+                                        onRemoved();
+                                        enqueueSnackbar(`Xóa từ ${editedVoca.originWord} thành công`, {
+                                            variant: 'success',
+                                            anchorOrigin: {
+                                                vertical: 'bottom',
+                                                horizontal: 'right'
+                                            }
+                                        });
+                                    })
+                                    .catch(err => {
+                                        if (err === 'Vocabulary not found') {
+                                            enqueueSnackbar(`Sửa từ ${formik.values.originWord} thất bại`, {
+                                                variant: 'error',
+                                                anchorOrigin: {
+                                                    vertical: 'bottom',
+                                                    horizontal: 'right'
+                                                }
+                                            });
+                                        }
+                                    })
+                            }}
+                            type='button'
+                            sx={{ color: 'red' }} >
+                            Xóa
+                        </Button>
+                    }
                     <Button
                         type='submit' autoFocus>
                         {editedVoca ? "Sửa" : "Thêm"}
