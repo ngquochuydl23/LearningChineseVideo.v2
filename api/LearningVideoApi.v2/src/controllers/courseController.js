@@ -160,6 +160,10 @@ exports.delCourse = async (req, res, next) => {
             authorId: toObjectId(loggingUserId)
         });
 
+        if (!course) {
+            throw new AppException("Course not found")
+        }
+
         course.isDeleted = true;
 
         await course.save();
