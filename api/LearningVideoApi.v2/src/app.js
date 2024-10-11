@@ -10,6 +10,7 @@ const likeRoute = require('./routes/likeRoute');
 const vocabularyRoute = require('./routes/vocabularyRoute');
 const savedVocabularyRoute = require('./routes/savedVocabularyRoute');
 const courseRoute = require('./routes/courseRoute');
+const lessonRoute = require('./routes/lessonRoute');
 const bodyParser = require('body-parser');
 const app = require('express')();
 const { logRequest, logError } = require('./middlewares/loggingMiddleware')
@@ -36,6 +37,7 @@ app.use('/api/user', userRoute);
 app.use('/api/vocabulary', vocabularyRoute);
 app.use('/api/SavedVoca', savedVocabularyRoute);
 app.use('/api/course', courseRoute);
+app.use('/api/lesson', lessonRoute);
 app.use(logError)
 
 app.use(function (req, res, next) {

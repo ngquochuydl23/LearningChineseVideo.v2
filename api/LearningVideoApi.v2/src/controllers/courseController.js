@@ -18,30 +18,74 @@ exports.getCourses = async (req, res, next) => {
      *      - Newest
      */
     try {
+
         const courses = await courseModel
-            .find({}, {
-                title: 1,
-                subtitle: 1,
-                level: 1,
-                rating: 1,
-                rateCount: 1,
-                studentCount: 1,
-                authorId: 1,
-                lessonCount: 1,
-                totalDuration: 1,
-                price: 1,
-                level: 1,
-                createdAt: 1,
-                lastUpdated: 1
-            })
-            .sort({
-                ...(sortby === 'Newest' && { createdAt: -1 }),
-                ...(sortby === 'HighestRated' && { rating: -1 }),
-                ...(sortby === 'MostPopular' && {
-                    studentCount: -1,
-                    rateCount: -1
-                }),
-            })
+            .aggregate([
+                {
+                    $match: {
+                      isDeleted: false,
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'User.Collection',
+                        localField: 'authorId',
+                        foreignField: '_id',
+                        as: 'author'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'CourseLesson.Collection',
+                        let: { courseId: '$_id' },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $and: [
+                                            { $eq: ['$courseId', '$$courseId'] },
+                                            { $eq: ['$isDeleted', false] }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                $sort: {
+                                    position: 1
+                                }
+                            }
+                        ],
+                        as: 'lessons'
+                    }
+                },
+                { $unwind: '$author' },
+                {
+                    $project: {
+                        _id: 1,
+                        title: 1,
+                        subtitle: 1,
+                        level: 1,
+                        rating: 1,
+                        rateCount: 1,
+                        studentCount: 1,
+                        authorId: 1,
+                        lessonCount: 1,
+                        totalDuration: 1,
+                        price: 1,
+                        level: 1,
+                        createdAt: 1,
+                        lastUpdated: 1,
+                        firstLesson: { $arrayElemAt: ["$lessons", 0] },
+                        'author._id': 1,
+                        'author.fullName': 1,
+                        'author.avatar': 1,
+                        'author.gender': 1,
+                        'author.experience': 1,
+                        'author.bio': 1,
+                        'author.allowTeaching': 1
+                    }
+                }
+            ]);
         return httpOk(res, courses);
     } catch (error) {
         next(error);
@@ -62,6 +106,8 @@ exports.addCourse = async (req, res, next) => {
         lessons
     } = req.body;
     try {
+
+
         if (_.isEmpty(req.body)) {
             throw new AppException("Invalid body");
         }
@@ -155,15 +201,11 @@ exports.delCourse = async (req, res, next) => {
 
     try {
 
-        const course = await courseModel.findOne({
-            _id: toObjectId(courseId),
-            authorId: toObjectId(loggingUserId)
-        });
+        const course = await courseModel.findOne({ _id: toObjectId(courseId) });
 
         if (!course) {
             throw new AppException("Course not found")
         }
-
         course.isDeleted = true;
 
         await course.save();
@@ -231,8 +273,10 @@ exports.getCourse = async (req, res, next) => {
                         lastUpdated: 1,
                         targets: 1,
                         topics: 1,
+                        subtitle: 1,
                         requirements: 1,
                         lessons: 1,
+                        description: 1,
                         'author._id': 1,
                         'author.fullName': 1,
                         'author.avatar': 1,
@@ -252,7 +296,7 @@ exports.getCourse = async (req, res, next) => {
 exports.addLesson = async (req, res, next) => {
     const loggingUserId = req.loggingUserId;
     const courseId = req.params.courseId;
-    
+
     try {
         if (_.isEmpty(req.body)) {
             throw new AppException("Invalid body");

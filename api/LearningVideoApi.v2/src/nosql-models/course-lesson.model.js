@@ -32,6 +32,10 @@ const schema = BaseSchema("CourseLesson.Collection", {
     position: {
         type: Number,
         required: [true, 'position must not be null']
+    },
+    excerciseCount: {
+        type: Number,
+        default: 0
     }
 })
 
