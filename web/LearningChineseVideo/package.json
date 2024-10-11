@@ -4,7 +4,6 @@
   "author": "Devias",
   "licence": "MIT",
   "homepage": "https://devias.io",
-  "private": false,
   "scripts": {
     "dev": "env-cmd -f .env.local next",
     "dev:staging": "env-cmd -f .env.staging next",

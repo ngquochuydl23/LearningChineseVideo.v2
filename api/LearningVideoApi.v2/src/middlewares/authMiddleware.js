@@ -51,33 +51,7 @@ const authMiddleware = async (req, res, next) => {
                 })
         }
 
-        // const device = await findById(decodedToken.deviceId);
-        // if (!device) {
-        //     return res
-        //         .status(400)
-        //         .json({
-        //             statusCode: 400,
-        //             error: "Device cannot be detected."
-        //         })
-        // }
-
-        // if (device.isTerminated) {
-        //     return res
-        //         .status(400)
-        //         .json({
-        //             statusCode: 400,
-        //             error: "Device is terminated."
-        //         })
-        // }
-
-        // const location = geoip.lookup(ipAddress);
-        // await updateDevice(device._id, {
-        //     lastAccess: moment(),
-        //     location,
-        //     ipAddress
-        // })
-
-        //req.loggingDeviceId = decodedToken.deviceId;
+        req.role = decodedToken.role;
         req.loggingUserId = decodedToken.id;
         next();
     } catch (error) {

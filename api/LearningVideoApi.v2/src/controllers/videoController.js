@@ -4,9 +4,9 @@ const _ = require('lodash');
 const videoModel = require('../nosql-models/video.model');
 
 exports.getVideos = async (req, res, next) => {
-    const { level, search } = req.query;
-    const limit = parseInt(req.query.limit) || 10;
-    const offset = parseInt(req.query.offset) || 0;
+    const { level, search, sort } = req.query;
+    const limit = parseInt(req.query.limit) || undefined;
+    const offset = parseInt(req.query.offset) || undefined;
 
     try {
         const whereObj = {
@@ -28,15 +28,23 @@ exports.getVideos = async (req, res, next) => {
 
         const documents = await videoModel
             .find(whereObj)
-            // .limit(limit)
-            // .skip(offset)
-            .sort({ createdAt: -1 });
+            .limit(limit)
+            .skip(offset)
+            .sort({
+                ...(sort === 'desc-popular' && {
+                    viewerCount: -1,
+                    likeCount: -1,
+                    commentCount: -1
+                }),
+                createdAt: -1,
+            });
 
         return httpOkAsCollection(res, documents, count, limit, offset);
     } catch (error) {
         next(error);
     }
 }
+
 
 exports.getVideo = async (req, res, next) => {
     const { videoId } = req.params;
@@ -124,6 +132,31 @@ exports.viewVideo = async (req, res, next) => {
         await video.save();
 
         return httpOk(res, null, "Viewed video successfully.");
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.editVideo = async (req, res, next) => {
+    const { videoId } = req.params;
+    const { title, description, topics, subtitles, level } = req.body;
+
+    try {
+        const video = await videoModel.findById(videoId);
+        if (!video) {
+            throw new AppException("Video does not exist");
+        }
+
+        video.viewerCount = video.viewerCount + 1;
+        video.title = title;
+        video.description = description;
+        video.topics = topics;
+        video.subtitles = subtitles;
+        video.level = level;
+
+        await video.save();
+
+        return httpOk(res, null, "Updated video successfully.");
     } catch (error) {
         next(error);
     }

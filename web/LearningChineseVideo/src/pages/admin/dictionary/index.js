@@ -92,6 +92,13 @@ const Page = () => {
                 editedVoca={dialogState.voca}
                 onAdded={fetchVoca}
                 open={dialogState.open}
+                onRemoved={() => {
+                    fetchVoca()
+                    setDialogState({
+                        open: false,
+                        voca: undefined
+                    })
+                }}
                 handleClose={() => setDialogState({
                     open: false,
                     voca: undefined
