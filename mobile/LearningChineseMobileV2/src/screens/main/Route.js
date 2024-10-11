@@ -7,6 +7,9 @@ import IcInactiveLib from '../../assets/icons/ic_inactive-lib.svg';
 import IcActiveLib from '../../assets/icons/ic_active-lib.svg';
 import IcInactiveSearch from '../../assets/icons/ic_inactive-search.svg';
 import IcActiveSearch from '../../assets/icons/ic_active-search.svg';
+import IcActiveCourse from '../../assets/icons/ic_active_course.svg';
+import IcInactiveCourse from '../../assets/icons/ic_inactive-course.svg';
+import CourseScreen from "./tabs/course";
 
 const mainRoute = [
     {
@@ -22,6 +25,13 @@ const mainRoute = [
         activeIcon: IcActiveSearch,
         inactiveIcon: IcInactiveSearch,
         screen: SearchTab,
+    },
+    {
+        name: 'course',
+        label: 'Khóa học',
+        activeIcon: IcActiveCourse,
+        inactiveIcon: IcInactiveCourse,
+        screen: CourseScreen,
     },
     {
         name: 'library',

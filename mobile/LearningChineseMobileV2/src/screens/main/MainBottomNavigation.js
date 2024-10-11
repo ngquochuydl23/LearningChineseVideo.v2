@@ -27,7 +27,7 @@ const MainScreen = () => {
                 tabBarInactiveTintColor: 'gray',
 
             })}>
-            {_.map(mainRoute, (route, index) => {
+            {_.map(mainRouzte, (route, index) => {
                 return (
                     <Tab.Screen
                         key={index}

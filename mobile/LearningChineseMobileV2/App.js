@@ -19,6 +19,9 @@ import { persistLogin } from './src/api/userApi';
 import SavedDetailScreen from './src/screens/savedDetail';
 import { ToastProvider } from 'react-native-paper-toast';
 import VideoLikedScreen from './src/screens/liked';
+import CourseDetailScreen from './src/screens/courses';
+
+
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -39,6 +42,7 @@ function App() {
                     dispatch(setUser(result));
                 })
                 .catch(err => {
+                    dispatch(logout());
                     console.log(err);
                 });
         }
@@ -48,7 +52,6 @@ function App() {
         getUser();
     }, []);
 
-    console.log(state);
     if (state.isLoading) {
         return (
             <View>
@@ -141,7 +144,18 @@ function App() {
                                             fontSize: 18
                                         },
                                         title: 'Video đã like'
-                                    }} />    
+                                    }} />
+                                <Stack.Screen
+                                    name="CourseDetail"
+                                    component={CourseDetailScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: ''
+                                    }} />
                             </>
                         )}
                     </Stack.Navigator>
