@@ -20,8 +20,8 @@ import SavedDetailScreen from './src/screens/savedDetail';
 import { ToastProvider } from 'react-native-paper-toast';
 import VideoLikedScreen from './src/screens/liked';
 import CourseDetailScreen from './src/screens/courses';
-
-
+import ExcerciseDetailScreen from './src/screens/excercises'
+import VideoCourseScreen from './src/screens/videoCourse';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -148,6 +148,28 @@ function App() {
                                 <Stack.Screen
                                     name="CourseDetail"
                                     component={CourseDetailScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: ''
+                                    }} />
+                                <Stack.Screen
+                                    name="VideoCourse"
+                                    component={VideoCourseScreen}
+                                    options={{
+                                        headerShown: true,
+                                        headerTitleStyle: {
+                                            fontFamily: fonts.Medium,
+                                            fontSize: 18
+                                        },
+                                        title: ''
+                                    }} />
+                                <Stack.Screen
+                                    name="ExcerciseDetail"
+                                    component={ExcerciseDetailScreen}
                                     options={{
                                         headerShown: true,
                                         headerTitleStyle: {

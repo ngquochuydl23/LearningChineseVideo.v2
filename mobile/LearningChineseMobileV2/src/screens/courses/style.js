@@ -6,90 +6,51 @@ import { fonts } from "../../theme/fonts";
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.background,
-        height: '100%',
-    },
-    toolbar: {
-        paddingHorizontal: 10
-    },
-    scrollViewContainer: {
-        width: '100%',
-        height: '100%'
-    },
-    thumbnailContainer: {
-        display: 'flex',
-        position: 'relative',
-        width: '100%',
-    },
-    thumbnail: {
-        width: '100%',
-        aspectRatio: 2.5 / 1.5,
-        position: 'relative',
-    },
-    overlapThumnail: {
-        paddingTop: StatusBar.currentHeight,
-        zIndex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        position: 'absolute',
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        flex: 1,
-    },
-    title: {
-        paddingTop: 15,
-        paddingHorizontal: 15,
+        height: "100%",
+        padding: 15,
+      },
+      title: {
         fontSize: 18,
         color: colors.textPrimaryColor,
-        fontFamily: fonts.SemiBold
-    },
-    detailInfo: {
-        justifyContent: 'space-between',
-        display: 'flex',
-        flexDirection: 'row',
-        marginTop: 10,
-        paddingHorizontal: 15,
-    },
-    levelAndTopic: {
+        fontFamily: fonts.SemiBold,
+        marginBottom: 10,
+      },
+      subtitle: {
+        fontSize: 14,
+        color: colors.textSecondaryColor,
+        fontFamily: fonts.Medium,
+        marginBottom: 10,
+      },
+      info: {
         fontSize: 14,
         color: colors.textPrimaryColor,
-        fontFamily: fonts.Medium
-    },
-    description: {
-        backgroundColor: colors.backgroundSubColor,
-        margin: 15,
-        padding: 15,
-        borderRadius: 15
-    },
-    descriptionTitle: {
-        fontFamily: fonts.Medium,
-        color: colors.primaryColor,
-        fontSize: 16,
-    },
-    descriptionText: {
         fontFamily: fonts.Regular,
+        marginBottom: 10,
+      },
+      sectionTitle: {
+        fontSize: 16,
+        color: colors.primaryColor,
+        fontFamily: fonts.Medium,
+        marginTop: 15,
+        marginBottom: 10,
+      },
+      targetItem: {
+        fontSize: 14,
         color: colors.textSecondaryColor,
-        fontSize: 13,
-        wordBreak: "break-word",
-        flexShrink: 1, 
-        flexWrap: 'wrap'
-    },
-    controllerVideo: {
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingBottom: 45
-    },
-    commentLayout: {
-        padding: 15,
-    },
-    commentTitle: {
-        fontFamily: fonts.SemiBold,
+        fontFamily: fonts.Regular,
+        marginBottom: 5,
+      },
+      lessonItem: {
+        fontSize: 14,
         color: colors.textPrimaryColor,
-        fontSize: 18,
-    },
+        fontFamily: fonts.Regular,
+        marginBottom: 5,
+      },
+      separator: {
+        height: 1,
+        backgroundColor: colors.separatorColor,
+        marginVertical: 10,
+      },
 });
 
 export default styles;

@@ -39,6 +39,7 @@ const mainRoute = [
         activeIcon: IcActiveLib,
         inactiveIcon: IcInactiveLib,
         screen: LibraryTab,
-    }
+    },
+
 ]
 export default mainRoute;

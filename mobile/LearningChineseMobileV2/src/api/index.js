@@ -3,7 +3,7 @@ import _ from "lodash";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const http = axios.create({
-    baseURL: 'https://v2.hayugo.edu.vn/api/'
+    baseURL: 'http://192.168.1.17:7700/api/'
 })
 
 http.interceptors.request.use(async function (config) {
