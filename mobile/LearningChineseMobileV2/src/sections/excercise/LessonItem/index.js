@@ -3,7 +3,10 @@ import { View, Text, TouchableOpacity, ScrollView, TouchableHighlight } from 're
 import Icon from 'react-native-vector-icons/MaterialIcons'; // You can choose any icon set
 import { getExcerciseByLessonId } from '../../../api/excercise-api';
 import { useNavigation } from "@react-navigation/native";
-const LessonItem = ({ index, title, _id, courseId  }) => {
+import { fonts } from '../../../theme/fonts';
+
+
+const LessonItem = ({ index, title, _id, courseId }) => {
     const [excercises, setExcercises] = useState([]);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isRotated, setIsRotated] = useState(false);
@@ -22,31 +25,31 @@ const LessonItem = ({ index, title, _id, courseId  }) => {
     };
 
     return (
-        
+
         <View>
             <View
                 style={{
                     flexDirection: 'row',
                     width: '100%',
                     alignItems: 'center',
-                    height: 50,
-                    padding: 5,
+                    paddingHorizontal: 15,
+                    paddingVertical: 10,
                     backgroundColor: '#E8E8E8',
                     borderRadius: 10,
                 }}
             >
-                <View style={{ flexDirection: 'row', width: '80%', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', width: '80%', alignItems: 'center', flex: 1 }}>
                     <Text
                         style={{
                             fontSize: 14,
                             color: 'textPrimaryColor',
-                            fontFamily: 'Regular',
+                            fontFamily: fonts.Medium,
                         }}
                     >
                         {index + 1}. {title}
                     </Text>
                 </View>
-                <View style={{ width: '20%', alignItems: 'center' }}>
+                <View style={{ alignItems: 'center' }}>
                     <TouchableOpacity onPress={handleIconPress}>
                         <Icon
                             name="expand-more"
@@ -78,15 +81,15 @@ const LessonItem = ({ index, title, _id, courseId  }) => {
                                     flexDirection: 'row',
                                     padding: 10,
                                     borderRadius: 10,
+                                    fontFamily: fonts.Medium,
                                     cursor: 'pointer',
                                     marginBottom: 5,
                                     backgroundColor: '#FFFFFF',
                                 }}
                                 onPress={() => {
                                     // Handle navigation or other actions here
-                                }}
-                            >
-                                <Text style={{ fontSize: 16 }}>
+                                }}>
+                                <Text style={{ fontSize: 16, fontFamily: fonts.Regular }}>
                                     {index + 1}.{' '}
                                     {excercise.type === 'fill-in-blank'
                                         ? 'Điền vào chổ trống'
@@ -103,13 +106,8 @@ const LessonItem = ({ index, title, _id, courseId  }) => {
                             </TouchableOpacity>
                         ))
                     ) : (
-                        <View
-                            style={{
-                                padding: 10,
-                                borderRadius: 10,
-                            }}
-                        >
-                            <Text style={{ fontSize: 16 }}>Phần này không có bài tập !!!</Text>
+                        <View style={{ padding: 10, borderRadius: 10, }} >
+                            <Text style={{ fontSize: 16, fontFamily: fonts.Regular }}>Phần này không có bài tập !!!</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                                 <TouchableOpacity
                                     style={{
@@ -118,13 +116,14 @@ const LessonItem = ({ index, title, _id, courseId  }) => {
                                         backgroundColor: '#4caf50',
                                         justifyContent: 'center',
                                         alignItems: 'center',
+                                        fontFamily: fonts.Medium,
                                         borderRadius: 5,
                                     }}
                                     onPress={() => {
                                         navigation.navigate('VideoCourse', { lessonId: _id, idCourse: courseId });
                                     }}
                                 >
-                                    <Text style={{ fontSize: 12, color: '#FFFFFF' }}>Xem video</Text>
+                                    <Text style={{ fontSize: 12, color: '#FFFFFF', fontFamily: fonts.Medium, }}>Xem video</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -151,10 +150,10 @@ const LessonItem = ({ index, title, _id, courseId  }) => {
                                         borderRadius: 5,
                                     }}
                                     onPress={() => {
-                                        navigation.navigate('VideoCourse', { lessonId: _id, idCourse: courseId  });
+                                        navigation.navigate('VideoCourse', { lessonId: _id, idCourse: courseId });
                                     }}
                                 >
-                                    <Text style={{ fontSize: 12, color: '#FFFFFF' }}>Xem video</Text>
+                                    <Text style={{ fontSize: 12, color: '#FFFFFF', fontFamily: fonts.Medium }}>Xem video</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     style={{
@@ -170,16 +169,17 @@ const LessonItem = ({ index, title, _id, courseId  }) => {
                                         navigation.navigate('ExcerciseDetail', { lessonId: _id });
                                     }}
                                 >
-                                    <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Làm bài tập</Text>
+                                    <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Làm bài tập</Text>
                                 </TouchableOpacity>
 
                             </View>
                         </View>
                     )}
                 </View>
-            )}
-        </View>
-       
+            )
+            }
+        </View >
+
     );
 };
 

@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'; // You can choose an
 import CheckCircleIcon from 'react-native-vector-icons/MaterialIcons';
 import CancelIcon from 'react-native-vector-icons/MaterialIcons';
 import { checkExcercise } from '../../api/excercise-api';
+import { fonts } from '../../theme/fonts';
 
 const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -27,7 +28,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
       Alert.alert("Error", "Vui lòng chọn câu trả lời");
     } else {
       checkExcercise(lessonId, _id, body)
-        .then(({result}) => {
+        .then(({ result }) => {
           if (result.checkResult === true) {
             setCorrectAnswer("true");
           } else {
@@ -53,14 +54,14 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
     <ScrollView contentContainerStyle={{ alignItems: 'center', padding: 20 }}>
       <View
         style={{
-            padding: 10,
-            marginVertical: 20,
-            borderRadius: 10,
-            width: '100%',
-            backgroundColor: '#FFFFFD',
+          padding: 10,
+          marginVertical: 20,
+          borderRadius: 10,
+          width: '100%',
+          backgroundColor: '#FFFFFD',
         }}
       >
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', fontFamily: fonts.Medium }}>
           Trả lời câu hỏi giao tiếp
         </Text>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
@@ -78,7 +79,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
               elevation: 5,
             }}
           >
-            <Text style={{ fontSize: 17, color: 'black' }}>{grammaQuestion?.question}</Text>
+            <Text style={{ fontSize: 17, color: 'black', fontFamily: fonts.Medium }}>{grammaQuestion?.question}</Text>
             <View
               style={{
                 position: 'absolute',
@@ -120,7 +121,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
                 transform: [{ scale: selectedIndex === index ? 1.05 : 1 }],
               }}
             >
-              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000' }}>{option}</Text>
+              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000', fontFamily: fonts.Medium }}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -139,7 +140,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}>
                 <CheckCircleIcon name="check-circle" size={24} color="#FFFFFF" />
-                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400' }}>Làm tốt lắm!</Text>
+                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400', fontFamily: fonts.Medium }}>Làm tốt lắm!</Text>
               </View>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
@@ -156,7 +157,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Tiếp tục</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Tiếp tục</Text>
                 </TouchableOpacity>
               </View>
             </>
@@ -164,7 +165,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}>
                 <CancelIcon name="cancel" size={24} color="#FFFFFF" />
-                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400' }}>
+                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400', fontFamily: fonts.Medium }}>
                   Đáp án đúng: {answerCorrect}
                 </Text>
               </View>
@@ -183,13 +184,13 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Tiếp tục</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Tiếp tục</Text>
                 </TouchableOpacity>
               </View>
             </>
           ) : (
             <>
-              
+
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
                   onPress={handleCheck}
@@ -202,7 +203,7 @@ const ExcerciseGramma = ({ _id, lessonId, grammaQuestion, onNext }) => {
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Kiểm tra</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Kiểm tra</Text>
                 </TouchableOpacity>
               </View>
             </>

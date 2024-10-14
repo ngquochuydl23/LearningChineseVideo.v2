@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
         letterSpacing: 5,
         backgroundColor: colors.backgroundSubColor
     },
+    video: {
+        aspectRatio: 16 / 9,
+        width: '100%',
+        backgroundColor: 'black'
+    },
     insideBottomSheet: {
         paddingTop: 30,
         paddingHorizontal: 20

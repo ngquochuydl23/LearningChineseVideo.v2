@@ -8,7 +8,7 @@ import _ from 'lodash';
 import { colors } from "../../theme/color";
 import { addComment, getCommentsOfVideo } from "../../api/commentApi";
 import { addLike, check, delLike } from "../../api/likeApi";
-import {dateCrateComment} from "../../utils/formatDate";
+import { dateCrateComment } from "../../utils/formatDate";
 import Avatar from '../../components/avatar';
 import { useDispatch, useSelector } from "react-redux";
 const VideoScreen = ({ route, navigation }) => {
@@ -28,23 +28,23 @@ const VideoScreen = ({ route, navigation }) => {
     const handleLike = () => {
         if (like === false) {
             addLike(videoId)
-              .then((res) => {
-                setLike(true);
-                ToastAndroid.show('Like video thành công.', ToastAndroid.SHORT);
-              })
-              .catch((err) => {
-                ToastAndroid.show('Like video không thành công.', ToastAndroid.SHORT);
-              });
-          } else {
+                .then((res) => {
+                    setLike(true);
+                    ToastAndroid.show('Like video thành công.', ToastAndroid.SHORT);
+                })
+                .catch((err) => {
+                    ToastAndroid.show('Like video không thành công.', ToastAndroid.SHORT);
+                });
+        } else {
             delLike(videoId)
-              .then((res) => {
-                setLike(false);
-                ToastAndroid.show('Hủy like video thành công.', ToastAndroid.SHORT);
-              })
-              .catch((err) => {
-                ToastAndroid.show('Hủy like video không thành công.', ToastAndroid.SHORT);
-              });
-          }
+                .then((res) => {
+                    setLike(false);
+                    ToastAndroid.show('Hủy like video thành công.', ToastAndroid.SHORT);
+                })
+                .catch((err) => {
+                    ToastAndroid.show('Hủy like video không thành công.', ToastAndroid.SHORT);
+                });
+        }
     }
     useEffect(() => {
         setLoading(true);
@@ -59,55 +59,55 @@ const VideoScreen = ({ route, navigation }) => {
             .finally(() => {
                 setLoading(false);
             });
-        
+
     }, [])
     useEffect(() => {
         check(videoId)
-          .then((res) => {
-            setLike(true);
-          })
-          .catch((err) => {
-            setLike(false);
-          });
+            .then((res) => {
+                setLike(true);
+            })
+            .catch((err) => {
+                setLike(false);
+            });
         getCommentsOfVideo(videoId)
-          .then(({result}) => {
-            setComments(result);
-            
-            
-      });
-      }, [videoId]);
-      const CustomAvatar = ({ fullname, src }) => (
-        <Avatar
-        
-                    size={50}
-                    name={fullname}
-                    src={src} />
-        
-      );
-        // Chức năng bình luận
-  const createComment = () => {
-    const data = {
-      content: content,
-      videoId: videoId,
-    };
+            .then(({ result }) => {
+                setComments(result);
 
-    addComment(data)
-      .then((res) => {
-        setContent("");
-        getCommentsOfVideo(videoId)
-          .then(({result}) => {
-            setComments(result);
-            console.log(comments);
-          })
-          .catch((err) => {
-           ToastAndroid.show('Xem tất cả bình luận không thành công.', ToastAndroid.SHORT);
-          });
-          ToastAndroid.show('Bình luận video thành công.', ToastAndroid.SHORT);
-      })
-      .catch((err) => {
-        ToastAndroid.show('Bình luận video không thành công.', ToastAndroid.SHORT);
-      });
-  };
+
+            });
+    }, [videoId]);
+    const CustomAvatar = ({ fullname, src }) => (
+        <Avatar
+
+            size={50}
+            name={fullname}
+            src={src} />
+
+    );
+    // Chức năng bình luận
+    const createComment = () => {
+        const data = {
+            content: content,
+            videoId: videoId,
+        };
+
+        addComment(data)
+            .then((res) => {
+                setContent("");
+                getCommentsOfVideo(videoId)
+                    .then(({ result }) => {
+                        setComments(result);
+                        console.log(comments);
+                    })
+                    .catch((err) => {
+                        ToastAndroid.show('Xem tất cả bình luận không thành công.', ToastAndroid.SHORT);
+                    });
+                ToastAndroid.show('Bình luận video thành công.', ToastAndroid.SHORT);
+            })
+            .catch((err) => {
+                ToastAndroid.show('Bình luận video không thành công.', ToastAndroid.SHORT);
+            });
+    };
     return loading ? (
         <View>
             <Text>
@@ -120,7 +120,11 @@ const VideoScreen = ({ route, navigation }) => {
             <View style={styles.thumbnailContainer}>
 
                 <Image
-                    style={styles.thumbnail}
+                    style={{
+                        width: '100%',
+                        aspectRatio: 2.5 / 1.5,
+                        position: 'relative',
+                    }}
                     src={readStorageUrl(video?.thumbnail)} />
                 <View style={styles.overlapThumnail}>
                     <View style={styles.toolbar}>
@@ -174,7 +178,7 @@ const VideoScreen = ({ route, navigation }) => {
                     {video?.description}
                 </Text>
             </View>
-              
+
             <View style={styles.commentLayout}>
                 <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                     <CustomAvatar
@@ -186,49 +190,49 @@ const VideoScreen = ({ route, navigation }) => {
                         onChangeText={setContent}
                         placeholder="Viết bình luận..."
                         style={{ flex: 1, height: 50, borderWidth: 1, borderColor: '#ccc', paddingHorizontal: 10, marginLeft: 10 }}
-                        />
-                </View> 
+                    />
+                </View>
                 <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-end' }}>
-                <Button
-                    title="Bình luận"
-                      onPress={createComment}
-                    color="#6200EE" // Màu sắc của nút, bạn có thể thay đổi theo ý muốn
-                />
+                    <Button
+                        title="Bình luận"
+                        onPress={createComment}
+                        color="#6200EE" // Màu sắc của nút, bạn có thể thay đổi theo ý muốn
+                    />
                 </View>
                 <Text style={styles.commentTitle}>Bình luận ({comments.length})</Text>
-                    
-                <View style={{ display: 'flex', direction:'column', paddingTop: '5px', paddingBottom: '10px' }}>
-                { comments.length > 0 ? 
-                comments.map((comment, index) => (
-                    <View key={index} style={{ flexDirection: 'row', marginBottom: 20 }}>
-                        <CustomAvatar
-                        fullname={comment.creator?.fullName}
-                        src={comment.creator?.avatar}
-                        />
-                        <View style={{ flexDirection: 'column', marginLeft: 20 }}>
-                        <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                            <Text style={{ fontWeight: '500', fontSize: 14 }}>
-                            {comment.creator?.fullName}
+
+                <View style={{ display: 'flex', direction: 'column', paddingTop: '5px', paddingBottom: '10px' }}>
+                    {comments.length > 0 ?
+                        comments.map((comment, index) => (
+                            <View key={index} style={{ flexDirection: 'row', marginBottom: 20 }}>
+                                <CustomAvatar
+                                    fullname={comment.creator?.fullName}
+                                    src={comment.creator?.avatar}
+                                />
+                                <View style={{ flexDirection: 'column', marginLeft: 20 }}>
+                                    <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                        <Text style={{ fontWeight: '500', fontSize: 14 }}>
+                                            {comment.creator?.fullName}
+                                        </Text>
+                                        <Text style={{ fontSize: 14, marginLeft: 15 }}>
+                                            {dateCrateComment(comment.createdAt)}
+                                        </Text>
+                                    </View>
+                                    <Text style={{ fontSize: 13 }}>
+                                        {comment.content}
+                                    </Text>
+                                </View>
+                            </View>
+                        ))
+                        :
+                        (
+                            <Text style={styles.descriptionText} ellipsizeMode='tail'>
+                                Chưa có bình luận nào
                             </Text>
-                            <Text style={{ fontSize: 14, marginLeft: 15 }}>
-                            {dateCrateComment(comment.createdAt)}
-                            </Text>
-                        </View>
-                        <Text style={{ fontSize: 13 }}>
-                            {comment.content}
-                        </Text>
-                        </View>
-                    </View>
-                ))
-                : 
-                (
-                    <Text style={styles.descriptionText} ellipsizeMode='tail'>
-                        Chưa có bình luận nào
-                    </Text>
-                )
-            }
+                        )
+                    }
                 </View>
-                
+
             </View>
         </View>
     )

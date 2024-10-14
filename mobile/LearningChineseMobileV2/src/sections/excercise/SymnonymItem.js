@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'; // You can choose an
 import CheckCircleIcon from 'react-native-vector-icons/MaterialIcons';
 import CancelIcon from 'react-native-vector-icons/MaterialIcons';
 import { checkExcercise } from '../../api/excercise-api';
+import { fonts } from '../../theme/fonts';
+import { colors } from '../../theme/color';
 
 const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -29,7 +31,7 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
       Alert.alert("Error", "Vui lòng chọn câu trả lời");
     } else {
       checkExcercise(lessonId, _id, body)
-        .then(({result}) => {
+        .then(({ result }) => {
           if (result.checkResult === true) {
             setCorrectAnswer("true");
           } else {
@@ -55,14 +57,14 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
     <ScrollView contentContainerStyle={{ alignItems: 'center', padding: 20 }}>
       <View
         style={{
-            padding: 10,
-            marginVertical: 20,
-            borderRadius: 10,
-            width: '100%',
-            backgroundColor: '#FFFFFD',
+          padding: 10,
+          marginVertical: 20,
+          borderRadius: 10,
+          width: '100%',
+          backgroundColor: '#FFFFFD',
         }}
       >
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', fontFamily: fonts.Medium }}>
           Chọn từ đồng nghĩa hoặc trái nghĩa
         </Text>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
@@ -80,23 +82,9 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
               elevation: 5,
             }}
           >
-            <Text style={{ fontSize: 18, color: 'black' }}>{synonymAntonymQuestion?.question}</Text>
-            <View
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: 0,
-                transform: [{ translateX: -100 }, { translateY: -50 }],
-                width: 0,
-                height: 0,
-                borderTopWidth: 10,
-                borderBottomWidth: 10,
-                borderRightWidth: 10,
-                borderTopColor: 'transparent',
-                borderBottomColor: 'transparent',
-                borderRightColor: '#0000FF',
-              }}
-            />
+            <Text style={{ fontSize: 18, color: 'black', fontFamily: fonts.Medium }}>
+              {synonymAntonymQuestion?.question}
+            </Text>
           </View>
         </View>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 20 }}>
@@ -122,7 +110,9 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
                 transform: [{ scale: selectedIndex === index ? 1.05 : 1 }],
               }}
             >
-              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000' }}>{option}</Text>
+              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000', fontFamily: fonts.Medium }}>
+                {option}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -139,9 +129,11 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
         >
           {correctAnswer === "true" ? (
             <>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
                 <CheckCircleIcon name="check-circle" size={24} color="#FFFFFF" />
-                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400' }}>Làm tốt lắm!</Text>
+                <Text style={{ fontSize: 15, color: '#FFFFFF', fontFamily: fonts.Medium }}>
+                  Làm tốt lắm!
+                </Text>
               </View>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
@@ -158,15 +150,15 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Tiếp tục</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Tiếp tục</Text>
                 </TouchableOpacity>
               </View>
             </>
           ) : correctAnswer === "false" ? (
             <>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
                 <CancelIcon name="cancel" size={24} color="#FFFFFF" />
-                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400' }}>
+                <Text style={{ fontSize: 15, color: '#FFFFFF', fontFamily: fonts.Medium }}>
                   Đáp án đúng: {answerCorrect}
                 </Text>
               </View>
@@ -185,26 +177,25 @@ const ExcerciseSymnonym = ({ _id, lessonId, synonymAntonymQuestion, onNext }) =>
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Tiếp tục</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Tiếp tục</Text>
                 </TouchableOpacity>
               </View>
             </>
           ) : (
             <>
-              
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
                   onPress={handleCheck}
                   style={{
                     height: 40,
                     width: 150,
-                    backgroundColor: '#0000FF',
+                    backgroundColor: colors.primaryColor,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: 5,
+                    borderRadius: 30,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Kiểm tra</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Kiểm tra</Text>
                 </TouchableOpacity>
               </View>
             </>

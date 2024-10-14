@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'; // You can choose an
 import CheckCircleIcon from 'react-native-vector-icons/MaterialIcons';
 import CancelIcon from 'react-native-vector-icons/MaterialIcons';
 import { checkExcercise } from '../../api/excercise-api';
+import { fonts } from '../../theme/fonts';
+import { colors } from '../../theme/color';
 const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [chooseAnswer, setChooseAnswer] = useState(null);
@@ -26,7 +28,7 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
       Alert.alert("Error", "Vui lòng chọn câu trả lời");
     } else {
       checkExcercise(lessonId, _id, body)
-        .then(({result}) => {
+        .then(({ result }) => {
           if (result.checkResult === true) {
             setCorrectAnswer("true");
           } else {
@@ -50,17 +52,17 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ alignItems: 'center', padding: 20 }}>
+    <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
       <View
         style={{
           padding: 10,
-          marginVertical: 20,
+          marginVertical: 15,
           borderRadius: 10,
           width: '100%',
           backgroundColor: '#FFFFFD',
         }}
       >
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 18, fontFamily: fonts.Medium, textAlign: 'center' }}>
           Chọn từ đúng để điền vào chổ trống
         </Text>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
@@ -78,7 +80,7 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
               elevation: 5,
             }}
           >
-            <Text style={{ fontSize: 18, color: 'black' }}>{fillInBlank?.question}</Text>
+            <Text style={{ fontSize: 18, color: 'black', fontFamily: fonts.Medium, textAlign: 'center', width: '100%' }}>{fillInBlank?.question}</Text>
             <View
               style={{
                 position: 'absolute',
@@ -120,7 +122,7 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
                 transform: [{ scale: selectedIndex === index ? 1.05 : 1 }],
               }}
             >
-              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000' }}>{option}</Text>
+              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000', fontFamily: fonts.Medium }}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -139,7 +141,7 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}>
                 <CheckCircleIcon name="check-circle" size={24} color="#FFFFFF" />
-                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400' }}>Làm tốt lắm!</Text>
+                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400', fontFamily: fonts.Medium }}>Làm tốt lắm!</Text>
               </View>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
@@ -149,14 +151,14 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
                   }}
                   style={{
                     height: 40,
-                    width: 150,
+                    marginRight: 20,
                     backgroundColor: '#33CC33',
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Tiếp tục</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Tiếp tục</Text>
                 </TouchableOpacity>
               </View>
             </>
@@ -198,20 +200,21 @@ const ExcerciseFillIn = ({ _id, lessonId, fillInBlank, onNext }) => {
                   style={{
                     height: 40,
                     width: 150,
-                    backgroundColor: '#0000FF',
+                    fontFamily: fonts.Bold,
+                    backgroundColor: colors.primaryColor,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: 5,
+                    borderRadius: 20,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Kiểm tra</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Bold, }}>Kiểm tra</Text>
                 </TouchableOpacity>
               </View>
             </>
           )}
         </View>
       </View>
-    </ScrollView>
+    </ScrollView >
   );
 };
 

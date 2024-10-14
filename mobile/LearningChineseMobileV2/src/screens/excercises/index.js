@@ -18,6 +18,8 @@ import ExcerciseGramma from "../../sections/excercise/Gramma";
 import ExcerciseSentence from "../../sections/excercise/SentenceItem";
 import ExcerciseImage from "../../sections/excercise/ImageQItem";
 import ExcerciseAudio from "../../sections/excercise/AudioItemQ";
+import { colors } from "../../theme/color";
+import { fonts } from "../../theme/fonts";
 const ExcerciseDetailScreen = ({ route, navigation }) => {
     const { lessonId } = route.params;
     const [lesson, setLesson] = useState();
@@ -68,63 +70,52 @@ const ExcerciseDetailScreen = ({ route, navigation }) => {
             <Text>Loading</Text>
         </View>
     ) : (
-        <ScrollView style={{
-            overflow: 'hidden',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            // backgroundColor: colors.background,
-            borderColor: '#d3d3d3',
-            borderBottomWidth: 1
-        }}>
-            <Text style={{
-                arginHorizontal: 10,
-                marginTop: 10,
-                fontSize: 16,
-                textAlign: 'left',
-                color: "black",
-                fontFamily: "bold",
-            }}>Bài tập phần :{lesson?.title}</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                {/* Close Icon */}
-                <TouchableOpacity onPress={() => navigation.navigate('CourseDetail', { courseId: lesson.courseId })}>
-                    <Icon name="close" size={24} color="grey" />
-                </TouchableOpacity>
-
-                {/* Progress Bar */}
-                <View style={{ flexGrow: 1, padding: 5 }}>
-                    {/* <View
-                        style={{
-                            height: 10,
-                            borderRadius: 5,
-                            backgroundColor: '#e0e0e0',
-                            overflow: 'hidden',
-                        }}
-                    >
-                       
-                    </View> */}
-                    <View style={{ flexGrow: 1, padding: 5 }}>
-                        <View style={{ height: 10, borderRadius: 5, backgroundColor: '#e0e0e0', overflow: 'hidden' }}>
-                            <View style={{ width: `${progressValue}%`, height: '100%', backgroundColor: '#4caf50' }} />
+        <ScrollView
+            style={{
+                overflow: 'hidden',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                backgroundColor: colors.background,
+                borderColor: '#d3d3d3',
+                borderBottomWidth: 1
+            }}>
+            <View style={{ paddingHorizontal: 15 }}>
+                <Text style={{
+                    arginHorizontal: 10,
+                    marginTop: 10,
+                    fontSize: 18,
+                    textAlign: 'left',
+                    color: "black",
+                    fontFamily: fonts.Medium
+                }}>Bài tập phần :{lesson?.title}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('CourseDetail', { courseId: lesson.courseId })}>
+                        <Icon name="close" size={24} color="grey" />
+                    </TouchableOpacity>
+                    <View style={{ flexGrow: 1 }}>
+                        <View style={{ flexGrow: 1, padding: 5 }}>
+                            <View style={{ height: 10, borderRadius: 5, backgroundColor: '#e0e0e0', overflow: 'hidden' }}>
+                                <View style={{ width: `${progressValue}%`, height: '100%', backgroundColor: '#4caf50' }} />
+                            </View>
                         </View>
                     </View>
-                </View>
 
-            </View>
-            {currentExercise?.type === "fill-in-blank" ? (
-                <ExcerciseFillIn key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
-            ) : currentExercise?.type === "synonym-antonym-question" ? (
-                <ExcerciseSymnonym key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
-            ) : currentExercise?.type === "image-question" ? (
-                <ExcerciseImage key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
-            ) : currentExercise?.type === "audio-question" ? (
-                <ExcerciseAudio key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
-            ) : currentExercise?.type === "gramma-question" ? (
-                <ExcerciseGramma key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
-            ) : (
-                <ExcerciseSentence key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
-            )}
-            {/* 
+                </View>
+                {currentExercise?.type === "fill-in-blank" ? (
+                    <ExcerciseFillIn key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
+                ) : currentExercise?.type === "synonym-antonym-question" ? (
+                    <ExcerciseSymnonym key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
+                ) : currentExercise?.type === "image-question" ? (
+                    <ExcerciseImage key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
+                ) : currentExercise?.type === "audio-question" ? (
+                    <ExcerciseAudio key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
+                ) : currentExercise?.type === "gramma-question" ? (
+                    <ExcerciseGramma key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
+                ) : (
+                    <ExcerciseSentence key={currentIndex} {...currentExercise} onNext={handleNextExercise} />
+                )}
+                {/* 
       <FlatList
         data={lessons}
         ListEmptyComponent={() => (
@@ -142,7 +133,8 @@ const ExcerciseDetailScreen = ({ route, navigation }) => {
           <View style={styles.separator} />
         )}
       /> */}
-        </ScrollView>
+            </View>
+        </ScrollView >
     );
 };
 

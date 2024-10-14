@@ -5,7 +5,9 @@ import CheckCircleIcon from 'react-native-vector-icons/MaterialIcons';
 import CancelIcon from 'react-native-vector-icons/MaterialIcons';
 import Video from 'react-native-video';
 import { checkExcercise } from '../../api/excercise-api';
-import {readStorageUrl} from  '../../utils/readStorageUrl';
+import { readStorageUrl } from '../../utils/readStorageUrl';
+import { fonts } from '../../theme/fonts';
+import { colors } from '../../theme/color';
 
 const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -29,7 +31,7 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
       Alert.alert("Error", "Vui lòng chọn câu trả lời");
     } else {
       checkExcercise(lessonId, _id, body)
-        .then(({result}) => {
+        .then(({ result }) => {
           if (result.checkResult === true) {
             setCorrectAnswer("true");
           } else {
@@ -55,14 +57,14 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
     <ScrollView contentContainerStyle={{ alignItems: 'center', padding: 20 }}>
       <View
         style={{
-            padding: 10,
-            marginVertical: 20,
-            borderRadius: 10,
-            width: '100%',
-            backgroundColor: '#FFFFFD',
+          padding: 10,
+          marginVertical: 20,
+          borderRadius: 10,
+          width: '100%',
+          backgroundColor: '#FFFFFD',
         }}
       >
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 18, fontFamily: fonts.Medium }}>
           Nghe và chọn đáp án đúng
         </Text>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
@@ -91,7 +93,7 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
               }}
               controls={true}
             />
-            <Text style={{ fontSize: 18, color: 'black' }}>{audioQuestion?.question}</Text>
+            <Text style={{ fontSize: 18, color: 'black', fontFamily: fonts.Medium }}>{audioQuestion?.question}</Text>
             <View
               style={{
                 position: 'absolute',
@@ -133,7 +135,7 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
                 transform: [{ scale: selectedIndex === index ? 1.05 : 1 }],
               }}
             >
-              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000' }}>{option}</Text>
+              <Text style={{ color: selectedIndex === index ? '#FFFFFF' : '#000000', fontFamily: fonts.Medium }}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -152,7 +154,7 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}>
                 <CheckCircleIcon name="check-circle" size={24} color="#FFFFFF" />
-                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400' }}>Làm tốt lắm!</Text>
+                <Text style={{ fontSize: 15, color: '#FFFFFF', fontWeight: '400', fontFamily: fonts.Medium }}>Làm tốt lắm!</Text>
               </View>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
@@ -169,7 +171,7 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
                     borderRadius: 5,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Tiếp tục</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Tiếp tục</Text>
                 </TouchableOpacity>
               </View>
             </>
@@ -202,20 +204,20 @@ const ExcerciseAudio = ({ _id, lessonId, audioQuestion, onNext }) => {
             </>
           ) : (
             <>
-              
+
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
                   onPress={handleCheck}
                   style={{
                     height: 40,
-                    width: 150,
-                    backgroundColor: '#0000FF',
+                    paddingHorizontal: 20,
+                    backgroundColor: colors.primaryColor,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: 5,
+                    borderRadius: 30,
                   }}
                 >
-                  <Text style={{ fontSize: 13, color: '#FFFFFF' }}>Kiểm tra</Text>
+                  <Text style={{ fontSize: 13, color: '#FFFFFF', fontFamily: fonts.Medium }}>Kiểm tra</Text>
                 </TouchableOpacity>
               </View>
             </>

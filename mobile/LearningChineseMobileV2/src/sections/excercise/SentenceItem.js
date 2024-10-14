@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'; // You can choose an
 import CheckCircleIcon from 'react-native-vector-icons/MaterialIcons';
 import CancelIcon from 'react-native-vector-icons/MaterialIcons';
 import { checkExcercise } from '../../api/excercise-api';
+import { fonts } from '../../theme/fonts';
 
 const ExcerciseSentence = ({ _id, lessonId, sentenceOrderQuestion, onNext }) => {
   const [selectedWords, setSelectedWords] = useState([]);
@@ -29,7 +30,7 @@ const ExcerciseSentence = ({ _id, lessonId, sentenceOrderQuestion, onNext }) => 
       Alert.alert("Error", "Vui lòng chọn câu trả lời");
     } else {
       checkExcercise(lessonId, _id, body)
-        .then(({result}) => {
+        .then(({ result }) => {
           if (result.checkResult === true) {
             setCorrectAnswer("true");
           } else {
@@ -46,21 +47,21 @@ const ExcerciseSentence = ({ _id, lessonId, sentenceOrderQuestion, onNext }) => 
     <ScrollView contentContainerStyle={{ alignItems: 'center', padding: 20 }}>
       <View
         style={{
-            padding: 10,
-            marginVertical: 20,
-            borderRadius: 10,
-            width: '100%',
-            backgroundColor: '#FFFFFD',
+          padding: 10,
+          marginVertical: 20,
+          borderRadius: 10,
+          width: '100%',
+          backgroundColor: '#FFFFFD',
         }}
       >
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 18, fontFamily: fonts.Medium }}>
           Sắp xếp lại câu cho đúng
         </Text>
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <View
             style={{
               display: 'flex',
-              flexDirection:'row',
+              flexDirection: 'row',
               flexWrap: 'wrap',
               gap: 10,
               padding: 10,
@@ -196,7 +197,7 @@ const ExcerciseSentence = ({ _id, lessonId, sentenceOrderQuestion, onNext }) => 
             </>
           ) : (
             <>
-              
+
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto' }}>
                 <TouchableOpacity
                   onPress={handleCheck}

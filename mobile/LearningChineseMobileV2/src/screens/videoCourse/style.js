@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         color: colors.textSecondaryColor,
         fontSize: 13,
         wordBreak: "break-word",
-        flexShrink: 1, 
+        flexShrink: 1,
         flexWrap: 'wrap'
     },
     controllerVideo: {
@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
         fontFamily: fonts.SemiBold,
         color: colors.textPrimaryColor,
         fontSize: 18,
+    },
+    video: {
+        aspectRatio: 16 / 9,
+        width: '100%',
+        backgroundColor: 'black'
     },
 });
 
