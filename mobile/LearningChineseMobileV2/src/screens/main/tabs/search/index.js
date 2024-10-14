@@ -1,6 +1,6 @@
 import { FlatList, Text, View } from "react-native"
 import ScreenContainer from "../../../../components/ScreenContainer";
-import HomeHeader from "../../../../sections/home/homeHeader";
+import HomeHeader from "../../../../sections/home/HomeHeader";
 import { Searchbar } from 'react-native-paper';
 import styles from './styles';
 import { useEffect, useState } from "react";

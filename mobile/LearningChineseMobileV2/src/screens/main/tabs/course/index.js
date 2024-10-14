@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ScreenContainer from "../../../../components/ScreenContainer"
-import HomeHeader from "../../../../sections/home/homeHeader";
+import HomeHeader from "../../../../sections/home/HomeHeader";
 import { getCourses } from "../../../../api/courseApi";
 import { FlatList, View } from "react-native";
 import CourseItem from "../../../../sections/course/CourseItem";

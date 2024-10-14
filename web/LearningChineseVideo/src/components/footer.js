@@ -22,12 +22,6 @@ const HayugoFooter = () => {
                                 <br></br>
                                 {`Các tính năng như tra từ trực tiếp trên phụ đề, linh hoạt chuyển đổi giữa các loại phụ đề, cùng tính năng lưu từ vựng sẽ giúp bạn hiểu rõ hơn và ghi nhớ từ vựng một cách hiệu quả. Theo dõi fanpage của nhóm nghiên cứu để khám phá thêm nhiều thông tin thú vị và cập nhật mới nhất!`}
                             </Typography>
-                            <p>
-                                Fanpage: <span><a>https://s.net.vn/bS4l</a></span>
-                            </p>
-                            <p>
-                                Liên hệ phản hồi chất lượng bản dịch và đóng góp video: <span><a>hayugojhz@gmail.com</a></span>
-                            </p>
                         </Box>
                     </Grid>
                     <Grid
@@ -37,59 +31,33 @@ const HayugoFooter = () => {
                             <Typography
                                 fontSize="20px"
                                 variant="h5">
-                                {`THÔNG TIN NHÓM NGHIÊN CỨU`}
+                                {`THÔNG TIN NHÓM KHÓA LUẬN IUH`}
                             </Typography>
                             <Typography
                                 fontSize="14px"
                                 mt="30px"
                                 variant="subtitle1">
-                                {`Khoa Tiếng Trung Trường Đại Học Sư Phạm TPHCM`}
+                                {`Danh sách thành viên`}
                             </Typography>
                             <ul style={{ listStylePosition: 'outside' }}>
                                 <li style={{ marginTop: '10px', color: 'black' }}>
-                                    <a style={{ color: 'black' }} href="https://web.facebook.com/profile.php?id=100034698395094">
-                                        {`Nguyễn Thị Thúy Giang`}
+                                    <a style={{ color: 'black' }}>
+                                        {`Phạm Thanh Nhật`}
                                     </a>
                                 </li>
                                 <li style={{ marginTop: '10px', color: 'black' }}>
-                                    <a style={{ color: 'black' }} href="https://www.facebook.com/tranthi.thuytram.543">
-                                        {`Trần Thị Thùy Trâm`}
-                                    </a>
-                                </li>
-                                <li style={{ marginTop: '10px', color: 'black' }}>
-                                    <a  style={{ color: 'black' }} href="https://www.facebook.com/profile.php?id=100011355822706&mibextid=ZbWKwL">
-                                        {`Nguyễn Hữu Huỳnh`}
+                                    <a style={{ color: 'black' }}>
+                                        {`Phạm Ngọc Huy Hoàng`}
                                     </a>
                                 </li>
                             </ul>
                         </Box>
-                    </Grid>
-                    <Grid
-                        sx={{ padding: '25px' }}
-                        xl="3.5">
-                        <Box pt="70px">
+                        <Box pt="20px">
                             <Typography
+                                fontSize="14px"
+                                mt="30px"
                                 variant="subtitle1">
-                                {`Bản quyền thuộc về nhóm nghiên cứu đề tài “Xây dựng ngữ liệu trực tuyến phục vụ học tập, tra cứu tiếng Trung cho người học tiếng Trung ở Việt Nam”`}
-                            </Typography>
-                            <Typography variant="subtitle1" mt="20px">
-                                {`Website được xây dựng bởi Nguyễn Quốc Huy`}
-                                <p>{`SDT: `}
-                                    <span style={{ fontWeight: '600' }}>
-                                        <a style={{ color: 'black' }} href="tel:+84868684961">0868684961</a>
-                                    </span>
-                                    {` (Zalo)`}
-                                </p>
-                                <p>{`Email: `}
-                                    <span style={{ fontWeight: '600' }}>
-                                        <a style={{ color: 'black' }} href="mailto:nguyenquochuydl123@gmail.com">nguyenquochuydl123@gmail.com</a>
-                                    </span>
-                                </p>
-                                <p>{`Facebook: `}
-                                    <span style={{ fontWeight: '600' }}>
-                                        <a style={{ color: 'black' }} href="https://www.facebook.com/pgonevn/">Nguyễn Huy</a>
-                                    </span>
-                                </p>
+                                {`Giảng viên: Đặng Thị Thu Hà`}
                             </Typography>
                         </Box>
                     </Grid>

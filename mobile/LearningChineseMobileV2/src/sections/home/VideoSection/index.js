@@ -1,7 +1,7 @@
 import { FlatList, Text, View } from "react-native";
 import styles from "./video-section.style";
 import _ from 'lodash';
-import VideoItem from "../videoItem";
+import VideoItem from "../VideoItem";
 
 
 const VideoSection = ({ videos, title }) => {

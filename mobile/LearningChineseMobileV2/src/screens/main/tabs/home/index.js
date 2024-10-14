@@ -1,11 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ScrollView, Text, View } from "react-native";
-import VideoSection from "../../../../sections/home/videoSection";
 import styles from './styles';
-import HomeHeader from "../../../../sections/home/homeHeader";
 import ScreenContainer from "../../../../components/ScreenContainer";
 import { useEffect, useState } from "react";
 import { getVideos } from "../../../../api/videoApi";
+import VideoSection from "../../../../sections/home/VideoSection";
+import HomeHeader from "../../../../sections/home/HomeHeader";
+
+
 
 const HomeTab = () => {
 

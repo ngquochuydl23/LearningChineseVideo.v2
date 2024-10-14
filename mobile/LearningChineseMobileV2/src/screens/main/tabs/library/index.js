@@ -1,5 +1,4 @@
 import { Text, TouchableOpacity, View } from "react-native"
-import HomeHeader from "../../../../sections/home/homeHeader";
 import UserAvatar from 'react-native-user-avatar';
 import ScreenContainer from "../../../../components/ScreenContainer";
 import styles from './styles';
@@ -11,6 +10,7 @@ import { logout } from "../../../../redux/slices/userSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { readStorageUrl } from "../../../../utils/readStorageUrl";
 import Avatar from "../../../../components/avatar";
+import HomeHeader from "../../../../sections/home/HomeHeader";
 
 
 const LibraryTab = () => {
