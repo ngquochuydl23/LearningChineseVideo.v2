@@ -1,11 +1,11 @@
-import { styled } from '@mui/material/styles';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { styled } from '@mui/material/styles';
 import { withAuthGuard } from 'src/hocs/with-auth-guard';
-import { useAuth } from 'src/hooks/use-auth';
 import { SideNav } from './side-nav';
 import { TopNav } from './top-nav';
+import { useAuth } from 'src/hooks/use-auth';
+import { useRouter } from 'next/router';
 
 const SIDE_NAV_WIDTH = 280;
 
@@ -44,7 +44,7 @@ export const Layout = withAuthGuard((props) => {
 
     useEffect(() => {
         if (user) {
-            if (user.role === "Teacher") {
+            if (user.role === "Administrator") {
                 handlePathnameChange();
             } else {
 

@@ -72,7 +72,7 @@ export const AccountPopover = (props) => {
         >
           Từ vựng đã lưu
         </MenuItem>
-        {user?.role === "Administrator" && (
+        {user?.role === "Administrator"  && (
           <>
             <Divider />
             <MenuItem

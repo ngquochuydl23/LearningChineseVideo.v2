@@ -1,9 +1,9 @@
+import { CardActionArea, CardMedia, Chip, Stack } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardMedia, Chip, Stack } from '@mui/material';
-import readMediaUrl from 'src/utils/read-media-url';
 import Link from 'next/link';
+import readMediaUrl from 'src/utils/read-media-url';
 
 
 const GridVideoCard = ({
