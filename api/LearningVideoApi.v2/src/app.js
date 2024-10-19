@@ -11,6 +11,8 @@ const vocabularyRoute = require('./routes/vocabularyRoute');
 const savedVocabularyRoute = require('./routes/savedVocabularyRoute');
 const courseRoute = require('./routes/courseRoute');
 const lessonRoute = require('./routes/lessonRoute');
+const cartRoute = require('./routes/cartRoute');
+const orderRoute = require('./routes/orderRoute');
 const bodyParser = require('body-parser');
 const app = require('express')();
 const { logRequest, logError } = require('./middlewares/loggingMiddleware')
@@ -38,11 +40,16 @@ app.use('/api/vocabulary', vocabularyRoute);
 app.use('/api/SavedVoca', savedVocabularyRoute);
 app.use('/api/course', courseRoute);
 app.use('/api/lesson', lessonRoute);
+app.use('/api/cart', cartRoute);
+app.use('/api/order', orderRoute);
+
 app.use(logError)
 
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;

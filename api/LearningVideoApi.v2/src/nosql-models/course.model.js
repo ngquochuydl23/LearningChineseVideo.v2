@@ -65,6 +65,7 @@ const schema = BaseSchema("Course.Collection", {
 schema.pre('find', whereNotDeleted);
 schema.pre('findOne', whereNotDeleted);
 schema.pre('updateOne', whereNotDeleted);
+schema.pre('findById', whereNotDeleted);
 
 
 module.exports = mongoose.model("Course.Model", schema); 
