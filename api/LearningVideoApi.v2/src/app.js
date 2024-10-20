@@ -13,6 +13,7 @@ const courseRoute = require('./routes/courseRoute');
 const lessonRoute = require('./routes/lessonRoute');
 const cartRoute = require('./routes/cartRoute');
 const orderRoute = require('./routes/orderRoute');
+const teacherEarningRoute = require('./routes/teacherEarningRoute');
 const bodyParser = require('body-parser');
 const app = require('express')();
 const { logRequest, logError } = require('./middlewares/loggingMiddleware')
@@ -42,6 +43,7 @@ app.use('/api/course', courseRoute);
 app.use('/api/lesson', lessonRoute);
 app.use('/api/cart', cartRoute);
 app.use('/api/order', orderRoute);
+app.use('/api/teacherEarning', teacherEarningRoute);
 
 app.use(logError)
 
