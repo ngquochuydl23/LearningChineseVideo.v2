@@ -1,5 +1,5 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Box, CardActionArea, Chip, MenuItem, Popover, Stack } from "@mui/material";
+import { Box, Button, CardActionArea, Chip, MenuItem, Popover, Stack } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -9,7 +9,8 @@ import { useState } from "react";
 import { formatMilisecond } from "src/utils/formatMilisecond";
 import { formatMoney } from "src/utils/formatMoney";
 import readMediaUrl from "src/utils/read-media-url";
-const GridTeacherCourseCard = ({
+
+const GridAdminCourseCard = ({
   _id,
   firstLesson,
   title,
@@ -18,10 +19,10 @@ const GridTeacherCourseCard = ({
   totalDuration,
   price,
   onClick,
-  onDeleteItem,
+  onApproveItem,
   status,
   createdAt,
-  onRequest,
+  onRejectItem,
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -31,6 +32,12 @@ const GridTeacherCourseCard = ({
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleApproveCourse = (id) => {
+    onApproveItem(id);
+  };
+  const handleRejectCourse = (id) => {
+    onRejectItem(id);
   };
 
   const open = Boolean(anchorEl);
@@ -91,7 +98,22 @@ const GridTeacherCourseCard = ({
           >
             {title}
           </Typography>
-          <MoreVertIcon onClick={handleClick} />
+          {status === "ACCEPTED" ? (
+            "Đã duyệt"
+          ) : status === "REJECTED" ? (
+            "Đã từ chối"
+          ) : (
+            <Stack direction="row" gap={2}>
+              <Button variant="contained" color="primary" onClick={() => handleApproveCourse(_id)}>
+                Duyệt
+              </Button>
+              <Button variant="contained" color="error" onClick={() => handleRejectCourse(_id)}>
+                Từ chối
+              </Button>
+            </Stack>
+          )}
+
+          {/* <MoreVertIcon onClick={handleClick} /> */}
         </Stack>
 
         <Typography fontSize="14px" variant="subtitle2" color="text.secondary" onClick={onClick}>
@@ -117,7 +139,7 @@ const GridTeacherCourseCard = ({
         </Typography>
       </Box>
       {/* </CardActionArea> */}
-      <Popover
+      {/* <Popover
         id={idPopover}
         open={open}
         anchorEl={anchorEl}
@@ -128,12 +150,9 @@ const GridTeacherCourseCard = ({
         }}
       >
         <MenuItem onClick={() => onDeleteItem(_id)}>Xóa video</MenuItem>
-        {status === "REJECTED" && (
-          <MenuItem onClick={() => onRequest(_id)}>Gửi yêu cầu xét duyệt</MenuItem>
-        )}
-      </Popover>
+      </Popover> */}
     </Stack>
   );
 };
 
-export default GridTeacherCourseCard;
+export default GridAdminCourseCard;

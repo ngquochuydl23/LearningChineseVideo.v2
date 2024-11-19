@@ -6,16 +6,24 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSnackbar } from "notistack";
 import { use, useEffect, useState } from "react";
+import { useAuth } from "src/hooks/use-auth";
 import { getExcerciseByLessonId } from "src/services/api/exercise-api";
+import { getOrderUser } from "src/services/api/order-api";
 import { formatMilisecond } from "src/utils/formatMilisecond";
 import { formatMoney } from "src/utils/formatMoney";
 import readMediaUrl from "src/utils/read-media-url";
-const GridDescribeCourseCard = ({ _id, title, onClick, duration }) => {
+const GridDescribeCourseCard = ({ _id, title, onClick, duration, idCourse }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isRotated, setIsRotated] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [excercises, setExcercises] = useState([]);
+  const { enqueueSnackbar } = useSnackbar();
+  const router = useRouter();
+  const { getUser, user } = useAuth();
+  const [listOrders, setListOrders] = useState([]);
   const handleIconClick = () => {
     setIsRotated((prev) => !prev);
     setIsExpanded((prev) => !prev);
@@ -34,7 +42,37 @@ const GridDescribeCourseCard = ({ _id, title, onClick, duration }) => {
     getExcerciseByLessonId(_id).then((res) => {
       setExcercises(res);
     });
+    getOrderUser().then((res) => {
+      setListOrders(res);
+    });
   }, [_id]);
+  const handleClickCheck = () => {
+    if (listOrders.length > 0) {
+      const hasPurchasedCourse = listOrders.some((order) =>
+        order.lineItems.some((item) => item.courseId === idCourse)
+      );
+
+      if (hasPurchasedCourse) {
+        router.push("/lesson/" + _id + "/exercise");
+      } else {
+        enqueueSnackbar(`Bạn chưa mua khóa học này!!!`, {
+          variant: "error",
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right",
+          },
+        });
+      }
+    } else {
+      enqueueSnackbar(`Bạn chưa mua khóa học!!!`, {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right",
+        },
+      });
+    }
+  };
   return (
     <Stack
       direction="column"
@@ -199,10 +237,16 @@ const GridDescribeCourseCard = ({ _id, title, onClick, duration }) => {
               }}
             >
               <Stack direction="row" justifyContent="flex-end">
-                <Button type="submit" sx={{ height: "35px", width: "120px" }} variant="contained">
-                  <CardActionArea component={Link} href={"/lesson/" + _id + "/exercise"}>
-                    <Typography style={{ fontSize: "13px" }}> Làm bài tập </Typography>
-                  </CardActionArea>
+                <Button
+                  type="button"
+                  onCli
+                  sx={{ height: "35px", width: "120px" }}
+                  variant="contained"
+                  onClick={() => handleClickCheck()}
+                >
+                  {/* <CardActionArea component={Link} href={"/lesson/" + _id + "/exercise"}> */}
+                  <Typography style={{ fontSize: "13px" }}> Làm bài tập </Typography>
+                  {/* </CardActionArea> */}
                 </Button>
               </Stack>
             </Stack>

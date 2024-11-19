@@ -1,5 +1,6 @@
 import { Token } from "@mui/icons-material";
 import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
 import PropTypes from "prop-types";
 import { createContext, useContext, useEffect, useReducer, useRef } from "react";
 import { login, persistLogin } from "src/services/api/user-api";
@@ -112,10 +113,17 @@ export const AuthProvider = (props) => {
 
   const signIn = async (phoneNumber, password) => {
     const { user, token } = await login(phoneNumber, password);
+
     if (user && user.role === "Administrator") {
       router.push("/");
-    } else if (user && user.role === "Teacher") {
-      router.push("/teacher/upload-course");
+    } else if (user && user.role === "Teacher" && user.approve === "ACCEPTED") {
+      router.push("/teacher/statistical");
+    } else if (user && user.role === "Teacher" && user.approve === "QUEUE") {
+      router.push("/");
+    } else if (user && user.role === "Teacher" && user.approve === "REJECTED") {
+      router.push("/");
+    } else {
+      router.push("/");
     }
 
     try {

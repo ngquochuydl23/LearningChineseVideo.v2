@@ -7,6 +7,7 @@ import moment from "moment";
 import Head from "next/head";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
+import { useSnackbar } from "notistack";
 import { useState } from "react";
 import AlertDialog from "src/components/alert-dialog";
 import { useAuth } from "src/hooks/use-auth";
@@ -16,7 +17,7 @@ import * as Yup from "yup";
 const Page = () => {
   const router = useRouter();
   const auth = useAuth();
-
+  const { enqueueSnackbar } = useSnackbar();
   const [error, setError] = useState(undefined);
 
   const formik = useFormik({
@@ -54,8 +55,15 @@ const Page = () => {
 
       signUpTeacher(values)
         .then(async (res) => {
-          await auth.signIn(values.phoneNumber, values.password);
-          router.push("/teacher");
+          // await auth.signIn(values.phoneNumber, values.password);
+          enqueueSnackbar(`Đăng ký cộng tác viên thành công hãy chờ admin duyệt nhé!!!`, {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "right",
+            },
+          });
+          router.push("/auth/login");
         })
         .catch((err) => {
           console.log(err);

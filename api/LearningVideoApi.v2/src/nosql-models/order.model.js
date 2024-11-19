@@ -28,6 +28,9 @@ const schema = BaseSchema("Order.Collection", {
         required: [true, 'status must not be null'],
         enum: ['Completed', 'Pending', 'Non-completed'],
     },
+    cardInfo: {
+        type: Object,
+    }
 });
 
 schema.pre('find', whereNotDeleted);

@@ -56,10 +56,21 @@ export const AccountPopover = (props) => {
             onClose?.();
             router.push("/videos-liked");
           }}
-          href="//videos-liked"
-          LinkComponent={<Link href="//videos-liked" />}
+          href="/videos-liked"
+          LinkComponent={<Link href="/videos-liked" />}
         >
           Các video đã thích
+        </MenuItem>
+        <Divider />
+        <MenuItem
+          onClick={() => {
+            onClose?.();
+            router.push("/course-purchased");
+          }}
+          href="/course-purchased"
+          LinkComponent={<Link href="/course-purchased" />}
+        >
+          Danh sách khóa học đã mua
         </MenuItem>
         <Divider />
         <MenuItem
@@ -72,16 +83,29 @@ export const AccountPopover = (props) => {
         >
           Từ vựng đã lưu
         </MenuItem>
-        {user?.role === "Administrator"  && (
+        {user?.role === "Administrator" && (
           <>
             <Divider />
             <MenuItem
               onClick={() => {
                 onClose?.();
-                router.push("/admin/videos");
+                router.push("/admin/statistical-admin");
               }}
             >
-              Đến trang quản trị
+              Đến trang quản trị (Admin)
+            </MenuItem>
+          </>
+        )}
+        {user?.role === "Teacher" && user.approve === "ACCEPTED" && (
+          <>
+            <Divider />
+            <MenuItem
+              onClick={() => {
+                onClose?.();
+                router.push("/teacher/statistical");
+              }}
+            >
+              Đến trang quản trị (Teacher)
             </MenuItem>
           </>
         )}

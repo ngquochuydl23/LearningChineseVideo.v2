@@ -13,19 +13,22 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import _ from "lodash";
 import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import GridDescribeCourseCard from "src/components/teacher/grid-course-describe-card";
 import { useAuth } from "src/hooks/use-auth";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import VideoInfo from "src/sections/video/video-info";
 import VideoPlayer from "src/sections/video/video-player";
+import { addToCart } from "src/services/api/cart-api";
 import { getCourseById } from "src/services/api/course-api";
+import { getOrderUser } from "src/services/api/order-api";
 import { formatMilisecond } from "src/utils/formatMilisecond";
 import { formatMoney } from "src/utils/formatMoney";
 import readMediaUrl from "src/utils/read-media-url";
@@ -37,6 +40,9 @@ const CourseDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
+  const { getUser, user } = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
+  const [displayRegister, setDisplayRegister] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -47,39 +53,114 @@ const CourseDetailPage = () => {
     getCourseById(id)
       .then((res) => {
         console.log(res);
-        
-        setCourse(res[0])
+
+        setCourse(res[0]);
       })
       .catch((err) => console.log(err))
       .finally(() => {
         setLoading(false);
       });
+    getOrderUser().then((res) => {
+      if (res.length > 0) {
+        const hasPurchasedCourse = res.some((order) =>
+          order.lineItems.some((item) => item.courseId === id)
+        );
+
+        if (hasPurchasedCourse) {
+          setDisplayRegister(false);
+        } else {
+          setDisplayRegister(true);
+        }
+      } else {
+        setDisplayRegister(true);
+      }
+    });
   }, []);
 
+  const handleAddCart = () => {
+    const data = {
+      userId: user._id,
+      courseId: id,
+    };
+
+    addToCart(data)
+      .then((res) => {
+        enqueueSnackbar(`Thêm vào giỏ hàng thành công!!!`, {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right",
+          },
+        });
+      })
+      .catch((err) => {
+        if (err === "Invalid body. Request body is empt") {
+          enqueueSnackbar(`Dữ liệu không được để trống`, {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "right",
+            },
+          });
+        } else if (err === "Invalid body. Missing courseId") {
+          enqueueSnackbar(`Khóa học không hợp lệ`, {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "right",
+            },
+          });
+        } else if (err === "Course not found") {
+          enqueueSnackbar(`Không tìm thấy khóa học`, {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "right",
+            },
+          });
+        } else if (err === "You've already add to cart") {
+          enqueueSnackbar(`Khóa học tồn tài trong giỏ hàng của bạn`, {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "right",
+            },
+          });
+        } else {
+          enqueueSnackbar(err, {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "right",
+            },
+          });
+        }
+      });
+  };
   if (loading) {
     return null;
   }
-   const renderStars = (rating) => {
-     return (
-       <div style={{ display: "flex", gap: "5px" }}>
-         {[1, 2, 3, 4, 5].map((star) => (
-           <svg
-             key={star}
-             style={{
-               width: "24px",
-               height: "24px",
-               color: star <= rating ? "#fbbf24" : "#d1d5db",
-             }}
-             fill="currentColor"
-             viewBox="0 0 20 20"
-             xmlns="http://www.w3.org/2000/svg"
-           >
-             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.54-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.05 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-           </svg>
-         ))}
-       </div>
-     );
-   };
+  const renderStars = (rating) => {
+    return (
+      <div style={{ display: "flex", gap: "5px" }}>
+        {[1, 2, 3, 4, 5].map((star) => (
+          <svg
+            key={star}
+            style={{
+              width: "24px",
+              height: "24px",
+              color: star <= rating ? "#fbbf24" : "#d1d5db",
+            }}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.54-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.05 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
+          </svg>
+        ))}
+      </div>
+    );
+  };
   return (
     <>
       <Head>
@@ -152,7 +233,7 @@ const CourseDetailPage = () => {
               <Stack direction="row" spacing={1} width="100%">
                 <Box sx={{ width: "100%" }}>
                   {course.lessons?.map((lesson, index) => (
-                    <GridDescribeCourseCard key={index} {...lesson} />
+                    <GridDescribeCourseCard key={index} {...lesson} idCourse={id} />
                   ))}
                 </Box>
               </Stack>
@@ -234,14 +315,27 @@ const CourseDetailPage = () => {
               <Typography variant="h6" color="orange">
                 {formatMoney(course.price)} VNĐ
               </Typography>
-              <Button
-                type="submit"
-                sx={{ height: "35px", width: "200px" }}
-                style={{ marginTop: "10px" }}
-                variant="contained"
-              >
-                Đăng ký khóa học
-              </Button>
+              {displayRegister ? (
+                <Button
+                  type="submit"
+                  sx={{ height: "35px", width: "200px" }}
+                  style={{ marginTop: "10px" }}
+                  variant="contained"
+                  onClick={() => handleAddCart()}
+                >
+                  Đăng ký khóa học
+                </Button>
+              ) : (
+                <Button
+                  sx={{ height: "35px", width: "200px" }}
+                  style={{ marginTop: "10px" }}
+                  variant="contained"
+                  disabled
+                >
+                  Đã mua khóa học
+                </Button>
+              )}
+
               <Stack direction="column" spacing={2} padding={3}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <SchoolIcon />

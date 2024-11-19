@@ -4,6 +4,7 @@ import {
   Container,
   Unstable_Grid2 as Grid,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import Head from "next/head";
@@ -19,17 +20,27 @@ const Page = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingVideo, setEditingVideo] = useState(null);
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [videoSearch, setVideoSearch] = useState([]);
   const fetchVideo = () => {
     setLoading(true);
     getVideos()
       .then((res) => {
         setVideos(res);
+        setVideoSearch(res);
       })
       .catch((err) => console.log())
       .finally(() => setLoading(false));
   };
+  const handleSearchChange = (event) => {
+    const dataSearch = event.target.value;
+    setSearchTerm(dataSearch);
+    const filtered = videos.filter((video) =>
+      video.title.toLowerCase().includes(dataSearch.toLowerCase())
+    );
 
+    setVideoSearch(filtered);
+  };
   const deleteVideo = (id) => {
     delVideo(id)
       .then(() => {
@@ -68,12 +79,20 @@ const Page = () => {
         <Container maxWidth="lg">
           <Stack spacing={3} paddingBottom="30px">
             <Typography variant="h4">Danh sách video ({videos.length})</Typography>
+            <TextField
+              fullWidth
+              label="Tìm kiếm video"
+              variant="outlined"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              sx={{ my: "20px", fontSize: "30px", fontWeight: "800" }}
+            />
             {loading ? (
               <Box sx={{ display: "flex" }}>
                 <CircularProgress />
               </Box>
             ) : (
-              _.map(videos, (video) => (
+              _.map(videoSearch, (video) => (
                 <GridVideoAdminCard
                   {...video}
                   onDeleteItem={deleteVideo}

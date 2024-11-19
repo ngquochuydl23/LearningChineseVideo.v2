@@ -1,4 +1,5 @@
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import ListIcon from "@mui/icons-material/List";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import SchoolIcon from "@mui/icons-material/School";
@@ -6,6 +7,15 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import UploadIcon from "@mui/icons-material/Upload";
 import { SvgIcon } from "@mui/material";
 export const items = [
+  {
+    title: "Thống kê doanh thu",
+    path: "/teacher/statistical",
+    icon: (
+      <SvgIcon fontSize="small">
+        <BarChartIcon />
+      </SvgIcon>
+    ),
+  },
   {
     title: "Đăng tải khóa học",
     path: "/teacher/upload-course",

@@ -80,6 +80,16 @@ const schema = BaseSchema("User.Collection", {
     type: String,
     required: [false],
   },
+  approve: {
+    type: String,
+    required: [false],
+    default: "QUEUE",
+  },
+  approveAdmin: {
+    type: String,
+    required: [false],
+    default: "",
+  },
 });
 
 schema.pre("find", whereNotDeleted);

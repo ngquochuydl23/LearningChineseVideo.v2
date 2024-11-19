@@ -10,8 +10,8 @@ import Link from "next/link";
 import { formatMoney } from "src/utils/formatMoney";
 import readMediaUrl from "src/utils/read-media-url";
 
-const GridVideoCard = ({
-  _id,
+const GridVideoCardPurchase = ({
+  courseId,
   firstLesson,
   title,
   level,
@@ -35,7 +35,7 @@ const GridVideoCard = ({
         overflow: "hidden",
       }}
     >
-      <CardActionArea component={Link} href={"courses/" + _id}>
+      <CardActionArea component={Link} href={"courses/" + courseId}>
         <div
           style={{
             display: "flex",
@@ -133,23 +133,23 @@ const GridVideoCard = ({
               <PersonIcon fontSize="smail" />
               <Typography variant="body1">{author.fullName}</Typography>
             </Box>
-            <Box display="flex" alignItems="center" gap={0.5}>
+            {/* <Box display="flex" alignItems="center" gap={0.5}>
               <GroupIcon fontSize="smail" />
               <Typography variant="body1">{studentCount}</Typography>
-            </Box>
+            </Box> */}
             {/* Name */}
 
             {/* Play icon with text */}
-            <Box display="flex" alignItems="center" gap={0.5}>
+            {/* <Box display="flex" alignItems="center" gap={0.5}>
               <PlayArrowIcon fontSize="small" />
               <Typography variant="body1">{lessonCount}</Typography>
-            </Box>
+            </Box> */}
 
             {/* Time icon with text */}
-            <Box display="flex" alignItems="center" gap={0.5}>
+            {/* <Box display="flex" alignItems="center" gap={0.5}>
               <AccessTimeIcon fontSize="small" />
               <Typography variant="body1">{millisToMinutesAndSeconds(totalDuration)}</Typography>
-            </Box>
+            </Box> */}
           </Box>
         </CardContent>
       </CardActionArea>
@@ -157,4 +157,4 @@ const GridVideoCard = ({
   );
 };
 
-export default GridVideoCard;
+export default GridVideoCardPurchase;

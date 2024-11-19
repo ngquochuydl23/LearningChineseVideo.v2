@@ -2,9 +2,7 @@ import { Box, Unstable_Grid2 as Grid } from "@mui/material";
 import Head from "next/head";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import GridCourseSection from "src/sections/course/grid-course-section";
-import {
-  getCourses
-} from "src/services/api/course-api";
+import { getCourses } from "src/services/api/course-api";
 
 const Page = () => {
   return (
@@ -12,7 +10,8 @@ const Page = () => {
       <Head>
         <title>Danh sách khóa học</title>
       </Head>
-      <Box sx={{marginBottom:'10px'}}>
+
+      <Box sx={{ marginBottom: "10px" }}>
         <GridCourseSection
           title="Danh sách khóa học"
           limitPerTrans={4}
@@ -20,10 +19,6 @@ const Page = () => {
             return await getCourses(0, 12);
           }}
         />
-
-     
-
-        
       </Box>
     </>
   );
