@@ -289,8 +289,19 @@ const Page = () => {
                         <TableCell>Số điện thoại</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Giới tính</TableCell>
-                        <TableCell>Thời gian tạo</TableCell>
-                        <TableCell>Vai trò</TableCell>
+                        {(selectedRole === 'Teacher'
+                          || selectedRole === 'Teacher-not-approved'
+                          || selectedRole === 'Teacher-approved'
+                          || selectedRole === 'Teacher-rejected')
+                          ? <>
+                            <TableCell>Tiểu sử</TableCell>
+                            <TableCell>Kinh nghiệm</TableCell>
+                          </>
+                          : <>
+                            <TableCell>Thời gian tạo</TableCell>
+                            <TableCell>Vai trò</TableCell>
+                          </>
+                        }
                         <TableCell align="center">Chức năng</TableCell>
                       </TableRow>
                     </TableHead>
@@ -303,8 +314,20 @@ const Page = () => {
                             <TableCell>{item.phoneNumber}</TableCell>
                             <TableCell>{item.email}</TableCell>
                             <TableCell>{item.gender === 0 ? "Nam" : "Nữ"}</TableCell>
-                            <TableCell>{formatDate(item.createdAt)}</TableCell>
-                            <TableCell>{item.role}</TableCell>
+                            {(selectedRole === 'Teacher'
+                              || selectedRole === 'Teacher-not-approved'
+                              || selectedRole === 'Teacher-approved'
+                              || selectedRole === 'Teacher-rejected')
+                              ? <>
+                                <TableCell>{item.bio}</TableCell>
+                                <TableCell>{item.experience}</TableCell>
+                              </>
+                              :
+                              <>
+                                <TableCell>{formatDate(item.createdAt)}</TableCell>
+                                <TableCell>{item.role}</TableCell>
+                              </>
+                            }
                             <TableCell>
                               {item.role === "Teacher" && item.approve === "QUEUE" ? (
                                 <Stack justifyContent="center" gap={1} direction="row">
